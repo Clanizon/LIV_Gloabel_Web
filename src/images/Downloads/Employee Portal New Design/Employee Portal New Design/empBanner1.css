@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@500;700&family=IBM+Plex+Sans+KR:wght@700&family=Inter&family=Jost&family=Kanit&family=Khula&display=swap');
+
+
+.container-fluid{
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+.start-banner{
+    background-color: #0097EC;
+    border-radius: 12px;
+}
+.ban-headings{
+    padding-top: 90px;
+}
+@media(max-width: 767px){
+    .ban-headings{
+        padding-top: 60px;
+    }
+}
+.emp-txt1{
+    font-family: 'Khula', sans-serif;
+    font-size: 60px;
+    text-align: center;
+    font-weight: 700; 
+    line-height: 60px;
+    color: #FFFFFF;
+}
+@media(max-width: 767px){
+    .emp-txt1{
+        font-size: 20px;
+        line-height: 15px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .emp-txt1{
+        font-size: 45px;
+        line-height: 45px;
+    }
+}
+.emp-txt2{
+    font-family: 'Khula', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 700; 
+    line-height: 75px;
+    color: #FFFFFF;
+}
+@media(max-width: 767px){
+    .emp-txt2{
+        font-size: 15px;
+        line-height: 28px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .emp-txt2{
+        font-size: 40px;
+        line-height: 60px;
+    }
+}
+.ban-content{
+    padding-bottom: 60px;
+}
+@media(max-width: 767px){
+    .ban-content{
+        padding-bottom: 20px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .ban-content{
+        padding-bottom: 30px;
+    }
+}
+.emp-content1{
+    font-family: 'Khula', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    text-align: center;
+    line-height: 39px;
+    color: #FFFFFF;
+}
+@media(max-width: 767px){
+    .emp-content1{
+        font-size: 11px;
+        /* font-weight: 400; */
+        line-height: 19px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .emp-content1{
+        font-size: 17px;
+        line-height: 30px;
+    }
+}
+.start-btn{
+    margin: 0 auto;
+}
+.emp-btn1{
+    border-radius: 100px;
+    border: none;
+    background-color: #FFFFFF;
+    padding: 10px;
+    font-family: 'Khula', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #0097EC;
+    width: 140px;
+    height: 52px;
+    margin-bottom: 90px;
+}
+@media(max-width: 767px){
+    .emp-btn1{
+        font-size: 12px;
+        width: 90px;
+        height: 34px;
+        margin-bottom: 60px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .emp-btn1{
+        font-size: 18px;
+        width: 130px;
+        height: 45px;
+    }
+}
+.btn-click{
+    text-align: center;
+}

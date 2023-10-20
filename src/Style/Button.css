@@ -1,0 +1,29 @@
+.contact_us {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    padding-left: 16px;
+}
+
+.cw {
+    color: white;
+}
+
+.cw-btn {
+    background: #222222;
+    border-radius: 50px;
+    padding-left: 16px;
+}
+.frame1 {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin: 8px 8px 8px 16px;
+}
+
+.frame1:hover {
+    transform: rotate(45deg);
+}

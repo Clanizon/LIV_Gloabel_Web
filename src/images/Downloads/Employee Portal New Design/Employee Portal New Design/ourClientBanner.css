@@ -1,0 +1,39 @@
+.client-fdback-banner{
+    background-color: rgba(250, 250, 250, 1);
+    padding-bottom: 60px;
+}
+.client-row{
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
+}
+.client-img-content{
+    display: flex;
+    margin-top: -25px;
+}
+.client-card{
+    border-radius: 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+}
+.client-txt{
+    font-family: 'Khula', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    padding-right: 7rem;
+    /* margin-right: 4rem; */
+}
+.client-body-content{
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+.client-name{
+    font-family: 'Khula', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: rgba(51, 51, 51, 1);
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>8666778_download_down_save_icon</title>
+    <g id="Design_v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Amphenol_-Web_Training" transform="translate(-1394.000000, -107.000000)" stroke="#03030A" stroke-width="2">
+            <g id="8666778_download_down_save_icon" transform="translate(1395.000000, 108.000000)">
+                <path d="M14,9.33333333 L14,12.4444444 C14,13.3035541 13.3035541,14 12.4444444,14 L1.55555556,14 C0.696445945,14 0,13.3035541 0,12.4444444 L0,9.33333333" id="Path"></path>
+                <polyline id="Path" points="3.11111111 5.44444444 7 9.33333333 10.8888889 5.44444444"></polyline>
+                <line x1="7" y1="9.33333333" x2="7" y2="0" id="Path"></line>
+            </g>
+        </g>
+    </g>
+</svg>

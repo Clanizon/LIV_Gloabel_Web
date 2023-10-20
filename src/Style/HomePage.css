@@ -1,0 +1,566 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: Epilogue;
+}
+
+@font-face {
+    font-family: Epilogue;
+    src: url(../font/Epilogue-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../font/Montserrat-Regular.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul li {
+    list-style: none;
+}
+
+button{
+    border: 0;
+    outline: 0;
+}
+
+
+/* Banner Styles Starts Here */
+.banner {
+    background-color: #F7F7F7;
+}
+
+.frame {
+    width: 34px;
+    height: 34px;
+    margin-left: 4px;
+    /* transition: transform 1s ease-in-out; */
+}
+
+.frame:hover {
+    transform: rotate(45deg);
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+}
+
+.content .heading {
+    font-family: Epilogue;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 150%;
+    padding-top: 36px;
+    /*56*/
+    text-align: center;
+    margin: 0 auto;
+    color: #111111;
+}
+
+.content .sub-heading {
+    padding: 16px 0 48px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    /* or 24px */
+    text-align: center;
+
+    color: #666666;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.banner-container {
+    position: relative;
+    padding: 0 3.7%;
+}
+
+/* Banner Styles Ends Here */
+
+/* Black bg styles starts here */
+
+.black-bg {
+    margin: 0 10%;
+    background: #000000;
+    border-radius: 20px;
+    color: #FFFFFF;
+    padding: 40px;
+}
+
+.black-bg-text-bold {
+    font-family: Epilogue;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.black-bg-text {
+    font-family: Epilogue;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.client-logo img {
+    /* width: 118px; 138px
+    height: 42px;
+    object-fit: contain; */
+    margin-left: 49px;
+}
+
+.ac {
+    margin: 10px 0;
+}
+
+/* Black bg styles starts here */
+
+
+/* card styles starts here */
+
+.crafting-card1-banner {
+    padding: 80px 10%;
+}
+
+.craft-heading {
+    font-family: Epilogue;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: 0em;
+    color: #111111;
+}
+
+.craft-subheading {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: #666666;
+    margin: 8px 0 40px;
+}
+
+.card1_head {
+    font-family: Epilogue;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 12px;
+}
+
+.card1_para {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #666666;
+}
+
+.chat {
+    margin: 14px 0 16px 4px;
+    width: 73px;
+    height: 51px;
+}
+
+/* card styles ends here */
+
+
+/* Img card styles starts here */
+
+.digital-products-banner {
+    margin: 0 3.7%;
+    background: #F7F7F7;
+    border-radius: 50px;
+    padding-bottom: 80px
+}
+
+.products-card-container {
+    padding: 80px 6.3%;
+}
+
+.mb-64 {
+    margin-bottom: 64px;
+}
+
+.shoe {
+    width: 100%;
+}
+
+.img-head {
+    font-family: Epilogue;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: #111111;
+}
+
+.img-subhead {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #111111;
+}
+
+.img-side {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: right;
+}
+
+.img-side1 {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: right;
+}
+
+.product-frame {
+    position: relative;
+}
+
+.product-frame-position {
+    position: absolute;
+    right: 24;
+    bottom: 24;
+}
+
+.subtitle {
+    padding: 16px 24px 0;
+}
+
+.mt-80 {
+    margin-top: 80px;
+}
+
+/* Img card styles ends here */
+
+
+
+.carousel-banner {
+    padding: 80px 0 80px 0;
+}
+
+.banner-left {
+    padding-left: 10%;
+}
+
+.card2 {
+    background: #F9F9F9;
+    border-radius: 20px;
+
+}
+
+.card2:nth-child(1) {
+    margin: 0 !important;
+}
+
+.card2-content {
+    padding: 32px;
+}
+
+.card2_head {
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #111111;
+    padding-bottom: 8px;
+}
+
+.card2_para {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.sports {
+    padding: 10px;
+}
+
+/** to hide dots**/
+
+.owl-theme .owl-dots .owl-dot {
+    display: none !important;
+}
+
+
+
+
+
+/* Studio Styles Starts Here */
+.cw-block5 {
+    padding: 80px 10%;
+}
+
+.studio-heading {
+    font-family: Epilogue;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+}
+
+.studio-subheading {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    padding: 8px 0 64px;
+    color: #666666;
+}
+
+.cw-img-collage-content {
+    background: #111111;
+    border-radius: 20px;
+    color: white;
+    padding: 40px 45px 24px 40px;
+    height: 100%;
+    margin: 4px;
+
+}
+
+.cw-text {
+    font-family: Epilogue;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.cw-bold-txt {
+    font-family: Epilogue;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.img-cw-btn {
+    border: 1px solid transparent;
+    background-image: linear-gradient(180deg, #E8B06E 0%, #E4996F 43.19%, #A272D4 100%);
+    border-radius: 23px;
+    box-sizing: border-box;
+}
+
+.mb-32 {
+    margin-bottom: 32px;
+}
+
+.three {
+
+    position: relative;
+}
+
+.bottom-link {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+}
+
+.pl-16 {
+    padding-left: 16px;
+}
+
+.pr-16 {
+    padding-right: 16px;
+}
+
+.ml-16 {
+    margin-left: 16px;
+}
+
+.joinUs-btn {
+    background: #202020;
+    border-radius: 40px;
+    padding: 8px 8px 8px 16px !important;
+}
+
+.joinus-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.join-frame {
+    width: 48px;
+    height: 48px;
+    margin-left: 16px;
+}
+
+.join-frame:hover {
+    transform: rotate(45deg);
+}
+
+/* Studio Styles Ends Here */
+
+
+
+
+/* Footer Styles Starts Here */
+.footer {
+    background: #111111;
+    padding: 0 10%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.footer-head {
+    padding: 80px 0 40px;
+    font-family: Epilogue;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: white;
+}
+
+.pt-80 {
+    padding-top: 80px;
+}
+
+.footer-cw-btn {
+    border: 2px solid;
+    background-image: linear-gradient(180deg, #E8B06E 0%, #E4996F 43.19%, #A272D4 100%);
+    border-radius: 40px;
+    box-sizing: border-box;
+}
+
+.linearbox {
+    margin: 2px;
+    background-color: black;
+    border-radius: 40px;
+}
+
+.footer-cw-btn .cw {
+    display: inline-block;
+    padding: 0 16px;
+    font-weight: bold;
+}
+
+.line {
+    height: 1px;
+    background-color: #333333;
+    margin-top: 80px;
+}
+
+.logoWhite {
+    width: 93px;
+    height: 55px;
+    margin: 17px;
+}
+
+.social {
+    font-family: Epilogue;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: #FFFFFF;
+    /* font-family: Montserrat; */
+}
+
+.follow {
+    font-family: Epilogue;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #AAAAAA;
+    padding-right: 16px;
+}
+
+/* Footer Styles Ends Here */
+
+
+
+.carousel-inner {
+    padding: 1em;
+}
+
+.card2 {
+    margin: 0 2em;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: #e1e1e1;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (min-width: 768px) {
+    .carousel-item {
+        margin-right: 0;
+        flex: 0 0 28.333333%;
+        display: block;
+    }
+
+    .carousel-inner {
+        display: flex;
+    }
+}

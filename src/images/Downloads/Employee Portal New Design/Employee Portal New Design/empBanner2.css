@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@500;700&family=IBM+Plex+Sans+KR:wght@700&family=Inter&family=Jost&family=Kanit&family=Khula&display=swap');
+
+.advantage-banner{
+    margin-top: 45px;
+    text-align: center;
+    /* height: 800px; */
+}
+.adv-btn{
+    margin: 0 auto;
+    width: 140px;
+    height: 34px;
+}
+.emp-btn2{
+    border-radius: 300px;
+    border: none;
+    background-color: #E9F5FF;
+    font-family: 'Khula', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    color: #0097EC;
+    padding: 8px;
+}
+.adv-title{
+    margin-top: 60px;
+}
+@media(max-width: 767px){
+    .adv-title{
+        margin-top: 45px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .adv-title{
+        margin-top: 40px;
+    }
+}
+.adv-heading{
+    color: #333333;
+    font-family: 'Khula', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 58px;
+}
+@media(max-width: 767px){
+    .adv-heading{
+        font-size: 18px;
+        line-height: 30px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .adv-heading{
+        font-size: 30px;
+        line-height: 50px;
+    }
+}
+.adv-content{
+    font-size: 18px;
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    color: #B5B5B5;
+}
+@media(max-width: 767px){
+    .adv-content{
+        font-size: 11px;
+    }
+}
+.adv-card{
+    margin-top: 40px;
+}
+@media(max-width: 767px){
+    .adv-card{
+        margin-top: 20px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .adv-card{
+        margin-top: 30px;
+    }
+}
+.adv-card1{
+    border-radius: 12px;
+    /* width: 297px; */
+    height: 276px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 20px 0 rgba(0, 0, 0, 0.1);
+}
+@media(min-width: 992px) and (max-width: 1115px){
+    .adv-card1{
+        height: 276px;
+    }
+}
+.use-card{
+    display: block;
+    margin-left: auto;
+    /* padding-right: 10%; */
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.adv-use-img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.use-card-title{
+    font-family: 'Khula', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 29px;
+    padding-top: 10px;
+}
+@media(min-width: 992px) and (max-width: 1115px){
+    .use-card-title{
+        font-size: 17px;
+        line-height: 26px;
+        padding-top: 20px;
+    }
+}
+@media(min-width: 992px) and (max-width: 1115px){
+    .card-title{
+        margin-bottom: 5px;
+    }
+}
+@media(min-width: 992px) and (max-width: 1115px){
+    .card-body{
+        padding-top: 0rem!important;
+        padding-bottom: 0rem !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+}
+.use-card-text{
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(181, 181, 181, 1);
+}
+.use-card2{
+    display: block;
+    margin-left: auto;
+    /* padding-right: 10%; */
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+.use-card3{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+

@@ -1,0 +1,303 @@
+.adv-job-ban{
+    text-align: center;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    margin-bottom: 60px;
+}
+@media(max-width: 767px){
+    .adv-job-ban{
+        margin-bottom: 20px;
+    }
+}
+@media(max-width: 767px){
+    .adv-job-ban{
+        padding-left: 3rem !important;
+        padding-right: 3rem;
+    }
+}
+.adv-job-col1{
+    margin-top: 40px;
+}
+@media(max-width: 767px){
+    .adv-job-col1{
+        margin-top: 20px;
+    }
+}
+.job-content{
+    /* border-right: 1px solid rgba(216, 216, 216, 1);
+    border-bottom: 1px solid rgba(216, 216, 216, 1); */
+}
+@media(min-width: 412px) and (max-width: 414px){
+    .per-title2{
+        margin-left: -10px;
+    }
+}
+.vl{
+    border-right: 1px solid rgba(216, 216, 216, 1);
+    height: 100px;
+    margin-top: -80px;
+}
+@media(max-width: 767px){
+   .vl{
+    height: 0px;
+   } 
+}
+.job-hr-line{
+    /* margin-left: 130px; */
+    margin-top: -1px;
+    width: 80%;
+    margin-left: 10%;
+    /* margin-right: 130px; */
+}
+@media(max-width: 767px){
+    .job-hr-line{
+        width: 100%;
+        margin-left: 0%;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .job-hr-line{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+.job-per{
+    font-family: 'Khula', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 64px;
+    color: rgba(51, 51, 51, 1);
+}
+@media(max-width: 767px){
+    .job-per{
+        font-size: 15px;
+        line-height: 30px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .job-per{
+        font-size: 30px;
+        line-height: 54px;
+    }
+}
+.job-per2{
+    font-family: 'Khula', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 64px;
+    color: rgba(51, 51, 51, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per2{
+        margin-left: -15px;
+    }
+}
+@media(min-width: 412px) and (max-width: 414px){
+    .job-per2{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per2{
+        font-size: 15px; 
+        line-height: 30px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .job-per2{
+        font-size: 30px;
+        line-height: 54px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per2{
+        margin-left: -10px;
+    }
+}
+.job-per3{
+    font-family: 'Khula', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 64px;
+    color: rgba(51, 51, 51, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per3{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per3{
+        font-size: 15px; 
+        line-height: 30px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .job-per3{
+        font-size: 30px;
+        line-height: 54px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per3{
+        margin-left: -10px;
+    }
+}
+.job-per4{
+    font-family: 'Khula', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 64px;
+    color: rgba(51, 51, 51, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per4{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per4{
+        font-size: 15px; 
+        line-height: 30px;
+    }
+}
+@media(min-width: 768px) and (max-width: 912px){
+    .job-per4{
+        font-size: 30px;
+        line-height: 54px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per4{
+        margin-left: -10px;
+    }
+}
+.per-symbol{
+    font-family: 'Khula', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 39px;
+    color: rgba(0, 151, 236, 1);
+}
+@media(max-width: 767px){
+    .per-symbol{
+        font-size: 15px;
+        line-height: 29px;
+    }
+}
+.job-per-txt{
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(181, 181, 181, 1);
+}
+@media(max-width: 767px){
+    .job-per-txt{
+        font-size: 11px;
+    }
+}
+.job-per-txt2{
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(181, 181, 181, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per-txt2{
+        margin-left: -20px;
+    }
+}
+@media(min-width: 412px) and (max-width: 414px){
+    .job-per-txt2{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per-txt2{
+        font-size: 11px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per-txt2{
+        margin-left: -20px;
+    }
+}
+.job-per-txt3{
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(181, 181, 181, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per-txt3{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per-txt3{
+        font-size: 11px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per-txt3{
+        margin-left: -13px;
+    }
+}
+.job-per-txt4{
+    font-family: 'Khula', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(181, 181, 181, 1);
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .job-per-txt4{
+        margin-left: -10px;
+    }
+}
+@media(max-width: 767px){
+    .job-per-txt4{
+        font-size: 11px;
+    }
+}
+@media(min-width: 375px) and (max-width: 393px){
+    .job-per-txt4{
+        margin-left: -10px;
+    }
+}
+
+.job-content2{
+    /* border-right: 1px solid rgba(216, 216, 216, 1); */
+}
+.vl2{
+    border-right: 1px solid rgba(216, 216, 216, 1);
+    margin-top: -182px;
+    height: 170px;
+}
+@media(max-width: 767px){
+    .vl2{
+        margin-top: -148px;
+        height: 130px;
+    }
+}
+@media(min-width: 360px) and (max-width: 374px){
+    .vl2{
+        margin-left: 82px;
+    }
+}
+@media(min-width: 375px) and (max-width: 767px){
+    .vl2{
+        margin-left: 91px;
+    }
+}
+.vl3{
+    border-right: 1px solid rgba(216, 216, 216, 1);
+    margin-top: -182px;
+    height: 170px;
+}
+@media(max-width: 767px){
+    .vl3{
+        margin-left: 73px;
+        margin-top: -148px;
+        height: 130px;
+    }
+}
