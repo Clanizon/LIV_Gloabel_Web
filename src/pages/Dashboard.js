@@ -20,9 +20,7 @@ function Dashboard() {
     const setBarData = useStoreActions((actions) => actions.tabModel.setBarData);
     const [selectedDept, setSelectedDept] = useState();
 
-    const dropdownItemDept = ['Clear All', 'MSF Production', 'Quality (Assy)', 'Quality (MSF)', 'NPD', 'NPD Quality', 'Customer Quality',
-        'Marketing', 'Project Team', 'Purchase/Logistics', 'SAFETY', 'HR/ADMIN', 'Training', 'Store', 'WIP', 'Packing',
-        'Sales', '5s', 'Despatch'];
+    const dropdownItemDept = [];
     console.log(selectedDept);
 
     const [filters, setFilters] = useState({

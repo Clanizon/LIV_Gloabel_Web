@@ -68,7 +68,7 @@ const Login = () => {
                         <h4 className="l-heading">Login</h4>
                         <div>
                             <div className="field">
-                                <label htmlFor="email" className="block text-900 font-medium mb-2">User Name</label>
+                                <label htmlFor="email" className="block text-900 font-medium mb-2">Email</label>
                                 <InputText id="email" type="text" className="w-full mb-3 custom-input"
                                     defaultValue={""}
                                     {...register("email", {

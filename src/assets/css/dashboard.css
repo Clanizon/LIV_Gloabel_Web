@@ -96,6 +96,10 @@ input:-internal-autofill-selected {
     margin-bottom: 0;
 }
 
+.closeicon {
+    cursor: pointer;
+}
+
 .card-content p {
     font-family: Poppins-Medium;
     font-size: 14px;
@@ -569,12 +573,23 @@ input:-internal-autofill-selected {
 }
 
 .ls-right-heading {
-    font-family: Poppins-SemiBold;
-    font-size: 26px;
-    font-weight: 600;
-    color: #0e0e0e;
     margin-bottom: 75px;
     text-align: left;
+}
+
+.p-dropdown .p-dropdown-label {
+    border: 0px !important;
+}
+
+.ls-heading {
+
+    text-align: left;
+}
+
+.PlantBox {
+    border: solid 1px #f2f2f2 !important;
+    border-radius: 15px;
+    padding: 6px 10px;
 }
 
 .l-heading {
@@ -922,8 +937,49 @@ input:-internal-autofill-selected {
 }
 
 .layout-main {
-    background: #ffffff !important;
+    /* background: #ffffff !important; */
 
+}
+
+.rightside {
+    background: #ffffff;
+    margin-left: -0.5rem;
+}
+
+.p-placeholder {
+    border: 0px !important;
+}
+
+.dropBox {
+    border-radius: 15px !important;
+    font-family: Inter-Regular;
+    color: rgba(14, 14, 14, 1);
+    font-size: 12px;
+    /* border: 0px !important; */
+}
+
+
+/* .p-dropdown .p-dropdown-label {
+    border: 0px !important;
+} */
+
+.barhead {
+    font-size: 16px;
+    font-family: 'Inter-SemiBold';
+    padding: 10px 5px;
+}
+
+.mainBanner {
+    background: #ffffff;
+    height: calc(100vh - 9rem);
+}
+
+.layout-main-container {
+    margin-top: 0.5rem;
+}
+
+.leftside {
+    background: #ffffff;
 }
 
 .card {

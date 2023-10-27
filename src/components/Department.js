@@ -88,8 +88,11 @@ const Department = () => {
     }
 
     useEffect(() => {
-        getUser()
+        getUser();
     }, []);
+
+
+
     console.log('planStoreData', planStoreData);
     const handleAdd = (data) => {
 
@@ -293,7 +296,16 @@ const Department = () => {
     //     'sales', '5s', 'despatch', 'maintenance', 'assy production'];
 
     // const dropdownItemLevel = ['Level-0', 'Level-1', 'Level-2', 'Level-3', 'Level-4']
-    const esclationList = ["1 Minute", "2 Minutes", "1 Hour", "2 Hours", "4 Hours", "1 Day", "2 Days", "3 Days", "4 Days", "5 Days"]
+    const esclationList = ["2 minutes",
+        "4 minutes",
+        "30 minutes",
+        "1 hour",
+        "6 hours",
+        "12 hours",
+        "24 hours",
+        "2 days",
+        "7 days",
+        "1 month"]
     useEffect(() => {
         setIsLoading(true);
         axios

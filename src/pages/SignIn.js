@@ -18,14 +18,27 @@ const SignIn = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showTermsModal, setShowTermsModal] = useState(false);
-    const termStatus = useStoreState((state) => state.tabModel.termsStatus);
+    const [termsStatus, setTermsStatus] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
     const handleCheckboxChange = (e) => {
         setShowTermsModal(e.target.checked);
+        // setTermsStatus(true);
     };
+
+    const handleCancel = () => {
+        onClose();
+    }
+    const handleYes = () => {
+        setTermsStatus(true);
+        onClose();
+    }
+
+    const onClose = () => {
+        setShowTermsModal(false)
+    }
     const goto = (to) => {
         history.replace(to);
     }
@@ -38,7 +51,7 @@ const SignIn = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        if (!data.agreeToTerms && termStatus) {
+        if (!data.agreeToTerms && termsStatus) {
             toast.current.show({ severity: "error", summary: "Error", detail: "Please agree to the Terms and Conditions" });
             return;
         }
@@ -53,6 +66,7 @@ const SignIn = () => {
                 name: data.name,
                 website: data.website,
                 // domains: [websiteDomain],
+
                 country: data.country,
                 city: data.city,
                 timezone: "Asia/Kolkata",
@@ -61,6 +75,7 @@ const SignIn = () => {
                 name: data.name,
                 email: data.email,
                 password: data.password,
+                terms_agreed: termsStatus,
                 // mobile_no: data.mobNumber,
             },
         };
@@ -125,10 +140,12 @@ const SignIn = () => {
                     <img src={amphe} alt="logo" className="ls-logo" />
                 </div>
             </div>
-            <div className="flex flex-column justify-content-center align-items-center md:col-6 col-12 ls-right-section">
+            <div className="flex flex-column align-self-start justify-content-center align-items-center md:col-6 col-12 ls-right-section">
                 <div className="form-wrapper w-11 sm:w-7">
                     {/* <h1 className="ls-right-heading">Control Center</h1> */}
-                    <img src={logo} alt="logo" className="ls-right-heading" />
+                    {/* <img src={logo} alt="logo" className="ls-right-heading" /> */}
+                    <div className="logopos" style={{ marginTop: '30px', marginBottom: '40px' }}>  <img src={logo} alt="logo" className="ls-heading" /></div>
+
                     {/* <form onSubmit={handleSubmit(onSubmit)} className="error_msg"> */}
                     <h4 className="l-heading">Sign Up</h4>
 
@@ -300,17 +317,35 @@ const SignIn = () => {
                                     {errors?.mobNumber?.type === "pattern" && <p>{errors.mobNumber.message}</p>}
                                 </div> */}
                             <div className="field col-12 md:col-12 msgerror">
-                                <label>
+                                <label style={{ display: 'flex', alignItems: 'center' }}>
                                     <input type="checkbox" {...register("agreeToTerms")} onChange={handleCheckboxChange} />
-                                    I agree to the Terms and Conditions<span className="p-error">*</span>
-                                </label>
-                                {errors?.agreeToTerms?.type === "required" && <p>You must agree to the Terms and Conditions</p>}
+                                    <span style={{ marginLeft: '2px' }}>
+                                        I accept the
+                                        <span style={{ color: 'rgba(233, 146, 16, 1)', }}> Privacy Policy</span>
+                                        <span> and the</span>
+                                        <span style={{ color: 'rgba(233, 146, 16, 1)' }}> Terms of Service</span>
+                                    </span>                                </label>
+                                {errors?.agreeToTerms?.type === "required" && <p>You must accept the Privacy Policy,Terms and Conditions</p>}
                             </div>
-                            <TermsModal visible={showTermsModal} onClose={() => setShowTermsModal(false)} />
+                            {/* <TermsModal visible={showTermsModal} onClose={() => setShowTermsModal(false)} /> */}
 
-                        </div>
+                            <Dialog header="Terms and Conditions" visible={showTermsModal} onHide={handleCancel} style={{ width: "80vw" }}>
+                                <div className="custom-modal-content">
+                                    <iframe
+                                        className="custom-iframe"
+                                        src="https://policies.razolve.com/terms-conditions.html"
+                                        title="External Content"
+                                    />
 
-                        <Button label="Create Account" className="w-full ls-btn mt-3" />
+                                </div>
+                                <div className="flex justify-content-end">
+                                    <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleCancel} label="Cancel" />
+                                    <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleYes} label="Yes" />
+                                </div>
+                            </Dialog></div>
+
+
+                        <Button label="Create Account" className="w-full ls-btn mt-1" />
                         <Dialog header="Verify Your Email" visible={visible} style={{ width: "40vw", fontSize: "35px" }} onHide={() => setVisible(false)}>
                             <p className="parag">
                                 We send to the e-mail <span className="mail">{signUpResp?.user?.email}</span>
@@ -326,7 +361,7 @@ const SignIn = () => {
                             <Button className="verify_btn" label="Verify Code" onClick={handleOTP} />
                             {/* <p className="read">Resend Otp</p> */}
                         </Dialog>
-                        <div className="signup-links mt-3">
+                        <div className="signup-links mt-3 mb-4">
                             <span className="text-600 font-medium line-height-3">Already have an account?</span>
                             <span className="text-600 font-bold" style={{ cursor: 'pointer' }} onClick={() => gotoSignIn("/")}>
                                 {" "}
@@ -336,7 +371,7 @@ const SignIn = () => {
                     </form>
 
                 </div>
-            </div>
+            </div >
         </div >
     );
 };

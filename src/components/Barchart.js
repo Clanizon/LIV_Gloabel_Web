@@ -45,7 +45,7 @@ export default function Barchart() {
         monthData?.forEach((count) => {
             totalTickets.push(count);
         });
-        
+
         console.log(monthData);
         console.log(totalTickets);
         const data = {
@@ -99,9 +99,9 @@ export default function Barchart() {
     }, [barData]);
 
     return (
-        <div className="card mt-2">
+        <div className="rightside mt-2 pl-0 pt-0">
+            <h1 className='barhead'>Dashboard</h1>
             <Chart type="bar" data={chartData} options={chartOptions} />
         </div>
     )
 }
-        

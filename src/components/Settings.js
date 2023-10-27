@@ -72,17 +72,20 @@ const Settings = () => {
                 headers: getHeaders(),
             })
             .then((resp) => {
-                console.log("API Response:", resp.data);
-                const newData = [
-                    {
-                        id: 'add-plant',
-                        name: 'Add Plant',
-                        icon: 'pi pi-plus-circle'
+                if (resp.data.results.length > 0) {
+                    const newData = [
+                        {
+                            id: 'add-plant',
+                            name: 'Add Plant',
+                            icon: 'pi pi-plus-circle',
+                        },
+                        ...resp.data.results,
+                    ];
+                    setPlanData(newData);
+                    setPageNo(pageNo + 1);
+                } else {
 
-                    },
-                    ...resp.data.results
-                ];
-                setPlanData(newData);
+                }
             })
             .catch((e) => {
                 console.error("API Error:", e);
@@ -248,7 +251,7 @@ const Settings = () => {
             </div >
         );
     }; return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} className="mainBanner">
 
             {showTabComponent ?
                 <>
@@ -270,13 +273,13 @@ const Settings = () => {
                                             <p className="plantSize">Add Plant</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> xc
                             </div> */}
                             <DataView value={planData} style={{ padding: '0px 10px' }} itemTemplate={customItemTemplate} />
                             {planData.length > 1 && (
                                 <div className="btnPos">
-                                    <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevios} />
-                                    <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />
+                                    {/* <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevios} />
+                                    <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} /> */}
                                 </div>
                             )}
                         </div>

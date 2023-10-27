@@ -8,6 +8,7 @@ const tabModel = persist({
   detailedGameScoreStatus: null,
   isAuthenticated: false,
   selectedData: null,
+  termsStatus: true,
 
   setActiveIndex: action((state, payload) => {
     state.activeIndex = payload;
@@ -39,7 +40,6 @@ const tabModel = persist({
   barData: null,
   planStoreData: [],
   selectedUnitId: null,
-  termStatus: false,
   departmentLength: null,
   setTicketdata: action((state, payload) => {
     state.ticketdata = payload;
@@ -56,9 +56,6 @@ const tabModel = persist({
   }),
   setSelectedUnitId: action((state, payload) => {
     state.selectedUnitId = payload;
-  }),
-  setTermsStatus: action((state, payload) => {
-    state.termStatus = payload;
   }),
   setDepartmentLength: action((state, payload) => {
     state.departmentLength = payload;

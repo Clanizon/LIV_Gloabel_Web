@@ -1,10 +1,15 @@
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { useEffect, useState } from "react";
 
 const TermsModal = ({ visible, onClose }) => {
 
-    const [termsStatus, setTermsStatus] = useState(false);
+
+    const setTermsStatus = useStoreActions((actions) => actions.tabModel.setTermsStatus);
+    const termsStatus = useStoreState((state) => state.tabModel.termsStatus);
+
+
     const handleCancel = () => {
         onClose();
     }
@@ -17,7 +22,12 @@ const TermsModal = ({ visible, onClose }) => {
             <div className="custom-modal-content">
                 <iframe
                     className="custom-iframe"
-                    src="https://ridedoc.co/RideDoc_TermsofService_v1.html"
+                    src="https://policies.razolve.com/terms-conditions.html"
+                    title="External Content"
+                />
+                <iframe
+                    className="custom-iframe"
+                    src="https://policies.razolve.com/privacy-policy.html"
                     title="External Content"
                 />
             </div>
