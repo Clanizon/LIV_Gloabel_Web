@@ -24,6 +24,8 @@ function Dashboard() {
     const [selectedUnit, setSelectedUint] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('All');
     const [tableData, setTableData] = useState([]);
+    const [morePage, setMorePage] = useState(true);
+
     console.log("tableData", tableData)
     const dropdownItemDept = [];
     const [pageNo, setPageNo] = useState(1);
@@ -40,7 +42,7 @@ function Dashboard() {
             created_user_status: { value: null, matchMode: FilterMatchMode.EQUALS },
             department: { value: null, matchMode: FilterMatchMode.IN },
         })
-        setSelectedDept('Clear All');
+        setSelectedDept('All');
     }
     useEffect(() => {
 
@@ -63,6 +65,8 @@ function Dashboard() {
 
                 setTableData(resp.data.results);
                 // getLastStatusEvent(resp.data.results?.statusEvents)
+                setMorePage(resp.data.results.length === pageLimit);
+
             })
             .catch((e) => {
                 console.error("API Error:", e);
@@ -249,7 +253,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <DataTable removableSort value={tableData} responsiveLayout="scroll" rows={20}
-                                dataKey="id" filters={filters}
+                                dataKey="_id" filters={filters}
                                 globalFilterFields={['department']} emptyMessage="No Tickets found.">
                                 {/* <Column field="_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column> */}
                                 <Column field="createdAt" header="Ticket Raised" body={(rowData) => {
@@ -273,7 +277,7 @@ function Dashboard() {
                                     header="Current Status"
                                 ></Column>
                                 <Column field="status" style={{ minWidth: '8rem' }}
-                                    header="Status"></Column>
+                                    header="Status" filterMenuStyle={{ width: '14rem' }}></Column>
                                 <Column
                                     body={(rowData) => {
                                         const lastClosedStatusEvent = getLastClosedStatusEvent(rowData?.status_events);
@@ -307,8 +311,8 @@ function Dashboard() {
                                 <Column field="description" header="Remarks(Description)" style={{ maxWidth: '25rem' }}></Column>
                             </DataTable>
                             <div className="btnPos">
-                                <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevious} />
-                                <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />
+                                {pageNo > 1 && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevious} />}
+                                {morePage && <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
                             </div>
                         </div>
                     </div>

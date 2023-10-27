@@ -51,52 +51,57 @@ const SignIn = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        if (!data.agreeToTerms && termsStatus) {
+        if (!data.agreeToTerms || !termsStatus) {
             toast.current.show({ severity: "error", summary: "Error", detail: "Please agree to the Terms and Conditions" });
             return;
         }
+
+
 
         // const websiteUrl = new URL(data.websiteUrl);
         // const websiteDomain = websiteUrl.searchParams.get("domain") || websiteUrl.hostname;
         // const emailDomain = data.email.split("@")[1];
         // // alert("");
         // // if (emailDomain.endsWith(websiteDomain)) {
-        const payload = {
-            organization: {
-                name: data.name,
-                website: data.website,
-                // domains: [websiteDomain],
 
-                country: data.country,
-                city: data.city,
-                timezone: "Asia/Kolkata",
-            },
-            user: {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                terms_agreed: termsStatus,
-                // mobile_no: data.mobNumber,
-            },
-        };
-        console.log('payload', payload);
+        if (data.agreeToTerms && termsStatus) {
+            const payload = {
+                organization: {
+                    name: data.name,
+                    website: data.website,
+                    // domains: [websiteDomain],
 
-        setIsLoading(true);
-        axios
-            .post(constants.URL.SIGNUP, payload)
-            .then((resp) => {
-                console.log(resp.data.results);
-                setSignUpResp(resp.data.results);
-                // setVisible(true);
-                goto("/")
-            })
-            .catch((e) => {
-                console.error(e);
-                toast.current.show({ severity: "error", summary: "Error", detail: e.response.data.message });
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+                    country: data.country,
+                    city: data.city,
+                    timezone: "Asia/Kolkata",
+                },
+                user: {
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    terms_agreed: termsStatus,
+                    // mobile_no: data.mobNumber,
+                },
+            };
+            console.log('payload', payload);
+
+            setIsLoading(true);
+            axios
+                .post(constants.URL.SIGNUP, payload)
+                .then((resp) => {
+                    console.log(resp.data.results);
+                    setSignUpResp(resp.data.results);
+                    // setVisible(true);
+                    goto("/")
+                })
+                .catch((e) => {
+                    console.error(e);
+                    toast.current.show({ severity: "error", summary: "Error", detail: e.response.data.message });
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }
         // } else {
         //     toast.current.show({ severity: "error", summary: "Error", detail: "Website url and mail id is not same" });
         // }

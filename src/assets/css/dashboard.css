@@ -971,7 +971,8 @@ input:-internal-autofill-selected {
 
 .mainBanner {
     background: #ffffff;
-    height: calc(100vh - 9rem);
+    min-height: calc(100vh - 9rem);
+    padding-bottom: 50px;
 }
 
 .layout-main-container {

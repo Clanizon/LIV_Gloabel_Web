@@ -23,6 +23,7 @@ const AllTrainee = () => {
     const selectedUnitId = useStoreState((state) => state.tabModel.selectedUnitId);
     const [pageNo, setPageNo] = useState(1);
     const [pageLimit, setPageLimit] = useState(10);
+    const [morePage, setMorePage] = useState(true);
     const {
         register, handleSubmit, formState: { errors }, watch,
         // reset,
@@ -36,6 +37,7 @@ const AllTrainee = () => {
             })
             .then((resp) => {
                 setTraineesList(resp.data.results);
+                setMorePage(resp.data.results.length === pageLimit);
             })
             .catch((e) => console.error(e))
             .finally(() => {
@@ -153,8 +155,9 @@ const AllTrainee = () => {
                 </div>
                 {traineesList.length > 0 && (
                     <div className="btnPos" style={{ width: '100%' }}>
-                        <Button size="small" className=" w-max prevBtn" label="Previos" onClick={handlePrevios} />
-                        <Button size="small" className=" w-max nextBtn ml-4" label="Next" onClick={handleNext} />
+
+                        {pageNo > 1 && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevios} />}
+                        {morePage && <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
                     </div>
                 )}
             </div>

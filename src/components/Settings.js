@@ -72,20 +72,17 @@ const Settings = () => {
                 headers: getHeaders(),
             })
             .then((resp) => {
-                if (resp.data.results.length > 0) {
-                    const newData = [
-                        {
-                            id: 'add-plant',
-                            name: 'Add Plant',
-                            icon: 'pi pi-plus-circle',
-                        },
-                        ...resp.data.results,
-                    ];
-                    setPlanData(newData);
-                    setPageNo(pageNo + 1);
-                } else {
 
-                }
+                const newData = [
+                    {
+                        id: 'add-plant',
+                        name: 'Add Plant',
+                        icon: 'pi pi-plus-circle',
+                    },
+                    ...resp.data.results,
+                ];
+                setPlanData(newData);
+
             })
             .catch((e) => {
                 console.error("API Error:", e);
@@ -93,7 +90,7 @@ const Settings = () => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [planResData, pageNo, refresh]);
+    }, [planResData, refresh]);
     const onSubmit = (data) => {
         setIsLoading(true);
         const payload = {

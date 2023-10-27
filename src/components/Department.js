@@ -42,6 +42,8 @@ const Department = () => {
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState([]);
     const [selectedItemId, setSelectedItemId] = useState('');
+    const [morePage, setMorePage] = useState(true);
+
     const setDepartmentLength = useStoreActions((actions) => actions.tabModel.setDepartmentLength);
     const [refresh, setRefresh] = useState(false);
     const handleAddClick = (value) => {
@@ -316,6 +318,7 @@ const Department = () => {
                 console.log("API Response:", resp.data);
                 setDepartmentRes(resp.data.results)
                 setDepartmentLength(resp.data.results.length);
+                setMorePage(resp.data.results.length === pageLimit);
             })
             .catch((e) => {
                 console.error("API Error:", e);
@@ -380,12 +383,12 @@ const Department = () => {
                             ))}
                             {/* <div className="SS-line"></div> */}
 
-                            {departmentRes.length > 0 && (
-                                <div className="btnPos">
-                                    <Button size="small" className=" w-max prevBtn" label="Previos" onClick={handlePrevios} />
-                                    <Button size="small" className=" w-max nextBtn ml-4" label="Next" onClick={handleNext} />
-                                </div>
-                            )}
+
+                            <div className="btnPos">
+                                {pageNo > 1 && <Button size="small" className=" w-max prevBtn" label="Previos" onClick={handlePrevios} />}
+                                {morePage && <Button size="small" className=" w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
+                            </div>
+
                         </div>
                     </div>
                     <Dialog header="Issue List Configuration" visible={visibleIssueList} style={{ width: "40vw" }} onHide={() => setVisibleIssueList(false)}>
