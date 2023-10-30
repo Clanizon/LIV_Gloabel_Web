@@ -404,17 +404,17 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 xl:col-3 dashbox lg:overflow-auto " style={{ height: "calc(100vh - 9rem)" }}>
+                    <div className="col-12 xl:col-3 dashbox lg:overflow-auto " style={{ background: '#fff', height: "calc(100vh - 9rem)" }}>
 
 
                         <div className='grid '>
-                            <div className='col-6 pt-0 pl-0'>
+                            <div className='col-12 pl-0'>
                                 <div className='db-card db-1stcard '>
                                     <p className='dbHead'>Open</p> <p className='dbPar'>Tickets</p>
                                     <h1>{OpenCount}</h1>
                                 </div>
                             </div>
-                            <div className="col-6 pt-0 pl-0">
+                            <div className="col-12 pl-0">
                                 <div className='db-card db-2ndcard '>
                                     <p className='dbHead'>Resolved </p><p className='dbPar'>Tickets</p>
                                     <h1>{ResolvedCount}</h1>
@@ -427,7 +427,7 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <Barchart />
+                        {/* <Barchart /> */}
                     </div>
                 </div>
             </div>
