@@ -3,7 +3,7 @@ import { action, persist } from "easy-peasy";
 
 const tabModel = persist({
   activeIndex: 0,
-  traineesList: null,
+  traineesList: [],
   gameScoreStatus: null,
   detailedGameScoreStatus: null,
   isAuthenticated: false,

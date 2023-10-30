@@ -532,12 +532,21 @@ input:-internal-autofill-selected {
     background: #f2f2f2;
 }
 
+.boxTop {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.dashbox {
+    padding-left: 1.5rem !important;
+}
+
 .db-heading {
     font-family: Inter-SemiBold;
     font-size: 16px;
     font-weight: 600;
     color: #333333;
-    padding: 1.2rem 15px 1.2rem !important;
+    padding: 1.2rem 10px 1.2rem !important;
 }
 
 .p-disabled:disabled {
@@ -569,7 +578,7 @@ input:-internal-autofill-selected {
 /* login Page */
 .login-wrapper {
     background: #ffffff;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .ls-right-heading {
@@ -765,6 +774,10 @@ input:-internal-autofill-selected {
     align-items: center;
 }
 
+.p-chart {
+    padding: 5px;
+}
+
 .posItem:hover {
     background: rgb(249 246 246);
 }
@@ -780,6 +793,11 @@ input:-internal-autofill-selected {
     .ds-table-height {
         height: auto;
     }
+
+    .dashbox {
+        padding: 0px !important;
+        margin-top: 1rem !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -788,6 +806,8 @@ input:-internal-autofill-selected {
         height: 55px;
         /* margin-bottom: 16px; */
     }
+
+
 }
 
 @media (max-width: 576px) {
@@ -966,13 +986,40 @@ input:-internal-autofill-selected {
 .barhead {
     font-size: 16px;
     font-family: 'Inter-SemiBold';
-    padding: 10px 5px;
+    padding: 10px 10px;
+}
+
+.policy-links a {
+    padding: 5px;
+    font-size: 1.1rem;
+    font-family: 'Inter-SemiBold';
+    color: rgba(14, 14, 14, 1) !important;
+
+}
+
+.policy-links a:hover {
+
+    color: rgb(141 136 136) !important;
+
 }
 
 .mainBanner {
     background: #ffffff;
     min-height: calc(100vh - 9rem);
     padding-bottom: 50px;
+}
+
+.footer-content {
+    text-align: center;
+    padding-bottom: 1.5rem;
+
+}
+
+.footer-content p {
+    font-size: 1rem;
+    font-family: 'Inter-Medium';
+    color: rgba(14, 14, 14, 1) !important;
+    margin: 0.2rem !important;
 }
 
 .layout-main-container {

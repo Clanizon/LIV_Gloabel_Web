@@ -27,6 +27,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Master from './components/Master';
 import Settings from './components/Settings';
+import Footer from './components/Footer';
 
 const App = () => {
     const [layoutMode, setLayoutMode] = useState('static');
@@ -203,7 +204,7 @@ const App = () => {
             <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={mobileMenuActive} unmountOnExit>
                 <div className="layout-mask p-component-overlay"></div>
             </CSSTransition>
-
+<Footer></Footer>
         </div>
     );
 

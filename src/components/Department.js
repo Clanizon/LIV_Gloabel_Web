@@ -33,6 +33,7 @@ const Department = () => {
     const [selectedUnit, setSelectedUnit] = useState(null);
     const [selectedDepartId, setSelectedDepartId] = useState(null);
     const [issueResponse, setIssueResponse] = useState([]);
+    const [ticketMapRes, setTicketMapRes] = useState([]);
     const [resData, setResData] = useState("");
     const selectedUnitId = useStoreState((state) => state.tabModel.selectedUnitId);
     console.log("issueResponse", issueResponse)
@@ -169,6 +170,12 @@ const Department = () => {
         console.log("Selected ID:", id);
 
     };
+    const handleTicketClick = (id) => {
+        getAllUser(id);
+        setVisibleConfig(true);
+        setSelectedDepartId(id);
+
+    }
     const getAllIssues = (id) => {
 
         setIsLoading(true);
@@ -189,6 +196,32 @@ const Department = () => {
 
     }
 
+    const getAllUser = (id) => {
+
+        setIsLoading(true);
+        axios.get(constants.URL.GET_DEPARTMENT + id, {
+            headers: getHeaders(),
+        })
+            .then((resp) => {
+                setTicketMapRes(resp.data.results);
+
+                if (resp.data.results && resp.data.results.escalation_settings) {
+                    const { escalation_settings } = resp.data.results;
+                    form.setValue('esclation', escalation_settings.duration);
+                    form.setValue('level1', escalation_settings.hierarchy[0]?._id || 'No');
+                    form.setValue('level2', escalation_settings.hierarchy[1]?._id || 'No');
+                    form.setValue('level3', escalation_settings.hierarchy[2]?._id || 'No');
+                    form.setValue('level4', escalation_settings.hierarchy[3]?._id || 'No');
+                }
+
+            }).catch((e) => {
+                console.error(e);
+            }).finally(() => {
+                setIsLoading(false);
+                setVisible(false)
+            })
+
+    }
 
 
     const handleDelete = (name) => {
@@ -250,11 +283,17 @@ const Department = () => {
         setIsSaveClicked(true);
     };
     const handleAddUser = (data) => {
-        console.log("selectedUserId", selectedUserId)
+
+        const levelsArray = [
+            data.level1,
+            data.level2,
+            data.level3,
+            data.level4
+        ].filter(level => level !== undefined && level !== null && level !== 'No');
         if (isSaveClicked) {
             const payload = {
                 duration: data.esclation,
-                hierarchy: selectedUserId,
+                hierarchy: levelsArray,
             }
             setIsLoading(true);
             axios.post(constants.URL.ATTACH_DEPARTMENT + selectedDepartId + '/escalation-setting', payload, {
@@ -364,7 +403,8 @@ const Department = () => {
                                                     className="AU-save-btn w-max p-button-rounded mb-2"
                                                     loading={isLoading}
                                                     label="Ticket User Mapping"
-                                                    onClick={() => setVisibleConfig(true)}
+                                                    onClick={() => handleTicketClick(department._id)}
+
                                                 />
                                             </div>
                                         )}
@@ -468,44 +508,140 @@ const Department = () => {
 
                             </div>
                             <div className="field flex flex-column">
-
                                 <label htmlFor="department">
-                                    Select User For Escalation.
+                                    Select User For Escalation. <br></br>
+                                    <span style={{ color: '#495057', fontSize: '10px' }}>(Ticket will be escalated by below order)</span>
                                 </label>
-                                <div className="flex align-items-center" style={{ borderBottom: '1px solid rgba(242, 242, 242, 1)', paddingBottom: '15px ' }}>
-                                    <Controller
-                                        name="user"
-                                        control={form.control}
-                                        rules={{ required: "User is required." }}
-                                        render={({ field, fieldState }) => (
-                                            <div className="column" style={{ width: '100%' }}>
-                                                <Dropdown
-                                                    id={field.name}
-                                                    value={field.value}
-                                                    className={classNames({ "p-invalid": fieldState.error })}
-                                                    style={{ width: '90%', marginRight: '5px' }}
-                                                    onChange={(e) => field.onChange(e.target.value)}
-                                                    options={traineesList}
-                                                    optionLabel="name"
-                                                    optionValue="_id"
-                                                />
-                                                <div style={{ marginTop: '5px' }}>
-                                                    {fieldState.error && (
-                                                        <small className="p-error">{fieldState.error.message}</small>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        )}
-                                    />
+                                <div className=" align-items-center" style={{ borderBottom: '1px solid rgba(242, 242, 242, 1)', paddingBottom: '15px ' }}>
+                                    <div style={{ width: '100%' }}>
+                                        <label htmlFor="level1">
+                                            Level 1
+                                        </label>
+                                        <Controller
+                                            name="level1"
+                                            control={form.control}
+                                            rules={{ required: "Level 1 User is required." }}
+                                            render={({ field, fieldState }) => (
+                                                <div className="column boxTop" >
+                                                    <Dropdown
+                                                        id={field.name}
+                                                        value={field.value}
+                                                        className={classNames({ "p-invalid": fieldState.error })}
+                                                        style={{ width: '100%' }}
+                                                        onChange={(e) => field.onChange(e.target.value)}
+                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
 
-                                    <Button
+                                                        optionLabel="label"
+                                                        optionValue="value"
+                                                    />
+                                                    <div style={{ marginTop: '5px' }}>
+                                                        {fieldState.error && (
+                                                            <small className="p-error">{fieldState.error.message}</small>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                    <div style={{ width: '100%' }}>
+                                        <label htmlFor="level2">
+                                            Level 2
+                                        </label>
+                                        <Controller
+                                            name="level2"
+                                            control={form.control}
+                                            // rules={{ required: "level2 User is required." }}
+                                            render={({ field, fieldState }) => (
+                                                <div className="column boxTop" >
+                                                    <Dropdown
+                                                        id={field.name}
+                                                        value={field.value}
+                                                        className={classNames({ "p-invalid": fieldState.error })}
+                                                        style={{ width: '100%' }}
+                                                        onChange={(e) => field.onChange(e.target.value)}
+                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+
+                                                        optionLabel="label"
+                                                        optionValue="value"
+                                                    />
+                                                    <div style={{ marginTop: '5px' }}>
+                                                        {fieldState.error && (
+                                                            <small className="p-error">{fieldState.error.message}</small>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                    <div style={{ width: '100%' }}>
+                                        <label htmlFor="department">
+                                            Level 3
+                                        </label>
+                                        <Controller
+                                            name="level3"
+                                            control={form.control}
+                                            // rules={{ required: "Level3 User is required." }}
+                                            render={({ field, fieldState }) => (
+                                                <div className="column boxTop" >
+                                                    <Dropdown
+                                                        id={field.name}
+                                                        value={field.value}
+                                                        className={classNames({ "p-invalid": fieldState.error })}
+                                                        style={{ width: '100%' }}
+                                                        onChange={(e) => field.onChange(e.target.value)}
+                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+                                                        optionLabel="label"
+                                                        optionValue="value"
+                                                    />
+                                                    <div style={{ marginTop: '5px' }}>
+                                                        {fieldState.error && (
+                                                            <small className="p-error">{fieldState.error.message}</small>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                    <div style={{ width: '100%' }}>
+                                        <label htmlFor="department">
+                                            Level 4
+                                        </label>
+                                        <Controller
+                                            name="level4"
+                                            control={form.control}
+                                            // rules={{ required: "Level4 User is required." }}
+                                            render={({ field, fieldState }) => (
+                                                <div className="column boxTop" >
+                                                    <Dropdown
+                                                        id={field.name}
+                                                        value={field.value}
+                                                        className={classNames({ "p-invalid": fieldState.error })}
+                                                        style={{ width: '100%' }}
+                                                        onChange={(e) => field.onChange(e.target.value)}
+
+                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+
+                                                        optionLabel="label"
+                                                        optionValue="value"
+                                                    />
+                                                    <div style={{ marginTop: '5px' }}>
+                                                        {fieldState.error && (
+                                                            <small className="p-error">{fieldState.error.message}</small>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        />
+                                    </div>
+                                    {/* <Button
                                         size="small"
                                         className="AU-save-btn p-button-rounded"
                                         label="Add"
                                         style={{ with: '10%' }}
                                         onClick={() => handleAddClick(form.getValues('user'))}
-                                    />
+                                    /> */}
                                 </div>
+
                                 {selectedValues.map((value, index) => (
                                     <div key={index} className="flex" style={{ marginTop: '15px' }} >
                                         <div style={{ marginTop: '10px', width: '100%' }}>

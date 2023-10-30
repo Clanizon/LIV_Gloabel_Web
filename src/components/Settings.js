@@ -18,6 +18,7 @@ import deleteicon from '../images/trash.svg';
 import addicon from '../images/Plus-Circle.svg';
 import pencil from '../images/Pencil.svg';
 import backarrow from '../images/back_arrow_svg.svg';
+import Footer from "./Footer";
 const Settings = () => {
     const setActiveIndex = useStoreActions((actions) => actions.tabModel.setActiveIndex);
     const setSelectedUnitId = useStoreActions((actions) => actions.tabModel.setSelectedUnitId);
@@ -306,6 +307,7 @@ const Settings = () => {
             }
 
         </div >
+
     )
 }
 export default Settings;

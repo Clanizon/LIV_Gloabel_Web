@@ -11,6 +11,7 @@ import axios from "axios";
 import { Dialog } from "primereact/dialog";
 import TermsModal from "./TermsModal "
 import { useStoreState } from "easy-peasy";
+import Footer from "../components/Footer";
 const SignIn = () => {
     let history = useHistory();
     const toast = useRef(null);
@@ -137,113 +138,114 @@ const SignIn = () => {
     };
 
     return (
-        <div className="flex login-wrapper md:flex-row">
-            <Toast ref={toast} />
-            <div className="md:col-6 col-12 hidden md:flex flex-column align-items-center justify-content-center">
-                <div className="logo w-full h-full">
+        <div className="coloumn">
+            <div className="flex login-wrapper md:flex-row">
+                <Toast ref={toast} />
+                <div className="md:col-6 col-12 hidden md:flex flex-column align-items-center justify-content-center">
+                    <div className="logo w-full h-full">
 
-                    <img src={amphe} alt="logo" className="ls-logo" />
+                        <img src={amphe} alt="logo" className="ls-logo" />
+                    </div>
                 </div>
-            </div>
-            <div className="flex flex-column align-self-start justify-content-center align-items-center md:col-6 col-12 ls-right-section">
-                <div className="form-wrapper w-11 sm:w-7">
-                    {/* <h1 className="ls-right-heading">Control Center</h1> */}
-                    {/* <img src={logo} alt="logo" className="ls-right-heading" /> */}
-                    <div className="logopos" style={{ marginTop: '30px', marginBottom: '40px' }}>  <img src={logo} alt="logo" className="ls-heading" /></div>
+                <div className="flex flex-column align-self-start justify-content-center align-items-center md:col-6 col-12 ls-right-section">
+                    <div className="form-wrapper w-11 sm:w-7">
+                        {/* <h1 className="ls-right-heading">Control Center</h1> */}
+                        {/* <img src={logo} alt="logo" className="ls-right-heading" /> */}
+                        <div className="logopos" style={{ marginTop: '30px', marginBottom: '40px' }}>  <img src={logo} alt="logo" className="ls-heading" /></div>
 
-                    {/* <form onSubmit={handleSubmit(onSubmit)} className="error_msg"> */}
-                    <h4 className="l-heading">Sign Up</h4>
+                        {/* <form onSubmit={handleSubmit(onSubmit)} className="error_msg"> */}
+                        <h4 className="l-heading">Sign Up</h4>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="error_msg">
-                        <h5 className="formTitle">Organization</h5>
-                        <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="name">
-                                    Organization Name<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    type="text"
-                                    {...register("name", {
-                                        required: true,
-                                        maxLength: 20, // set the maximum length to 20 characters
-                                        pattern: /^[A-Za-z]+$/,
-                                    })}
-                                />
-                                {errors?.name?.type === "required" && <p>This field is required</p>}
-                                {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 20 characters</p>}
-                                {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
+                        <form onSubmit={handleSubmit(onSubmit)} className="error_msg">
+                            <h5 className="formTitle">Organization</h5>
+                            <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="name">
+                                        Organization Name<span className="p-error">*</span>
+                                    </label>
+                                    <InputText
+                                        type="text"
+                                        {...register("name", {
+                                            required: true,
+                                            maxLength: 20, // set the maximum length to 20 characters
+                                            pattern: /^[A-Za-z]+$/,
+                                        })}
+                                    />
+                                    {errors?.name?.type === "required" && <p>This field is required</p>}
+                                    {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 20 characters</p>}
+                                    {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
+                                </div>
+
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="wesite">
+                                        Website Url<span className="p-error">*</span>
+                                    </label>
+                                    <InputText
+                                        {...register("website", {
+                                            required: true,
+                                            pattern: /^((https?|ftp):\/\/)?([a-z0-9]+\.)?[a-z0-9]+\.[a-z]{2,}(\/.*)?$/i,
+                                            maxLength: 20, // set the maximum length to 20 characters
+                                            message: "Please enter a valid URL",
+                                        })}
+                                    />
+                                    {errors?.website?.type === "required" && <p>This field is required</p>}
+                                    {errors.website && errors.website.type === "pattern" && <p>Please enter a valid URL</p>}
+                                </div>
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="country">
+                                        Country<span className="p-error">*</span>
+                                    </label>
+                                    <InputText
+                                        type="text"
+                                        {...register("country", {
+                                            required: true,
+                                            maxLength: 20, // set the maximum length to 20 characters
+                                            pattern: /^[A-Za-z]+$/,
+                                        })}
+                                    />
+                                    {errors?.country?.type === "required" && <p>This field is required</p>}
+                                    {errors?.country?.type === "maxLength" && <p>The country name cannot be longer than 20 characters</p>}
+                                    {errors?.country?.type === "pattern" && <p>Only letters are allowed</p>}
+                                </div>
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="city">
+                                        City<span className="p-error">*</span>
+                                    </label>
+                                    <InputText
+                                        type="text"
+                                        {...register("city", {
+                                            required: true,
+                                            maxLength: 20, // set the maximum length to 20 characters
+                                            pattern: /^[A-Za-z]+$/,
+                                        })}
+                                    />
+                                    {errors?.city?.type === "required" && <p>This field is required</p>}
+                                    {errors?.city?.type === "maxLength" && <p>The city name cannot be longer than 20 characters</p>}
+                                    {errors?.city?.type === "pattern" && <p>Only letters are allowed</p>}
+                                </div>
+
                             </div>
 
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="wesite">
-                                    Website Url<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    {...register("website", {
-                                        required: true,
-                                        pattern: /^((https?|ftp):\/\/)?([a-z0-9]+\.)?[a-z0-9]+\.[a-z]{2,}(\/.*)?$/i,
-                                        maxLength: 20, // set the maximum length to 20 characters
-                                        message: "Please enter a valid URL",
-                                    })}
-                                />
-                                {errors?.website?.type === "required" && <p>This field is required</p>}
-                                {errors.website && errors.website.type === "pattern" && <p>Please enter a valid URL</p>}
-                            </div>
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="country">
-                                    Country<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    type="text"
-                                    {...register("country", {
-                                        required: true,
-                                        maxLength: 20, // set the maximum length to 20 characters
-                                        pattern: /^[A-Za-z]+$/,
-                                    })}
-                                />
-                                {errors?.country?.type === "required" && <p>This field is required</p>}
-                                {errors?.country?.type === "maxLength" && <p>The country name cannot be longer than 20 characters</p>}
-                                {errors?.country?.type === "pattern" && <p>Only letters are allowed</p>}
-                            </div>
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="city">
-                                    City<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    type="text"
-                                    {...register("city", {
-                                        required: true,
-                                        maxLength: 20, // set the maximum length to 20 characters
-                                        pattern: /^[A-Za-z]+$/,
-                                    })}
-                                />
-                                {errors?.city?.type === "required" && <p>This field is required</p>}
-                                {errors?.city?.type === "maxLength" && <p>The city name cannot be longer than 20 characters</p>}
-                                {errors?.city?.type === "pattern" && <p>Only letters are allowed</p>}
-                            </div>
-
-                        </div>
-
-                        <h5 className="formTitle">Personal Details</h5>
-                        <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="name1">
-                                    Name<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    id="firstname2"
-                                    type="text"
-                                    {...register("name", {
-                                        required: true,
-                                        maxLength: 15, // set the maximum length to 15 characters
-                                        pattern: /^[A-Za-z]+$/,
-                                    })}
-                                />
-                                {errors?.name?.type === "required" && <p>This field is required</p>}
-                                {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>}
-                                {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
-                            </div>
-                            {/* <div className="field col-12 md:col-6">
+                            <h5 className="formTitle">Personal Details</h5>
+                            <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="name1">
+                                        Name<span className="p-error">*</span>
+                                    </label>
+                                    <InputText
+                                        id="firstname2"
+                                        type="text"
+                                        {...register("name", {
+                                            required: true,
+                                            maxLength: 15, // set the maximum length to 15 characters
+                                            pattern: /^[A-Za-z]+$/,
+                                        })}
+                                    />
+                                    {errors?.name?.type === "required" && <p>This field is required</p>}
+                                    {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>}
+                                    {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
+                                </div>
+                                {/* <div className="field col-12 md:col-6">
                                     <label htmlFor="lastname2">
                                         Lastname<span className="p-error">*</span>
                                     </label>
@@ -260,50 +262,50 @@ const SignIn = () => {
                                     {errors?.lastName?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>}
                                     {errors?.lastName?.type === "pattern" && <p>Only letters are allowed</p>}
                                 </div> */}
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="BusinessEmail">
-                                    Business Email Id<span className="p-error">*</span>
-                                </label>
-                                <InputText
-                                    id="BusinessEmail"
-                                    type="text"
-                                    {...register("email", {
-                                        required: true,
-                                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        maxLength: 20, // set the maximum length to 20 characters
-                                        message: "Please enter a valid email address",
-                                    })}
-                                />
-                                {errors.email && errors.email.type === "required" && <p>This field is required</p>}
-                                {errors?.email?.type === "maxLength" && <p>The email address cannot be longer than 20 characters</p>}
-                                {errors.email && errors.email.type === "pattern" && <p>Please enter a valid email address</p>}
-                            </div>
-
-                            <div className="field col-12 md:col-6 msgerror">
-                                <label htmlFor="password">
-                                    Password<span className="p-error">*</span>
-                                </label>
-                                <div className="password-input-wrapper" style={{ background: "#ffffff", display: "flex" }}>
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="BusinessEmail">
+                                        Business Email Id<span className="p-error">*</span>
+                                    </label>
                                     <InputText
-                                        id="password"
-                                        type={showPassword ? "text" : "password"}
-                                        {...register("password", {
+                                        id="BusinessEmail"
+                                        type="text"
+                                        {...register("email", {
                                             required: true,
-                                            minLength: 8, // set minimum password length to 8 characters
-                                            maxLength: 20, // set maximum password length to 20 characters
-                                            // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, // include at least one lowercase letter, one uppercase letter, and one digit
+                                            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                            maxLength: 20, // set the maximum length to 20 characters
+                                            message: "Please enter a valid email address",
                                         })}
                                     />
-
-                                    <Button type="button" className="eybtn" onClick={togglePasswordVisibility} icon={showPassword ? "pi pi-eye-slash" : "pi pi-eye"} />
+                                    {errors.email && errors.email.type === "required" && <p>This field is required</p>}
+                                    {errors?.email?.type === "maxLength" && <p>The email address cannot be longer than 20 characters</p>}
+                                    {errors.email && errors.email.type === "pattern" && <p>Please enter a valid email address</p>}
                                 </div>
-                                {errors?.password?.type === "required" && <p>This field is required</p>}
-                                {errors?.password?.type === "minLength" && <p>Password should be at least 8 characters long</p>}
-                                {errors?.password?.type === "maxLength" && <p>Password should not exceed 20 characters</p>}
-                                {errors?.password?.type === "pattern" && <p>Password should include at least one lowercase letter, one uppercase letter, and one digit</p>}
-                            </div>
 
-                            {/* <div className="field col-12 md:col-6">
+                                <div className="field col-12 md:col-6 msgerror">
+                                    <label htmlFor="password">
+                                        Password<span className="p-error">*</span>
+                                    </label>
+                                    <div className="password-input-wrapper" style={{ background: "#ffffff", display: "flex" }}>
+                                        <InputText
+                                            id="password"
+                                            type={showPassword ? "text" : "password"}
+                                            {...register("password", {
+                                                required: true,
+                                                minLength: 8, // set minimum password length to 8 characters
+                                                maxLength: 20, // set maximum password length to 20 characters
+                                                // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, // include at least one lowercase letter, one uppercase letter, and one digit
+                                            })}
+                                        />
+
+                                        <Button type="button" className="eybtn" onClick={togglePasswordVisibility} icon={showPassword ? "pi pi-eye-slash" : "pi pi-eye"} />
+                                    </div>
+                                    {errors?.password?.type === "required" && <p>This field is required</p>}
+                                    {errors?.password?.type === "minLength" && <p>Password should be at least 8 characters long</p>}
+                                    {errors?.password?.type === "maxLength" && <p>Password should not exceed 20 characters</p>}
+                                    {errors?.password?.type === "pattern" && <p>Password should include at least one lowercase letter, one uppercase letter, and one digit</p>}
+                                </div>
+
+                                {/* <div className="field col-12 md:col-6">
                                     <label htmlFor="lastname2">
                                         Phone Number<span className="p-error">*</span>
                                     </label>
@@ -321,63 +323,66 @@ const SignIn = () => {
                                     {errors?.mobNumber?.type === "required" && <p>This field is required</p>}
                                     {errors?.mobNumber?.type === "pattern" && <p>{errors.mobNumber.message}</p>}
                                 </div> */}
-                            <div className="field col-12 md:col-12 msgerror">
-                                <label style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input type="checkbox" {...register("agreeToTerms")} onChange={handleCheckboxChange} />
-                                    <span style={{ marginLeft: '2px' }}>
-                                        I accept the
-                                        <span style={{ color: 'rgba(233, 146, 16, 1)', }}> Privacy Policy</span>
-                                        <span> and the</span>
-                                        <span style={{ color: 'rgba(233, 146, 16, 1)' }}> Terms of Service</span>
-                                    </span>                                </label>
-                                {errors?.agreeToTerms?.type === "required" && <p>You must accept the Privacy Policy,Terms and Conditions</p>}
-                            </div>
-                            {/* <TermsModal visible={showTermsModal} onClose={() => setShowTermsModal(false)} /> */}
-
-                            <Dialog header="Terms and Conditions" visible={showTermsModal} onHide={handleCancel} style={{ width: "80vw" }}>
-                                <div className="custom-modal-content">
-                                    <iframe
-                                        className="custom-iframe"
-                                        src="https://policies.razolve.com/terms-conditions.html"
-                                        title="External Content"
-                                    />
-
+                                <div className="field col-12 md:col-12 msgerror">
+                                    <label style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input type="checkbox" {...register("agreeToTerms")} onChange={handleCheckboxChange} />
+                                        <span style={{ marginLeft: '2px' }}>
+                                            I accept the
+                                            <span> Privacy Policy</span>
+                                            <span> and the</span>
+                                            <span> Terms of Service</span>
+                                        </span>                                </label>
+                                    {errors?.agreeToTerms?.type === "required" && <p>You must accept the Privacy Policy,Terms and Conditions</p>}
                                 </div>
-                                <div className="flex justify-content-end">
-                                    <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleCancel} label="Cancel" />
-                                    <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleYes} label="Yes" />
+                                {/* <TermsModal visible={showTermsModal} onClose={() => setShowTermsModal(false)} /> */}
+
+                                <Dialog header="Terms and Conditions" visible={showTermsModal} onHide={handleCancel} style={{ width: "80vw" }}>
+                                    <div className="custom-modal-content">
+                                        <iframe
+                                            className="custom-iframe"
+                                            src="https://policies.razolve.com/terms-conditions.html"
+                                            title="External Content"
+                                        />
+
+                                    </div>
+                                    <div className="flex justify-content-end">
+                                        <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleCancel} label="Cancel" />
+                                        <Button size="small" className="AU-save-btn p-button-rounded ml-3" onClick={handleYes} label="Yes" />
+                                    </div>
+                                </Dialog></div>
+
+
+                            <Button label="Create Account" className="w-full ls-btn mt-1" />
+                            <Dialog header="Verify Your Email" visible={visible} style={{ width: "40vw", fontSize: "35px" }} onHide={() => setVisible(false)}>
+                                <p className="parag">
+                                    We send to the e-mail <span className="mail">{signUpResp?.user?.email}</span>
+                                </p>
+                                <div className="verify-input1">
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                    <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
                                 </div>
-                            </Dialog></div>
-
-
-                        <Button label="Create Account" className="w-full ls-btn mt-1" />
-                        <Dialog header="Verify Your Email" visible={visible} style={{ width: "40vw", fontSize: "35px" }} onHide={() => setVisible(false)}>
-                            <p className="parag">
-                                We send to the e-mail <span className="mail">{signUpResp?.user?.email}</span>
-                            </p>
-                            <div className="verify-input1">
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
-                                <InputText keyfilter="int" className="verify-input" minLength={1} maxLength={1} />
+                                <Button className="verify_btn" label="Verify Code" onClick={handleOTP} />
+                                {/* <p className="read">Resend Otp</p> */}
+                            </Dialog>
+                            <div className="signup-links mt-3 mb-4">
+                                <span className="text-600 font-medium line-height-3">Already have an account?</span>
+                                <span className="text-600 font-bold" style={{ cursor: 'pointer' }} onClick={() => gotoSignIn("/")}>
+                                    {" "}
+                                    Sign In
+                                </span>
                             </div>
-                            <Button className="verify_btn" label="Verify Code" onClick={handleOTP} />
-                            {/* <p className="read">Resend Otp</p> */}
-                        </Dialog>
-                        <div className="signup-links mt-3 mb-4">
-                            <span className="text-600 font-medium line-height-3">Already have an account?</span>
-                            <span className="text-600 font-bold" style={{ cursor: 'pointer' }} onClick={() => gotoSignIn("/")}>
-                                {" "}
-                                Sign In
-                            </span>
-                        </div>
-                    </form>
+                        </form>
 
-                </div>
+                    </div>
+                </div >
+
             </div >
-        </div >
+            <Footer></Footer>
+        </div>
     );
 };
 

@@ -16,20 +16,33 @@ function Dashboard() {
     const setData = useStoreActions((actions) => actions.tabModel.setData);
     const data = useStoreState((state) => state.tabModel.data);
     const setBarData = useStoreActions((actions) => actions.tabModel.setBarData);
-    const [selectedDept, setSelectedDept] = useState('All');
+    const [selectedDept, setSelectedDept] = useState('');
     const [planData, setPlanData] = useState([]);
     const [OpenCount, setOpenCount] = useState(0);
     const [ResolvedCount, setResolvedCount] = useState(0);
     const [ClosedCount, setClosedCount] = useState(0);
     const [selectedUnit, setSelectedUint] = useState('');
+
     const [selectedStatus, setSelectedStatus] = useState('All');
     const [tableData, setTableData] = useState([]);
     const [morePage, setMorePage] = useState(true);
-
+    const [departmentRes, setDepartmentRes] = useState([]);
     console.log("tableData", tableData)
     const dropdownItemDept = [];
     const [pageNo, setPageNo] = useState(1);
     const [pageLimit, setPageLimit] = useState(10);
+    const [pageUnitLimit, setPageUnitLimit] = useState(15);
+    const [pageUnitNo, setPageUnitNo] = useState(1);
+    const [pageDeptLimit, setPageDeptLimit] = useState(20);
+    const [pageDeptNo, setPageDeptNo] = useState(1);
+    const ticketStatus = [
+        { name: 'All', _id: 'All' },
+        { name: 'Open', _id: 'Open' },
+        { name: 'Hold', _id: 'Hold' },
+        { name: 'Resolved', _id: 'Resolved' },
+        { name: 'Closed', _id: 'Closed' },
+
+    ];
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         created_user_status: { value: null, matchMode: FilterMatchMode.EQUALS },
@@ -42,8 +55,10 @@ function Dashboard() {
             created_user_status: { value: null, matchMode: FilterMatchMode.EQUALS },
             department: { value: null, matchMode: FilterMatchMode.IN },
         })
-        setSelectedDept('All');
+        setSelectedDept('Clear All');
     }
+
+
     useEffect(() => {
 
         getUnit();
@@ -52,7 +67,7 @@ function Dashboard() {
     useEffect(() => {
 
         getTableData();
-    }, [selectedUnit, pageNo, pageLimit]);
+    }, [selectedUnit, pageNo, pageLimit, selectedDept, selectedStatus]);
 
     const getTableData = () => {
         setIsLoading(true);
@@ -115,22 +130,26 @@ function Dashboard() {
     const getUnit = () => {
         setIsLoading(true);
         axios
-            .get(constants.URL.ALL_PLANT + 'page=' + pageNo + '&limit=' + pageLimit, {
+            .get(constants.URL.ALL_PLANT + 'page=' + pageUnitNo + '&limit=' + pageUnitLimit, {
                 headers: getHeaders(),
             })
             .then((resp) => {
                 console.log("API Response:", resp.data);
-                // const newData = [
-                //     {
-                //         name: 'All',
-                //     },
-                //     ...resp.data.results
-                // ];
-                // setPlanData(newData);
-                setPlanData(resp.data.results);
-                if (resp.data.results.length > 0) {
-                    setSelectedUint(resp.data.results[0]._id);
-                }
+                const newData = [
+                    {
+
+                        _id: 'All',
+                        name: 'All'
+                    },
+                    ...resp.data.results
+                ];
+                setPlanData(newData);
+                setSelectedUint('All');
+                // setPlanData(resp.data.results);
+
+                // if (resp.data.results.length > 0) {
+                //     setSelectedUint(resp.data.results[0]._id);
+                // }
 
             })
             .catch((e) => {
@@ -182,7 +201,31 @@ function Dashboard() {
     const [statuses] = useState(['open']);
 
     const [representatives] = useState(['open', 'closed', 'resolved', 'hold'])
-
+    useEffect(() => {
+        setIsLoading(true);
+        axios
+            .get(constants.URL.ALL_DEPARTMENT + selectedUnit + '?sort_by=name&page=' + pageDeptNo + '&limit=' + pageDeptLimit, {
+                headers: getHeaders(),
+            })
+            .then((resp) => {
+                console.log("API Response:", resp.data);
+                const newData = [
+                    {
+                        name: 'All',
+                        _id: 'All'
+                    },
+                    ...resp.data.results
+                ];
+                setDepartmentRes(newData);
+                setSelectedDept('All')
+            })
+            .catch((e) => {
+                console.error("API Error:", e);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [selectedUnit]);
     const representativesItemTemplate = (option) => {
         return (
             <div className="flex align-items-center gap-2">
@@ -232,12 +275,12 @@ function Dashboard() {
                         <div className=''>
                             <div className='flex justify-content-between align-items-center'>
                                 <h4 className='db-heading'>Tickets</h4>
-                                <div>
-                                    {!isLoading && planData.length > 1 && (
+                                <div className='flex'>
+                                    {!isLoading && planData.length > 0 && (
 
                                         <Dropdown
                                             value={selectedUnit}
-                                            style={{ width: '12rem' }}
+                                            style={{ width: '12rem', margin: '0.3rem' }}
                                             className='dropBox'
                                             onChange={(e) => setSelectedUint(e.value)}
                                             placeholder={selectedUnit}
@@ -247,15 +290,60 @@ function Dashboard() {
                                             optionValue="_id"
                                         />
                                     )}
+
+                                    {/* 
                                     {!isLoading && planData.length === 1 && (
                                         <div className='PlantBox'>{planData[0].name}</div>
+                                    )} */}
+
+                                    {!isLoading && departmentRes.length > 0 && (
+
+                                        <Dropdown
+                                            value={selectedDept}
+                                            style={{ width: '12rem', margin: '0.3rem' }}
+                                            className='dropBox'
+                                            onChange={(e) => setSelectedDept(e.value)}
+
+                                            placeholder='All'
+                                            options={departmentRes}
+
+                                            optionLabel="name"
+                                            optionValue="_id"
+                                        />
                                     )}
+
+
+                                    {/* {!isLoading && departmentRes.length === 1 && (
+                                        <div className='PlantBox'>{departmentRes[0].name}</div>
+                                    )} */}
+                                    {!isLoading && (
+
+                                        <Dropdown
+                                            value={selectedStatus}
+                                            style={{ width: '12rem', margin: '0.3rem' }}
+                                            className='dropBox'
+                                            onChange={(e) => setSelectedStatus(e.value)}
+
+                                            placeholder='All'
+                                            options={ticketStatus}
+
+                                            optionLabel="name"
+                                            optionValue="_id"
+                                        />
+                                    )}
+
+
+                                    {/* {!isLoading && departmentRes.length === 1 && (
+                                        <div className='PlantBox'>{departmentRes[0].name}</div>
+                                    )} */}
+
+
                                 </div>
                             </div>
                             <DataTable removableSort value={tableData} responsiveLayout="scroll" rows={20}
-                                dataKey="_id" filters={filters}
+                                dataKey="id" filters={filters}
                                 globalFilterFields={['department']} emptyMessage="No Tickets found.">
-                                {/* <Column field="_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column> */}
+                                <Column field="hash_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column>
                                 <Column field="createdAt" header="Ticket Raised" body={(rowData) => {
                                     const date = new Date(rowData?.createdAt);
                                     return date?.toLocaleDateString("en-US", {
@@ -263,21 +351,21 @@ function Dashboard() {
                                         month: "short",
                                         year: "numeric",
                                     });
-                                }} style={{ minWidth: '12rem' }}></Column>
-                                <Column field="department.name" style={{ minWidth: '13.5rem' }} filterElement={depRowFilterTemplate} header="Ticket Department" showFilterMatchModes={false}></Column>
-                                <Column field="assignor.name" header="Raised By" style={{ minWidth: '10rem' }}></Column>
-                                <Column field="issue_type" header="Category" style={{ minWidth: '12rem' }}></Column>
-                                <Column field="escalation_settings.duration" style={{ minWidth: '8rem' }} header="Resolution Time"></Column>
+                                }} ></Column>
+                                <Column field="department.name" filterElement={depRowFilterTemplate} header="Department" showFilterMatchModes={false}></Column>
+                                <Column field="assignor.name" header="Raised By" ></Column>
+                                <Column field="issue_type" header="Category" ></Column>
+                                <Column field="escalation_settings.duration" header="Resolution Time"></Column>
                                 <Column
                                     body={(rowData) => {
                                         const lastStatusEvent = getLastStatusEvent(rowData?.status_events);
                                         return lastStatusEvent ? lastStatusEvent.by : 'N/A';
                                     }}
-                                    style={{ minWidth: '9rem' }}
+
                                     header="Current Status"
                                 ></Column>
-                                <Column field="status" style={{ minWidth: '8rem' }}
-                                    header="Status" filterMenuStyle={{ width: '14rem' }}></Column>
+                                <Column field="status"
+                                    header="Status"></Column>
                                 <Column
                                     body={(rowData) => {
                                         const lastClosedStatusEvent = getLastClosedStatusEvent(rowData?.status_events);
@@ -285,7 +373,7 @@ function Dashboard() {
                                             ? lastClosedStatusEvent.by
                                             : 'N/A';
                                     }}
-                                    style={{ minWidth: '10rem' }}
+
                                     header="Closed By"
                                 ></Column>
                                 <Column
@@ -302,13 +390,13 @@ function Dashboard() {
                                             })
                                             : 'N/A';
                                     }}
-                                    style={{ minWidth: '12.4rem' }}
+
                                     header="Closed Time"
                                 ></Column>
 
                                 {/* <Column field="closed_by" header="Closed By" style={{ minWidth: '10rem' }}></Column> */}
                                 {/* <Column field="updatedAt" header="Closed Time" style={{ minWidth: '12.4rem' }} body={closedBodyTemplate}></Column> */}
-                                <Column field="description" header="Remarks(Description)" style={{ maxWidth: '25rem' }}></Column>
+                                <Column field="description" header="Description" ></Column>
                             </DataTable>
                             <div className="btnPos">
                                 {pageNo > 1 && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevious} />}
@@ -316,7 +404,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 xl:col-3 pl-4 lg:overflow-auto " style={{ height: "calc(100vh - 9rem)" }}>
+                    <div className="col-12 xl:col-3 dashbox lg:overflow-auto " style={{ height: "calc(100vh - 9rem)" }}>
 
 
                         <div className='grid '>
