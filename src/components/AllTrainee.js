@@ -50,37 +50,6 @@ const AllTrainee = () => {
         getUser()
     }, []);
 
-    const handleDelete = (item) => {
-        console.log(item);
-        setIsLoading(true);
-        axios
-            .delete(constants.URL.ADD_USER + "/" + item?._id)
-            .then((resp) => {
-                // console.log(resp);
-                getUser()
-                toast.current.show({ severity: "success", summary: "Success", detail: "User Deleted successfully" });
-            })
-            .catch((e) => {
-                toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.error });
-                console.error(e)
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }
-
-
-    const handleUpdate = (item) => {
-        // setVisible(true)
-        setActiveIndex(1)
-        setSelectedData(item)
-    }
-
-    const handleResetPassword = (item) => {
-        setVisible(true)
-        setSelectedData(item)
-    }
-
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword1, setShowPassword1] = useState(false);
 
@@ -120,20 +89,6 @@ const AllTrainee = () => {
             })
     }
 
-    const IconBodyTemplate = (item) => {
-        return (
-            <div className="flex align-items-center">
-                <i className="pi pi-pencil mr-5 cursor-pointer" onClick={() => handleUpdate(item)}></i>
-                <i className="pi pi-refresh mr-5 cursor-pointer" onClick={() => handleResetPassword(item)}></i>
-                <i class="pi pi-trash cursor-pointer" onClick={() => handleDelete(item)}></i>
-            </div>
-        );
-    };
-
-
-    const formatDepartments = (departmentArray) => {
-        return departmentArray.join(', ');
-    };
 
     return (
         <div>

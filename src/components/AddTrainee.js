@@ -177,7 +177,7 @@ const AddUser = () => {
                                     name="email"
                                     control={form.control}
                                     rules={{
-                                        // required: "Email Id is required.",
+                                        required: "Email Id is required.",
                                         pattern: {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Invalid email address.",
@@ -191,7 +191,7 @@ const AddUser = () => {
                             </div>
                             <div className="field col-12 md:col-4 lg:col-3">
                                 <label htmlFor="password">
-                                    Password
+                                    Password<span className="p-error">*</span>
                                 </label>
                                 {selectedData ?
                                     <Controller
