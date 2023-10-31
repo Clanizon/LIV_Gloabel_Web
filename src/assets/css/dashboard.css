@@ -546,7 +546,7 @@ input:-internal-autofill-selected {
     font-size: 16px;
     font-weight: 600;
     color: #333333;
-    padding: 1.2rem 10px 1.2rem !important;
+    padding: 0rem 0px 1.2rem !important;
 }
 
 .p-disabled:disabled {
@@ -590,6 +590,12 @@ input:-internal-autofill-selected {
 
 }
 
+.dropDesign label {
+    display: block;
+    font-size: 1.1rem;
+    margin-left: 0.6rem;
+    font-family: Inter-SemiBold;
+}
 
 /* login Page */
 .login-wrapper {

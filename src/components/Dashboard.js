@@ -16,12 +16,12 @@ function Dashboard() {
     const setData = useStoreActions((actions) => actions.tabModel.setData);
     const data = useStoreState((state) => state.tabModel.data);
     const setBarData = useStoreActions((actions) => actions.tabModel.setBarData);
-    const [selectedDept, setSelectedDept] = useState('');
+    const [selectedDept, setSelectedDept] = useState('All');
     const [planData, setPlanData] = useState([]);
     const [OpenCount, setOpenCount] = useState(0);
     const [ResolvedCount, setResolvedCount] = useState(0);
     const [ClosedCount, setClosedCount] = useState(0);
-    const [selectedUnit, setSelectedUint] = useState('');
+    const [selectedUnit, setSelectedUint] = useState('All');
 
     const [selectedStatus, setSelectedStatus] = useState('All');
     const [tableData, setTableData] = useState([]);
@@ -277,18 +277,20 @@ function Dashboard() {
                                 <h4 className='db-heading'>Tickets</h4>
                                 <div className='flex'>
                                     {!isLoading && planData.length > 0 && (
+                                        <div className='dropDesign'>
+                                            <label>Plant</label>
+                                            <Dropdown
+                                                value={selectedUnit}
+                                                style={{ width: '12rem', margin: '0.3rem' }}
+                                                className='dropBox'
+                                                onChange={(e) => setSelectedUint(e.value)}
+                                                placeholder={selectedUnit}
+                                                options={planData}
 
-                                        <Dropdown
-                                            value={selectedUnit}
-                                            style={{ width: '12rem', margin: '0.3rem' }}
-                                            className='dropBox'
-                                            onChange={(e) => setSelectedUint(e.value)}
-                                            placeholder={selectedUnit}
-                                            options={planData}
-
-                                            optionLabel="name"
-                                            optionValue="_id"
-                                        />
+                                                optionLabel="name"
+                                                optionValue="_id"
+                                            />
+                                        </div>
                                     )}
 
                                     {/* 
@@ -297,19 +299,21 @@ function Dashboard() {
                                     )} */}
 
                                     {!isLoading && departmentRes.length > 0 && (
+                                        <div className='dropDesign'>
+                                            <label>Department</label>
+                                            <Dropdown
+                                                value={selectedDept}
+                                                style={{ width: '12rem', margin: '0.3rem' }}
+                                                className='dropBox'
+                                                onChange={(e) => setSelectedDept(e.value)}
 
-                                        <Dropdown
-                                            value={selectedDept}
-                                            style={{ width: '12rem', margin: '0.3rem' }}
-                                            className='dropBox'
-                                            onChange={(e) => setSelectedDept(e.value)}
+                                                placeholder='All'
+                                                options={departmentRes}
 
-                                            placeholder='All'
-                                            options={departmentRes}
-
-                                            optionLabel="name"
-                                            optionValue="_id"
-                                        />
+                                                optionLabel="name"
+                                                optionValue="_id"
+                                            />
+                                        </div>
                                     )}
 
 
@@ -317,19 +321,21 @@ function Dashboard() {
                                         <div className='PlantBox'>{departmentRes[0].name}</div>
                                     )} */}
                                     {!isLoading && (
+                                        <div className='dropDesign'>
+                                            <label>Status</label>
+                                            <Dropdown
+                                                value={selectedStatus}
+                                                style={{ width: '12rem', margin: '0.3rem' }}
+                                                className='dropBox'
+                                                onChange={(e) => setSelectedStatus(e.value)}
 
-                                        <Dropdown
-                                            value={selectedStatus}
-                                            style={{ width: '12rem', margin: '0.3rem' }}
-                                            className='dropBox'
-                                            onChange={(e) => setSelectedStatus(e.value)}
+                                                placeholder='All'
+                                                options={ticketStatus}
 
-                                            placeholder='All'
-                                            options={ticketStatus}
-
-                                            optionLabel="name"
-                                            optionValue="_id"
-                                        />
+                                                optionLabel="name"
+                                                optionValue="_id"
+                                            />
+                                        </div>
                                     )}
 
 
