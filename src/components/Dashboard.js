@@ -21,6 +21,7 @@ function Dashboard() {
     const [OpenCount, setOpenCount] = useState(0);
     const [ResolvedCount, setResolvedCount] = useState(0);
     const [ClosedCount, setClosedCount] = useState(0);
+    const [HoldCount, setHoldCount] = useState(0);
     const [selectedUnit, setSelectedUint] = useState('All');
 
     const [selectedStatus, setSelectedStatus] = useState('All');
@@ -43,27 +44,16 @@ function Dashboard() {
         { name: 'Closed', _id: 'Closed' },
 
     ];
-    const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        created_user_status: { value: null, matchMode: FilterMatchMode.EQUALS },
-        department: { value: null, matchMode: FilterMatchMode.IN },
-    });
-
-    const clearFilter = () => {
-        setFilters({
-            global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-            created_user_status: { value: null, matchMode: FilterMatchMode.EQUALS },
-            department: { value: null, matchMode: FilterMatchMode.IN },
-        })
-        setSelectedDept('Clear All');
-    }
-
 
     useEffect(() => {
 
         getUnit();
-        getUnitCount();
+
     }, []);
+
+    useEffect(() => {
+        getUnitCount();
+    }, [selectedUnit, selectedDept, selectedStatus]);
     useEffect(() => {
 
         getTableData();
@@ -145,11 +135,6 @@ function Dashboard() {
                 ];
                 setPlanData(newData);
                 setSelectedUint('All');
-                // setPlanData(resp.data.results);
-
-                // if (resp.data.results.length > 0) {
-                //     setSelectedUint(resp.data.results[0]._id);
-                // }
 
             })
             .catch((e) => {
@@ -162,13 +147,14 @@ function Dashboard() {
     const getUnitCount = () => {
         setIsLoading(true);
         axios
-            .get(constants.URL.DASH_COUNT, {
+            .get(constants.URL.DASH_COUNT + selectedStatus + "&unit=" + selectedUnit + "&department=" + selectedDept, {
                 headers: getHeaders(),
             })
             .then((resp) => {
                 console.log("API Response:", resp.data);
                 setOpenCount(resp.data?.results?.Open);
                 setResolvedCount(resp.data?.results?.Resolved);
+                setHoldCount(resp.data?.results?.Hold);
                 setClosedCount(resp.data?.results?.Closed);
                 setBarData();
 
@@ -180,27 +166,7 @@ function Dashboard() {
                 setIsLoading(false);
             });
     }
-    // let OpenCount = 0;
-    // let ResolvedCount = 0;
-    // let ClosedCount = 0;
 
-    // data?.forEach((employee) => {
-    //     const { assigned_user_status, created_user_status } = employee;
-
-    //     if (assigned_user_status == "Open") {
-    //         OpenCount++;
-    //     }
-    //     if (assigned_user_status == "resolved") {
-    //         ResolvedCount++;
-    //     }
-    //     if (created_user_status == "closed") {
-    //         ClosedCount++;
-    //     }
-    // });
-    // console.log(OpenCount);
-    const [statuses] = useState(['open']);
-
-    const [representatives] = useState(['open', 'closed', 'resolved', 'hold'])
     useEffect(() => {
         setIsLoading(true);
         axios
@@ -226,46 +192,7 @@ function Dashboard() {
                 setIsLoading(false);
             });
     }, [selectedUnit]);
-    const representativesItemTemplate = (option) => {
-        return (
-            <div className="flex align-items-center gap-2">
-                <span>{option}</span>
-            </div>
-        );
-    };
 
-
-    const representativeRowFilterTemplate = (options) => {
-        return (
-            <Dropdown
-                value={options.value}
-                options={representatives}
-                itemTemplate={representativesItemTemplate}
-                onChange={(e) => options.filterCallback(e.value)}
-                placeholder="status"
-                className="p-column-filter"
-            // style={{ maxWidth: '9rem' }}
-            />
-        );
-    };
-
-    const depRowFilterTemplate = (options) => {
-        return (
-            <MultiSelect
-                options={dropdownItemDept}
-                value={options.value}
-                onChange={(e) => options.filterCallback(e.target.value)}
-                placeholder="Search Department"
-                className="p-column-filter"
-            />
-        );
-    };
-
-    const closedBodyTemplate = (rowData) => {
-        if (rowData?.created_user_status == "closed") {
-            return rowData?.updatedAt;
-        }
-    };
 
     return (
         <div className='w-full'>
@@ -347,7 +274,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <DataTable removableSort value={tableData} responsiveLayout="scroll" rows={20}
-                                dataKey="id" filters={filters}
+                                dataKey="id"
                                 globalFilterFields={['department']} emptyMessage="No Tickets found.">
                                 <Column field="hash_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column>
                                 <Column field="createdAt" header="Ticket Raised" body={(rowData) => {
@@ -358,7 +285,7 @@ function Dashboard() {
                                         year: "numeric",
                                     });
                                 }} ></Column>
-                                <Column field="department.name" filterElement={depRowFilterTemplate} header="Department" showFilterMatchModes={false}></Column>
+                                <Column field="department.name" header="Department" showFilterMatchModes={false}></Column>
                                 <Column field="assignor.name" header="Raised By" ></Column>
                                 <Column field="issue_type" header="Category" ></Column>
                                 <Column field="escalation_settings.duration" header="Resolution Time"></Column>
@@ -414,20 +341,26 @@ function Dashboard() {
 
 
                         <div className='grid '>
-                            <div className='col-12 pl-0'>
+                            <div className='col-6 pl-0'>
                                 <div className='db-card db-1stcard '>
                                     <p className='dbHead'>Open</p> <p className='dbPar'>Tickets</p>
                                     <h1>{OpenCount}</h1>
                                 </div>
                             </div>
-                            <div className="col-12 pl-0">
+                            <div className="col-6 pl-0">
                                 <div className='db-card db-2ndcard '>
+                                    <p className='dbHead'>Hold </p><p className='dbPar'>Tickets</p>
+                                    <h1>{HoldCount}</h1>
+                                </div>
+                            </div>
+                            <div className="col-12 pl-0">
+                                <div className='db-card db-3rdcard '>
                                     <p className='dbHead'>Resolved </p><p className='dbPar'>Tickets</p>
                                     <h1>{ResolvedCount}</h1>
                                 </div>
                             </div>
                             <div className="col-12 pl-0 ">
-                                <div className='db-card db-3rdcard '>
+                                <div className='db-card db-4thcard '>
                                     <p className='dbHead'>Closed </p><p className='dbPar'>Tickets</p>
                                     <h1>{ClosedCount}</h1>
                                 </div>

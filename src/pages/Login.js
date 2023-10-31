@@ -57,7 +57,7 @@ const Login = () => {
             <div className="flex login-wrapper md:flex-row">
                 <Toast ref={toast} />
                 <div className="md:col-6 col-12 hidden md:flex flex-column align-items-center justify-content-center">
-                    <div className="logo w-full h-full">
+                    <div className="logo w-full leftPos">
 
                         <img src={amphe} alt="logo" className="ls-logo" />
                     </div>

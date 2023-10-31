@@ -379,7 +379,7 @@ const Department = () => {
                     </div> */}
                     <div>
                         <h2 className="details-heading my-3 flex align-items-center justify-content-between">
-                            <span>Department Name</span>
+                            <span>Department</span>
                             <i class="pi pi-plus-circle cursor-pointer" style={{ fontWeight: '600' }} onClick={() => setVisible(true)}></i>
                         </h2>
                         <div style={{ padding: '0rem 1rem' }}>

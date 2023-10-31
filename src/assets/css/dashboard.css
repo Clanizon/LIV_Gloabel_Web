@@ -187,7 +187,9 @@ input:-internal-autofill-selected {
     padding: 5px;
 }
 
-.formTitle {}
+.formTitle {
+    margin: 0px;
+}
 
 .formgrid {
     padding: 0rem 1.2rem;
@@ -546,7 +548,7 @@ input:-internal-autofill-selected {
     font-size: 16px;
     font-weight: 600;
     color: #333333;
-    padding: 0rem 0px 1.2rem !important;
+    padding: 1.2rem 0px 0.2rem !important
 }
 
 .p-disabled:disabled {
@@ -585,26 +587,35 @@ input:-internal-autofill-selected {
     background-color: #F5F5F5;
 }
 
+.p-datatable .p-column-header-content {
+    width: 8rem;
+}
+
 ::-webkit-scrollbar-thumb {
     background-color: transparent;
 
 }
 
 .dropDesign label {
-    display: block;
+    /* display: block; */
     font-size: 1.1rem;
     margin-left: 0.6rem;
     font-family: Inter-SemiBold;
+    margin-right: 0.5rem;
 }
 
 /* login Page */
 .login-wrapper {
     background: #ffffff;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+}
+
+.leftPos {
+    height: 90vh;
 }
 
 .ls-right-heading {
-    margin-bottom: 75px;
+    margin-bottom: 3.1rem;
     text-align: left;
 }
 
@@ -629,7 +640,7 @@ input:-internal-autofill-selected {
     font-weight: 600;
     letter-spacing: 0.01px;
     color: rgba(14, 14, 14, 1);
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .custom-modal-content {
@@ -927,12 +938,18 @@ input:-internal-autofill-selected {
 }
 
 .db-2ndcard {
-    background-image: url(../../images/yellow-card.png);
+    background-image: url(../../images/orange-card.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
 .db-3rdcard {
+    background-image: url(../../images/yellow-card.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.db-4thcard {
     background-image: url(../../images/green-card.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -1031,9 +1048,13 @@ input:-internal-autofill-selected {
     padding-bottom: 50px;
 }
 
+.checkPos {
+    margin-bottom: 0px !important;
+}
+
 .footer-content {
     text-align: center;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
 
 }
 
