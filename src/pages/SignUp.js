@@ -14,7 +14,7 @@ import { useStoreState } from "easy-peasy";
 import Footer from "../components/Footer";
 import { Checkbox } from "primereact/checkbox";
 
-const SignIn = () => {
+const SignUp = () => {
     let history = useHistory();
     const toast = useRef(null);
     const [checked, setChecked] = useState(false);
@@ -399,4 +399,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default SignUp;

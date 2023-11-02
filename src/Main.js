@@ -7,43 +7,43 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 import Login from "./pages/Login";
 import "./assets/css/dashboard.css"
 //theme
-import "primereact/resources/themes/lara-light-indigo/theme.css";     
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
-import "primereact/resources/primereact.min.css";                 
+import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
-import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function Main() {
-    const isAuthenticated = useStoreState((actions) => actions.tabModel.isAuthenticated);
+  const isAuthenticated = useStoreState((actions) => actions.tabModel.isAuthenticated);
 
-    const PrivateRoute = ({ component: Component, ...rest }) => {
-        
-        return (
-          <Route
-            {...rest}
-            render={props =>
-              isAuthenticated ? (
-                <Component {...props} />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
-          />
-        );
-      };
+  const PrivateRoute = ({ component: Component, ...rest }) => {
 
     return (
-        <HashRouter>
-            <Switch>
-                <ScrollToTop>
-                    <Route exact path="/" component={Login} />
-                    <Route exact path="/sign-up" component={SignIn} />
-                    {/* <PrivateRoute path="/app" component={App} /> */}
-                    <Route path="/app" component={App} />
-                </ScrollToTop>
-            </Switch>
-        </HashRouter>
+      <Route
+        {...rest}
+        render={props =>
+          isAuthenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/" />
+          )
+        }
+      />
     );
+  };
+
+  return (
+    <HashRouter>
+      <Switch>
+        <ScrollToTop>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/sign-up" component={SignUp} />
+          {/* <PrivateRoute path="/app" component={App} /> */}
+          <Route path="/app" component={App} />
+        </ScrollToTop>
+      </Switch>
+    </HashRouter>
+  );
 }
 
 export default Main;
