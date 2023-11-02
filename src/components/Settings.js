@@ -74,7 +74,7 @@ const Settings = () => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [planResData, refresh]);
+    }, [planResData, refresh,selectedItemId]);
     const onSubmit = (data) => {
         setIsLoading(true);
         const payload = {
@@ -92,10 +92,11 @@ const Settings = () => {
                     if (toast.current) {
                         toast.current.show({ severity: "success", summary: "Success", detail: "Item updated successfully" });
                     }
-
+                    setSelectedItemId('');
                     form.reset();
                     setVisible(false);
                     setRefresh(true);
+
 
                 })
                 .catch((e) => {

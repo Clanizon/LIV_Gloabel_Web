@@ -30,17 +30,19 @@ const SignIn = () => {
     };
 
     const handleCheckboxChange = (e) => {
-        setChecked(e.target);
-        setShowTermsModal(e.target.checked);
+        setChecked(e.target.checked);
 
+        if (e.target.checked) {
+            setShowTermsModal(true);
+        } else {
+            setShowTermsModal(false);
+        }
     };
 
     const handleCancel = () => {
         setChecked(false);
         onClose();
         setTermsStatus(false);
-
-        setChecked(false);
     }
     const handleYes = () => {
         setTermsStatus(true);
