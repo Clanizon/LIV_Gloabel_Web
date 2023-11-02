@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { TabMenu } from 'primereact/tabmenu';
-import AllTrainee from "./AllTrainee";
-import AddTrainee from "./AddTrainee";
+import ViewMember from "./ViewMember";
+import AddMemeber from "./AddMemeber";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
 const Master = () => {
@@ -21,8 +21,8 @@ const Master = () => {
         <>
             <div className="Trainee-wrapper">
                 <TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
-                {activeIndex === 0 && <AllTrainee />}
-                {activeIndex === 1 && <AddTrainee />}
+                {activeIndex === 0 && <ViewMember />}
+                {activeIndex === 1 && <AddMemeber />}
             </div>
         </>
     )

@@ -192,7 +192,7 @@ const App = () => {
             <div className="layout-main-container">
                 <div className="layout-main">
                     <Route path="/app/defaultnav" exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} />
-                    <Route path="/app/allTrainee" component={Master} />
+                    <Route path="/app/ViewMember" component={Master} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/app/settings" component={Settings} />
@@ -204,7 +204,7 @@ const App = () => {
             <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={mobileMenuActive} unmountOnExit>
                 <div className="layout-mask p-component-overlay"></div>
             </CSSTransition>
-<Footer></Footer>
+            <Footer></Footer>
         </div>
     );
 

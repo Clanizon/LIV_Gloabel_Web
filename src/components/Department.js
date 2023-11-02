@@ -8,35 +8,27 @@ import classNames from "classnames";
 import axios from "axios";
 import constants from "../constants/constants";
 import { Dropdown } from "primereact/dropdown";
-// import Header from "./Header";
-import { MultiSelect } from 'primereact/multiselect';
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { Dialog } from "primereact/dialog";
 import getHeaders from "../constants/Utils";
 import deleteicon from '../images/trash.svg';
-import addicon from '../images/Plus-Circle.svg';
 import pencil from '../images/Pencil.svg';
 import closeicon from '../images/close-small.svg';
 const Department = () => {
-    const [department, setDepartment] = useState(null);
     const [departmentRes, setDepartmentRes] = useState([]);
     const toast = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     const [visibleConfig, setVisibleConfig] = useState(false);
     const [visibleIssueList, setVisibleIssueList] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
-    const [dropdownItemUnit, setDropDownItemUnit] = useState([]);
     const [pageNo, setPageNo] = useState(1);
     const [pageLimit, setPageLimit] = useState(10);
-    const selectedData = useStoreState((state) => state.tabModel.selectedData);
     const [selectedUnit, setSelectedUnit] = useState(null);
     const [selectedDepartId, setSelectedDepartId] = useState(null);
     const [issueResponse, setIssueResponse] = useState([]);
     const [ticketMapRes, setTicketMapRes] = useState([]);
     const [resData, setResData] = useState("");
     const selectedUnitId = useStoreState((state) => state.tabModel.selectedUnitId);
-    console.log("issueResponse", issueResponse)
     const planStoreData = useStoreState((state) => state.tabModel.planStoreData);
     const setTraineesList = useStoreActions((actions) => actions.tabModel.setTraineesList);
     const traineesList = useStoreState((state) => state.tabModel.traineesList);
@@ -47,14 +39,7 @@ const Department = () => {
 
     const setDepartmentLength = useStoreActions((actions) => actions.tabModel.setDepartmentLength);
     const [refresh, setRefresh] = useState(false);
-    const handleAddClick = (value) => {
-        const selectedTrainee = traineesList.find((trainee) => trainee._id === value);
 
-        if (selectedTrainee) {
-            setSelectedValues([...selectedValues, selectedTrainee]);
-            setSelectedUserId([...selectedUserId, selectedTrainee._id]);
-        }
-    };
     const handlePrevios = () => {
         if (pageNo > 1) {
             setPageNo(pageNo - 1);
@@ -70,10 +55,7 @@ const Department = () => {
         updatedValues.splice(index, 1);
         setSelectedValues(updatedValues);
     };
-    const dropdownOptions = planStoreData.map((item) => ({
-        label: item.name,
-        value: item._id, // Set the value to the _id
-    }));
+
     const getUser = () => {
         setIsLoading(true);
         axios
@@ -329,14 +311,7 @@ const Department = () => {
         // setSomeOtherStateVariable(name);
         setVisible(true);
     };
-    const getFormErrorMessage = (name) => {
-        return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
-    }
-    // const dropdownItemDept = ['msf production', 'quality (assy)', 'quality (msf)', 'npd', 'npd quality', 'customer quality',
-    //     'marketing', 'project team', 'purchase/logistics', 'safety', 'hr/admin', 'training', 'store', 'wip', 'packing',
-    //     'sales', '5s', 'despatch', 'maintenance', 'assy production'];
 
-    // const dropdownItemLevel = ['Level-0', 'Level-1', 'Level-2', 'Level-3', 'Level-4']
     const esclationList = ["2 minutes",
         "4 minutes",
         "30 minutes",
@@ -369,14 +344,11 @@ const Department = () => {
 
     return (
         <>
-            {/* <div className="Trainee-wrapper card"> */}
+
             <div className='w-full'>
                 <div className='db-wrapper'>
                     <Toast ref={toast} />
-                    {/* <div className="flex justify-content-end">
 
-                        <Dropdown placeholder="Select Plant" className="" />
-                    </div> */}
                     <div>
                         <h2 className="details-heading my-3 flex align-items-center justify-content-between">
                             <span>Department</span>
@@ -408,9 +380,6 @@ const Department = () => {
                                                 />
                                             </div>
                                         )}
-
-                                        {/* <i className="pi pi-pencil mx-4 cursor-pointer"></i>
-                                        <i className="pi pi-trash cursor-pointer"></i> */}
 
                                         <div className="flex " style={{ marginLeft: '20px ' }}>
                                             <img src={pencil} alt="pencil" className="editSize" onClick={() => handleEdit(department._id, department.name)} />
@@ -456,7 +425,6 @@ const Department = () => {
                                         )}
                                     />
 
-                                    {/* {getFormErrorMessage("name")} */}
                                 </div>
 
                                 <div className="flex justify-content-end">
@@ -473,8 +441,6 @@ const Department = () => {
 
                                         <div className="flex align-items-center">
                                             <img src={deleteicon} alt="deleteicon" className="deleteSize" onClick={() => handleDelete(issue)} />
-
-                                            {/* <i className="pi pi-trash cursor-pointer" onClick={() => handleDelete(issue)}></i> */}
                                         </div>
                                     </div>
                                 ))}
@@ -633,13 +599,7 @@ const Department = () => {
                                             )}
                                         />
                                     </div>
-                                    {/* <Button
-                                        size="small"
-                                        className="AU-save-btn p-button-rounded"
-                                        label="Add"
-                                        style={{ with: '10%' }}
-                                        onClick={() => handleAddClick(form.getValues('user'))}
-                                    /> */}
+
                                 </div>
 
                                 {selectedValues.map((value, index) => (
@@ -667,53 +627,6 @@ const Department = () => {
                         <form onSubmit={form.handleSubmit(handleAdd)} className="error_msg">
 
                             <div className="field flex flex-column">
-
-                                {/* {planStoreData.length > 0 ? (
-                                    <Controller
-                                        name="plant"
-                                        control={form.control}
-                                        rules={{ required: "Plant is required." }}
-                                        render={({ field, fieldState }) => (
-                                            <>
-                                                <Dropdown
-                                                    value={selectedUnit} // Use selectedPlant to set the selected value
-                                                    options={dropdownOptions}
-                                                    onChange={(e) => {
-                                                        setSelectedUnit(e.value); // Update selectedPlant when the value changes
-                                                        field.onChange(e.value); // Update the form field value
-                                                    }}
-                                                    placeholder="Select a plant"
-                                                />
-                                                {fieldState.error && (
-                                                    <small className="p-error">{fieldState.error.message}</small>
-                                                )}
-                                            </>
-                                        )}
-                                    />
-
-                                ) : (
-                                    <Controller
-                                        name="plant"
-                                        control={form.control}
-                                        rules={{ required: "Plant is required." }}
-                                        render={({ field, fieldState }) => (
-                                            <>
-                                                <InputText
-                                                    id={field.name}
-                                                    value={field.value}
-                                                    className={classNames({ "p-invalid": fieldState.error })}
-                                                    onChange={(e) => field.onChange(e.target.value)}
-                                                />
-                                                {fieldState.error && (
-                                                    <small className="p-error">{fieldState.error.message}</small>
-                                                )}
-                                            </>
-                                        )}
-                                    />
-                                )} */}
-
-                                {/* {getFormErrorMessage("plant")} */}
-
                                 <Controller
                                     name="department"
                                     control={form.control}
@@ -727,9 +640,6 @@ const Department = () => {
                                             )}</>
                                     )}
                                 />
-                                {/* 
-                                {getFormErrorMessage("department")} */}
-
 
                             </div>
 

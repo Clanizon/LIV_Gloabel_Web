@@ -2,11 +2,8 @@ import React, { useEffect } from "react";
 import { TabMenu } from 'primereact/tabmenu';
 import { useStoreActions, useStoreState } from "easy-peasy";
 import Department from "./Department";
-import Leave from "./Leave";
-import Ticket from "./Ticket";
-import Plant from "./Plant";
-import AllTrainee from "./AllTrainee";
-import AddTrainee from "./AddTrainee";
+import ViewMember from "./ViewMember";
+import AddMemeber from "./AddMemeber";
 const SettingTab = () => {
     const setActiveIndex = useStoreActions((actions) => actions.tabModel.setActiveIndex);
     const activeIndex = useStoreState((actions) => actions.tabModel.activeIndex);
@@ -17,7 +14,6 @@ const SettingTab = () => {
     }, []);
 
     const items = [
-        // { label: 'Plant' },
         { label: 'Department' },
         { label: 'Add Member', disabled: departmentLength === 0 },
         { label: 'View Members', disabled: departmentLength === 0 },
@@ -28,10 +24,9 @@ const SettingTab = () => {
         <>
             <div className="Trainee-wrapper" >
                 <TabMenu style={{ marginTop: '0px' }} model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
-                {/* {activeIndex === 0 && <Plant />} */}
                 {activeIndex === 0 && <Department />}
-                {activeIndex === 1 && <AddTrainee />}
-                {activeIndex === 2 && <AllTrainee />}
+                {activeIndex === 1 && <AddMemeber />}
+                {activeIndex === 2 && <ViewMember />}
 
 
             </div>

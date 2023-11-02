@@ -12,17 +12,14 @@ import { Dialog } from "primereact/dialog";
 import { Controller, useForm } from "react-hook-form";
 import { InputText } from "primereact/inputtext";
 import classNames from "classnames";
-import { useHistory } from "react-router-dom";
 import SettingTab from "./SettingTab";
 import deleteicon from '../images/trash.svg';
 import addicon from '../images/Plus-Circle.svg';
 import pencil from '../images/Pencil.svg';
 import backarrow from '../images/back_arrow_svg.svg';
-import Footer from "./Footer";
 const Settings = () => {
     const setActiveIndex = useStoreActions((actions) => actions.tabModel.setActiveIndex);
     const setSelectedUnitId = useStoreActions((actions) => actions.tabModel.setSelectedUnitId);
-    const activeIndex = useStoreState((actions) => actions.tabModel.activeIndex);
     const [planData, setPlanData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [planResData, setPlanResData] = useState('');
@@ -52,20 +49,6 @@ const Settings = () => {
     const handleNext = () => {
         setPageNo(pageNo + 1);
     };
-
-    // const items = [
-    //     { label: 'Plant' },
-    //     { label: 'Department' },
-    //     { label: 'Add Member' },
-    //     { label: 'View Members' },
-
-    // ];
-    const footer = (
-        <div className="flex flex-wrap justify-content-end gap-2">
-            <Button label="Save" icon="pi pi-check" />
-            <Button label="Cancel" icon="pi pi-times" className="p-button-outlined p-button-secondary" />
-        </div>
-    );
     useEffect(() => {
         setIsLoading(true);
         axios
