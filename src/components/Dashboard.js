@@ -166,7 +166,19 @@ function Dashboard() {
                 setIsLoading(false);
             });
     }
+    const handleStatusChange = (e) => {
+        setSelectedStatus(e.value);
+        setPageNo(1);
+    };
+    const handleUnitChange = (e) => {
+        setSelectedUint(e.value);
+        setPageNo(1);
+    };
 
+    const handleDeptChange = (e) => {
+        setSelectedDept(e.value);
+        setPageNo(1);
+    };
     useEffect(() => {
         setIsLoading(true);
         axios
@@ -210,10 +222,9 @@ function Dashboard() {
                                                 value={selectedUnit}
                                                 style={{ width: '12rem', margin: '0.3rem' }}
                                                 className='dropBox'
-                                                onChange={(e) => setSelectedUint(e.value)}
+                                                onChange={handleUnitChange}
                                                 placeholder={selectedUnit}
                                                 options={planData}
-
                                                 optionLabel="name"
                                                 optionValue="_id"
                                             />
@@ -232,11 +243,9 @@ function Dashboard() {
                                                 value={selectedDept}
                                                 style={{ width: '12rem', margin: '0.3rem' }}
                                                 className='dropBox'
-                                                onChange={(e) => setSelectedDept(e.value)}
-
+                                                onChange={handleDeptChange}
                                                 placeholder='All'
                                                 options={departmentRes}
-
                                                 optionLabel="name"
                                                 optionValue="_id"
                                             />
@@ -254,7 +263,7 @@ function Dashboard() {
                                                 value={selectedStatus}
                                                 style={{ width: '12rem', margin: '0.3rem' }}
                                                 className='dropBox'
-                                                onChange={(e) => setSelectedStatus(e.value)}
+                                                onChange={handleStatusChange}
 
                                                 placeholder='All'
                                                 options={ticketStatus}
