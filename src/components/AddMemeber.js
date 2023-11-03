@@ -111,7 +111,13 @@ const AddMemeber = () => {
                                 <Controller
                                     name="name"
                                     control={form.control}
-                                    rules={{ required: "User Name is required." }}
+                                    rules={{
+                                        required: "User Name is required.",
+                                        maxLength: {
+                                            value: 15,
+                                            message: "User Name should not exceed 15 characters.",
+                                        },
+                                    }}
                                     render={({ field, fieldState }) => (
                                         <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
 
@@ -133,6 +139,11 @@ const AddMemeber = () => {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Invalid email address.",
                                         },
+                                        maxLength: {
+                                            value: 30,
+                                            message: "Email should not exceed 30 characters.",
+                                        },
+
                                     }}
                                     render={({ field, fieldState }) => (
                                         <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
@@ -151,7 +162,11 @@ const AddMemeber = () => {
                                         // rules={{ required: "Password is required." }}
                                         render={({ field, fieldState }) => (
                                             <div className="relative">
-                                                <InputText disabled id="password" type={showPassword ? "text" : "password"} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <InputText disabled id="password"
+                                                    type={showPassword ? "text" : "password"}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)} />
                                                 <span className="absolute eye-icon-position cursor-pointer" onClick={togglePasswordVisibility}>
                                                     {showPassword ? (
                                                         <i className="pi pi-eye-slash" style={{ color: '#708090', fontSize: "16px" }}></i>
@@ -166,10 +181,28 @@ const AddMemeber = () => {
                                     <Controller
                                         name="password"
                                         control={form.control}
-                                        rules={{ required: "Password is required." }}
+                                        rules={{
+                                            required: "Password is required.",
+                                            minLength: {
+                                                value: 8,
+                                                message: "Password should be at least 8 characters long.",
+                                            },
+                                            maxLength: {
+                                                value: 20,
+                                                message: "Password should not exceed 20 characters.",
+                                            },
+                                            pattern: {
+                                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                                                message: "Password should include at least one lowercase letter, one uppercase letter, and one digit.",
+                                            },
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <div className="relative">
-                                                <InputText id="password" type={showPassword ? "text" : "password"} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                                <InputText id="password"
+                                                    type={showPassword ? "text" : "password"}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)} />
                                                 <span className="absolute eye-icon-position cursor-pointer" onClick={togglePasswordVisibility}>
                                                     {showPassword ? (
                                                         <i className="pi pi-eye-slash" style={{ color: '#708090', fontSize: "16px" }}></i>
