@@ -36,7 +36,7 @@ const Department = () => {
     const [selectedUserId, setSelectedUserId] = useState([]);
     const [selectedItemId, setSelectedItemId] = useState('');
     const [morePage, setMorePage] = useState(true);
-
+    const [esclationList, setEsclationList] = useState([]);
     const setDepartmentLength = useStoreActions((actions) => actions.tabModel.setDepartmentLength);
     const [refresh, setRefresh] = useState(false);
 
@@ -74,9 +74,22 @@ const Department = () => {
 
     useEffect(() => {
         getUser();
+        getEsculation();
     }, []);
 
+    const getEsculation = () => {
+        setIsLoading(true);
+        axios
+            .get(constants.URL.META)
+            .then((resp) => {
+                setEsclationList(resp.data.results?.escalation_time_options);
+            })
+            .catch((e) => console.error(e))
+            .finally(() => {
+                setIsLoading(false);
+            });
 
+    }
 
     console.log('planStoreData', planStoreData);
     const handleAdd = (data) => {
@@ -189,7 +202,7 @@ const Department = () => {
 
                 if (resp.data.results && resp.data.results.escalation_settings) {
                     const { escalation_settings } = resp.data.results;
-                    form.setValue('esclation', escalation_settings.duration);
+                    form.setValue('esclation', escalation_settings.duration || '1 day');
                     form.setValue('level1', escalation_settings.hierarchy[0]?._id || 'No');
                     form.setValue('level2', escalation_settings.hierarchy[1]?._id || 'No');
                     form.setValue('level3', escalation_settings.hierarchy[2]?._id || 'No');
@@ -266,12 +279,22 @@ const Department = () => {
     };
     const handleAddUser = (data) => {
 
+        if (!data.level1 || data.level1 === 'No') {
+            toast.current.show({
+                severity: "error",
+                summary: "Validation Error",
+                detail: "Please select Level 1 User.",
+            });
+            return;
+        }
         const levelsArray = [
             data.level1,
             data.level2,
             data.level3,
             data.level4
-        ].filter(level => level !== undefined && level !== null && level !== 'No');
+
+        ].filter(level => level !== 'No');
+
         if (isSaveClicked) {
             const payload = {
                 duration: data.esclation,
@@ -312,16 +335,16 @@ const Department = () => {
         setVisible(true);
     };
 
-    const esclationList = ["2 minutes",
-        "4 minutes",
-        "30 minutes",
-        "1 hour",
-        "6 hours",
-        "12 hours",
-        "24 hours",
-        "2 days",
-        "7 days",
-        "1 month"]
+    // const esclationList = ["2 minutes",
+    //     "4 minutes",
+    //     "30 minutes",
+    //     "1 hour",
+    //     "6 hours",
+    //     "12 hours",
+    //     "24 hours",
+    //     "2 days",
+    //     "7 days",
+    //     "1 month"]
     useEffect(() => {
         setIsLoading(true);
         axios

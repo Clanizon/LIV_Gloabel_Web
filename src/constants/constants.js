@@ -13,7 +13,7 @@ const constants = {
         ALL_PLANT: BASE_URL + "unit?sort_by=name&",
         ADD_DEPARTMENT: BASE_URL + "department/",
         ALL_DEPARTMENT: BASE_URL + "department/unit/",
-
+        META: BASE_URL + 'meta',
         ATTACH_DEPARTMENT: BASE_URL + "department/",
         ATTACH_ESCLATION: BASE_URL + "department/",
         GET_DEPARTMENT: BASE_URL + "department/",
