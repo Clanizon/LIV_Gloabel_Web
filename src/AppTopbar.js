@@ -21,6 +21,9 @@ export const AppTopbar = (props) => {
             },
         },
     ];
+    const handleLogoClick = () => {
+        history.push("/app/defaultnav");
+    };
 
     return (
         <div className="layout-topbar">
@@ -28,9 +31,9 @@ export const AppTopbar = (props) => {
             <button type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={props.onToggleMenuClick}>
                 <i className="pi pi-bars" />
             </button>
-            <div className='layout-topbar-logo'>
+            <div className='layout-topbar-logo ' onClick={handleLogoClick}>
                 <img className="rightLogo mx-2" height="30" width="30" src={logo} />
-                <span className='logoFont'>Control Center</span>
+                <span className='logoFont'>Razolve</span>
             </div>
 
             <div className="logo-link ms-sm-5 hover_cursor" onClick={(e) => menu.current.toggle(e)}>

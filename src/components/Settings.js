@@ -74,7 +74,7 @@ const Settings = () => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [planResData, refresh,selectedItemId]);
+    }, [planResData, refresh, selectedItemId]);
     const onSubmit = (data) => {
         setIsLoading(true);
         const payload = {
@@ -276,10 +276,15 @@ const Settings = () => {
                                         control={form.control}
                                         rules={{ required: "Plant is required." }}
                                         render={({ field, fieldState }) => (
-                                            <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                            <>
+                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+
+                                                {fieldState.error && (
+                                                    <small className="p-error">{fieldState.error.message}</small>)}
+                                            </>
                                         )}
                                     />
-                                    {getFormErrorMessage("department")}
+
                                 </div>
 
                                 <div className="flex justify-content-end mt-5">

@@ -23,7 +23,7 @@ const Department = () => {
     const [visibleIssueList, setVisibleIssueList] = useState(false);
     const [pageNo, setPageNo] = useState(1);
     const [pageLimit, setPageLimit] = useState(10);
-    const [selectedUnit, setSelectedUnit] = useState(null);
+    // const [selectedUnit, setSelectedUnit] = useState(null);
     const [selectedDepartId, setSelectedDepartId] = useState(null);
     const [issueResponse, setIssueResponse] = useState([]);
     const [ticketMapRes, setTicketMapRes] = useState([]);
@@ -33,7 +33,6 @@ const Department = () => {
     const setTraineesList = useStoreActions((actions) => actions.tabModel.setTraineesList);
     const traineesList = useStoreState((state) => state.tabModel.traineesList);
     const [selectedValues, setSelectedValues] = useState([]);
-    const [selectedUserId, setSelectedUserId] = useState([]);
     const [selectedItemId, setSelectedItemId] = useState('');
     const [morePage, setMorePage] = useState(true);
     const [esclationList, setEsclationList] = useState([]);
