@@ -478,7 +478,7 @@ const Department = () => {
                             <div className="field flex flex-column">
                                 <label htmlFor="name">
                                     Escalation Duration<span className="p-error">*</span><br></br>
-                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The ticket will be automatically escalated at the designated time.)</span>
+                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The ticket will be automatically escalated at the designated time)</span>
 
                                 </label>
 
@@ -499,8 +499,8 @@ const Department = () => {
                             </div>
                             <div className="field flex flex-column">
                                 <label htmlFor="department">
-                                    Select User For Escalation. <br></br>
-                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The following order will be used to escalate the ticket.)</span>
+                                    Choose Users<br></br>
+                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The following order will be used to escalate the ticket)</span>
                                 </label>
                                 <div className=" align-items-center" style={{ borderBottom: '1px solid rgba(242, 242, 242, 1)', paddingBottom: '15px ' }}>
                                     <div style={{ width: '100%' }}>

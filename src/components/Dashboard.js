@@ -286,7 +286,7 @@ function Dashboard() {
                                 dataKey="id"
                                 globalFilterFields={['department']} emptyMessage="No Tickets found.">
                                 <Column field="hash_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column>
-                                <Column field="createdAt" header="Ticket Raised" body={(rowData) => {
+                                <Column field="createdAt" header="Raised On" body={(rowData) => {
                                     const date = new Date(rowData?.createdAt);
                                     return date?.toLocaleDateString("en-US", {
                                         day: "numeric",
@@ -297,14 +297,14 @@ function Dashboard() {
                                 <Column field="department.name" header="Department" showFilterMatchModes={false}></Column>
                                 <Column field="assignor.name" header="Raised By" ></Column>
                                 <Column field="issue_type" header="Category" ></Column>
-                                <Column field="escalation_settings.duration" header="Resolution Time"></Column>
+                                <Column field="escalation_settings.duration" header="Escation Duration"></Column>
                                 <Column
                                     body={(rowData) => {
                                         const lastStatusEvent = getLastStatusEvent(rowData?.status_events);
                                         return lastStatusEvent ? lastStatusEvent.by : 'N/A';
                                     }}
 
-                                    header="Current Status"
+                                    header="Current Assignee"
                                 ></Column>
                                 <Column field="status"
                                     header="Status"></Column>

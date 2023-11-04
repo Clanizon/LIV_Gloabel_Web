@@ -163,7 +163,7 @@ function Dashboard() {
                 <DataTable className='' value={data} responsiveLayout="scroll" paginator rows={10}
                     dataKey="id" filters={filters} filterDisplay="row"
                     globalFilterFields={['department']} emptyMessage="No Tickets found.">
-                    <Column field="ticket_number" header="Ticket No"></Column>
+                    <Column field="ticket_number" header="Ticket Id"></Column>
                     <Column field="createdAt" header="Time Ticket Raised" body={(rowData) => {
                         const date = new Date(rowData?.createdAt);
                         return date?.toLocaleDateString("en-US", {
@@ -178,7 +178,7 @@ function Dashboard() {
                     <Column field="created_user_status" filterField="created_user_status" showFilterMenu={false} filterMenuStyle={{ width: '8rem' }} style={{ width: '8rem' }}
                         body={representativeBodyTemplate} filter filterElement={representativeRowFilterTemplate} header="Status"></Column>
                     <Column field="closed_by" header="Closed By"></Column>
-                    <Column field="updatedAt" header="Closed Time"></Column>
+                    <Column field="updatedAt" header="Closed On"></Column>
                     <Column field="description" header="Remarks(Description)" style={{ width: "200px" }}></Column>
                 </DataTable>
             </div>
