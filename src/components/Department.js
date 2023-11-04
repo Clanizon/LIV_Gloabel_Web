@@ -202,10 +202,10 @@ const Department = () => {
                 if (resp.data.results && resp.data.results.escalation_settings) {
                     const { escalation_settings } = resp.data.results;
                     form.setValue('esclation', escalation_settings.duration || '1 day');
-                    form.setValue('level1', escalation_settings.hierarchy[0]?._id || 'No');
-                    form.setValue('level2', escalation_settings.hierarchy[1]?._id || 'No');
-                    form.setValue('level3', escalation_settings.hierarchy[2]?._id || 'No');
-                    form.setValue('level4', escalation_settings.hierarchy[3]?._id || 'No');
+                    form.setValue('level1', escalation_settings.hierarchy[0]?._id || 'None');
+                    form.setValue('level2', escalation_settings.hierarchy[1]?._id || 'None');
+                    form.setValue('level3', escalation_settings.hierarchy[2]?._id || 'None');
+                    form.setValue('level4', escalation_settings.hierarchy[3]?._id || 'None');
                 }
 
             }).catch((e) => {
@@ -278,7 +278,7 @@ const Department = () => {
     };
     const handleAddUser = (data) => {
 
-        if (!data.level1 || data.level1 === 'No') {
+        if (!data.level1 || data.level1 === 'None') {
             toast.current.show({
                 severity: "error",
                 summary: "Validation Error",
@@ -292,7 +292,7 @@ const Department = () => {
             data.level3,
             data.level4
 
-        ].filter(level => level !== 'No');
+        ].filter(level => level !== 'None');
 
         if (isSaveClicked) {
             const payload = {
@@ -389,14 +389,14 @@ const Department = () => {
                                                     size="small"
                                                     className="AU-save-btn w-max p-button-rounded mr-4 mb-2"
                                                     loading={isLoading}
-                                                    label="Issue List Configuration"
+                                                    label="Manage Category"
                                                     onClick={() => handleIssueListClick(department._id)}
                                                 />
                                                 <Button
                                                     size="small"
                                                     className="AU-save-btn w-max p-button-rounded mb-2"
                                                     loading={isLoading}
-                                                    label="Ticket User Mapping"
+                                                    label="Manage Escalation"
                                                     onClick={() => handleTicketClick(department._id)}
 
                                                 />
@@ -422,14 +422,14 @@ const Department = () => {
 
                         </div>
                     </div>
-                    <Dialog header="Issue List Configuration" visible={visibleIssueList} style={{ width: "40vw" }} onHide={() => setVisibleIssueList(false)}>
+                    <Dialog header="Manage Category" visible={visibleIssueList} style={{ width: "40vw" }} onHide={() => setVisibleIssueList(false)}>
                         <form onSubmit={form.handleSubmit(handleAddList)} className="error_msg" >
 
                             <div className=" align-items-center col-12">
 
                                 <div className="field col-12" style={{ display: 'inline-grid', marginTop: '10px', padding: '0px' }}>
                                     <label htmlFor="name">
-                                        Issue List<span className="p-error">*</span>
+                                        Category<span className="p-error">*</span>
                                     </label>
 
                                     <Controller
@@ -472,12 +472,14 @@ const Department = () => {
                         </form>
                     </Dialog>
 
-                    <Dialog header="Ticket User Mapping" visible={visibleConfig} style={{ width: "30vw" }} onHide={() => setVisibleConfig(false)}>
+                    <Dialog header="Manage Escalation" visible={visibleConfig} style={{ width: "30vw" }} onHide={() => setVisibleConfig(false)}>
                         <form onSubmit={form.handleSubmit(handleAddUser)} className="error_msg" style={{ marginTop: '10px', padding: '0rem 0.5rem' }}>
 
                             <div className="field flex flex-column">
                                 <label htmlFor="name">
-                                    No.of. Days for Escalation<span className="p-error">*</span>
+                                    Escalation Duration<span className="p-error">*</span><br></br>
+                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The ticket will be automatically escalated at the designated time.)</span>
+
                                 </label>
 
                                 <Controller
@@ -498,7 +500,7 @@ const Department = () => {
                             <div className="field flex flex-column">
                                 <label htmlFor="department">
                                     Select User For Escalation. <br></br>
-                                    <span style={{ color: '#495057', fontSize: '10px' }}>(Ticket will be escalated by below order)</span>
+                                    <span style={{ color: '#495057', fontSize: '10px' }}>(The following order will be used to escalate the ticket.)</span>
                                 </label>
                                 <div className=" align-items-center" style={{ borderBottom: '1px solid rgba(242, 242, 242, 1)', paddingBottom: '15px ' }}>
                                     <div style={{ width: '100%' }}>
@@ -517,7 +519,7 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
 
                                                         optionLabel="label"
                                                         optionValue="value"
@@ -547,7 +549,7 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
 
                                                         optionLabel="label"
                                                         optionValue="value"
@@ -577,7 +579,7 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
                                                         optionLabel="label"
                                                         optionValue="value"
                                                     />
@@ -607,7 +609,7 @@ const Department = () => {
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
 
-                                                        options={[{ label: 'No', value: 'No' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
+                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
 
                                                         optionLabel="label"
                                                         optionValue="value"
@@ -645,7 +647,7 @@ const Department = () => {
                         </form>
                     </Dialog>
 
-                    <Dialog header="Add Department" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
+                    <Dialog header="Department" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
                         <form onSubmit={form.handleSubmit(handleAdd)} className="error_msg">
 
                             <div className="field flex flex-column">

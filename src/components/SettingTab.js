@@ -14,7 +14,7 @@ const SettingTab = () => {
     }, []);
 
     const items = [
-        { label: 'Department' },
+        { label: 'Departments' },
         { label: 'Add Member', disabled: departmentLength === 0 },
         { label: 'View Members', disabled: departmentLength === 0 },
 

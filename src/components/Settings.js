@@ -245,7 +245,7 @@ const Settings = () => {
                     <div className="Trainee-wrapper" >
 
                         <div className=" row boxcard">
-                            <h2 className="plant-heading" >Plant</h2>
+                            <h2 className="plant-heading" >Plants</h2>
 
                             {/* <div className="iconBox">
                                 <div className="col-12 sm:col-3 lg:col-3 xl:col-3 p-2 ">

@@ -106,7 +106,7 @@ const AddMemeber = () => {
 
                             <div className="field col-12 md:col-4 lg:col-3">
                                 <label htmlFor="name">
-                                    User Name<span className="p-error">*</span>
+                                    Full Name<span className="p-error">*</span>
                                 </label>
                                 <Controller
                                     name="name"

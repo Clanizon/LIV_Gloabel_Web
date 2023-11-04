@@ -166,14 +166,14 @@ const SignUp = () => {
                         <div className="logopos" style={{ marginTop: '30px', marginBottom: '3.1rem' }}>  <img src={logo} alt="logo" className="ls-heading" /></div>
 
                         {/* <form onSubmit={handleSubmit(onSubmit)} className="error_msg"> */}
-                        <h4 className="l-heading">Sign Up</h4>
+                        <h4 className="l-heading">Register Your Account</h4>
 
                         <form onSubmit={handleSubmit(onSubmit)} className="error_msg">
                             {/* <h5 className="formTitle">Organization</h5> */}
                             <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="orgname">
-                                        Organization Name<span className="p-error">*</span>
+                                        Organization<span className="p-error">*</span>
                                     </label>
                                     <InputText
                                         type="text"
@@ -189,7 +189,7 @@ const SignUp = () => {
                                 </div>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="wesite">
-                                        Website Url<span className="p-error">*</span>
+                                        Website<span className="p-error">*</span>
                                     </label>
                                     <InputText
                                         {...register("website", {
@@ -241,7 +241,7 @@ const SignUp = () => {
                             <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="name1">
-                                        User Name<span className="p-error">*</span>
+                                        Full Name<span className="p-error">*</span>
                                     </label>
                                     <InputText
                                         id="firstname2"
@@ -275,7 +275,7 @@ const SignUp = () => {
                                 </div> */}
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="BusinessEmail">
-                                        Business Email Id<span className="p-error">*</span>
+                                        Business Email<span className="p-error">*</span>
                                     </label>
                                     <InputText
                                         id="BusinessEmail"
