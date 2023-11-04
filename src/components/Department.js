@@ -416,7 +416,7 @@ const Department = () => {
 
 
                             <div className="btnPos">
-                                {pageNo > 1 && <Button size="small" className=" w-max prevBtn" label="Previos" onClick={handlePrevios} />}
+                                {pageNo > 1 && <Button size="small" className=" w-max prevBtn" label="Previous" onClick={handlePrevios} />}
                                 {morePage && <Button size="small" className=" w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
                             </div>
 

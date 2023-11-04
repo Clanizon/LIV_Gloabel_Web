@@ -62,7 +62,7 @@ const ViewMember = () => {
                     <div style={{ marginTop: '1rem' }}>
                         <DataTable value={traineesList} responsiveLayout="scroll" >
                             <Column field="name" header="Name"></Column>
-                            <Column field="email" header="Email ID" style={{ minWidth: '15rem' }}></Column>
+                            <Column field="email" header="Email Id" style={{ minWidth: '15rem' }}></Column>
 
                         </DataTable>
                     </div>
