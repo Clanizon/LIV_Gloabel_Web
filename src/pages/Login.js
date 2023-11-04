@@ -104,7 +104,7 @@ const Login = () => {
                                     <Button label="Login" className="w-full ls-btn" />
                                 </div>
                                 <div className="signup-links mt-3">
-                                    <span className="text-600 font-medium line-height-3">Dont have an account?</span>
+                                    <span className="text-600 font-medium line-height-3">Don't have an account?</span>
                                     <span className="end text-600 font-bold" style={{ cursor: 'pointer' }} onClick={() => goto("/sign-up")}>
                                         {" "}
                                         Sign Up

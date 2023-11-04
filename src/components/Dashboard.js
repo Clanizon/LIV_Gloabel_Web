@@ -285,7 +285,7 @@ function Dashboard() {
                             <DataTable removableSort value={tableData} responsiveLayout="scroll" rows={20}
                                 dataKey="id"
                                 globalFilterFields={['department']} emptyMessage="No Tickets found.">
-                                <Column field="hash_id" header="Ticket No" style={{ minWidth: '5rem' }}></Column>
+                                <Column field="hash_id" header="Ticket Id" style={{ minWidth: '4rem' }}></Column>
                                 <Column field="createdAt" header="Raised On" body={(rowData) => {
                                     const date = new Date(rowData?.createdAt);
                                     return date?.toLocaleDateString("en-US", {
@@ -333,7 +333,7 @@ function Dashboard() {
                                             : 'N/A';
                                     }}
 
-                                    header="Closed Time"
+                                    header="Closed On"
                                 ></Column>
 
                                 {/* <Column field="closed_by" header="Closed By" style={{ minWidth: '10rem' }}></Column> */}
