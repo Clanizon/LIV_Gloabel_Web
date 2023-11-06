@@ -350,13 +350,13 @@ function Dashboard() {
 
 
                         <div className='grid '>
-                            <div className='col-6 pl-0'>
+                            <div className='col-12 pl-0'>
                                 <div className='db-card db-1stcard '>
                                     <p className='dbHead'>Open</p> <p className='dbPar'>Tickets</p>
                                     <h1>{OpenCount}</h1>
                                 </div>
                             </div>
-                            <div className="col-6 pl-0">
+                            <div className="col-12 pl-0">
                                 <div className='db-card db-2ndcard '>
                                     <p className='dbHead'>Hold </p><p className='dbPar'>Tickets</p>
                                     <h1>{HoldCount}</h1>
