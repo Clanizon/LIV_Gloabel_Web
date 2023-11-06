@@ -9,6 +9,7 @@ export const AppTopbar = (props) => {
     const menu = useRef(null);
     let history = useHistory();
     const setUser = useStoreActions((action) => action.loginModel.setUser);
+    const setIsAuthenticated = useStoreActions((actions) => actions.tabModel.setIsAuthenticated);
 
     let items = [
         {
@@ -17,7 +18,8 @@ export const AppTopbar = (props) => {
             command: () => {
                 setUser('');
                 history.replace("/");
-                localStorage.removeItem("e-portal-access-token")
+                localStorage.removeItem("e-portal-access-token");
+                setIsAuthenticated(false);
             },
         },
     ];

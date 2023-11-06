@@ -139,10 +139,10 @@ const AddMemeber = () => {
                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                             message: "Invalid email address.",
                                         },
-                                        maxLength: {
-                                            value: 30,
-                                            message: "Email should not exceed 30 characters.",
-                                        },
+                                        // maxLength: {
+                                        //     value: 30,
+                                        //     message: "Email should not exceed 30 characters.",
+                                        // },
 
                                     }}
                                     render={({ field, fieldState }) => (
@@ -191,10 +191,10 @@ const AddMemeber = () => {
                                                 value: 20,
                                                 message: "Password should not exceed 20 characters.",
                                             },
-                                            pattern: {
-                                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-                                                message: "Password should include at least one lowercase letter, one uppercase letter, and one digit.",
-                                            },
+                                            // pattern: {
+                                            //     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                                            //     message: "Password should include at least one lowercase letter, one uppercase letter, and one digit.",
+                                            // },
                                         }}
                                         render={({ field, fieldState }) => (
                                             <div className="relative">
