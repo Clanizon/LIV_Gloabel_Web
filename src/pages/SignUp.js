@@ -179,8 +179,8 @@ const SignUp = () => {
                                         type="text"
                                         {...register("orgname", {
                                             required: true,
-                                            maxLength: 20, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z]+$/,
+                                            maxLength: 25, // set the maximum length to 20 characters
+                                            pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.orgname?.type === "required" && <p>This field is required</p>}
@@ -211,7 +211,7 @@ const SignUp = () => {
                                         {...register("country", {
                                             required: true,
                                             maxLength: 20, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z]+$/,
+                                            pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.country?.type === "required" && <p>This field is required</p>}
@@ -227,7 +227,7 @@ const SignUp = () => {
                                         {...register("city", {
                                             required: true,
                                             maxLength: 20, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z]+$/,
+                                            pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.city?.type === "required" && <p>This field is required</p>}
@@ -248,8 +248,8 @@ const SignUp = () => {
                                         type="text"
                                         {...register("name", {
                                             required: true,
-                                            maxLength: 15, // set the maximum length to 15 characters
-                                            pattern: /^[A-Za-z]+$/,
+                                            maxLength: 20, // set the maximum length to 15 characters
+                                            pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.name?.type === "required" && <p>This field is required</p>}
@@ -283,7 +283,7 @@ const SignUp = () => {
                                         {...register("email", {
                                             required: true,
                                             pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                            maxLength: 30, // set the maximum length to 20 characters
+
                                             message: "Please enter a valid email address",
                                         })}
                                     />
