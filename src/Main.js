@@ -12,34 +12,27 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
 import SignUp from "./pages/SignUp";
+import CustomRoute from "./CustomRoute";
 
 function Main() {
-  const isAuthenticated = useStoreState((actions) => actions.tabModel.isAuthenticated);
-
-  const PrivateRoute = ({ component: Component, ...rest }) => {
-
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          isAuthenticated ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to="/" />
-          )
-        }
-      />
-    );
-  };
-
+  const user = useStoreState((state) => state.loginModel.user);
+  console.log("user", user)
   return (
     <HashRouter>
       <Switch>
         <ScrollToTop>
+          {/* <Route exact path="/" component={Login} />
+         
+    
+          <Route path="/app" component={App} /> */}
           <Route exact path="/" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
-          {/* <PrivateRoute path="/app" component={App} /> */}
-          <Route path="/app" component={App} />
+          <CustomRoute
+            path="/app" component={App}
+            currentToken={user}
+          />
+
+
         </ScrollToTop>
       </Switch>
     </HashRouter>

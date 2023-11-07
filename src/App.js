@@ -28,6 +28,8 @@ import Register from './pages/Register';
 import Master from './components/Master';
 import Settings from './components/Settings';
 import Footer from './components/Footer';
+import CustomRoute from './CustomRoute';
+import { useStoreState } from 'easy-peasy';
 
 const App = () => {
     const [layoutMode, setLayoutMode] = useState('static');
@@ -41,6 +43,7 @@ const App = () => {
     const copyTooltipRef = useRef();
     const location = useLocation();
     const [isAuthScreen, setAuthScreen] = useState(true);
+    const user = useStoreState((actions) => actions.loginModel.user);
 
     PrimeReact.ripple = true;
 
@@ -191,14 +194,15 @@ const App = () => {
 
             <div className="layout-main-container">
                 <div className="layout-main">
-                    <Route path="/app/defaultnav" exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} />
-                    <Route path="/app/ViewMember" component={Master} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/app/settings" component={Settings} />
-                    <Route path="/chart" render={() => <ChartDemo colorMode={layoutColorMode} location={location} />} />
-                    <Route path="/crud" component={Crud} />
-                    <Route path="/empty" component={EmptyPage} />
+                    <CustomRoute path="/app/defaultnav" component={Dashboard} currentToken={user} />
+                    {/* <CustomRoute path="/app/defaultnav" currentToken={user} exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} /> */}
+                    <CustomRoute path="/app/ViewMember" component={Master} currentToken={user} />
+                    <CustomRoute path="/login" component={Login} currentToken={user} />
+                    {/* <CustomRoute path="/register" component={Register} currentToken={user} /> */}
+                    <CustomRoute path="/app/settings" component={Settings} currentToken={user} />
+                    <CustomRoute path="/chart" component={ChartDemo} currentToken={user} />
+                    <CustomRoute path="/crud" component={Crud} currentToken={user} />
+                    <CustomRoute path="/empty" component={EmptyPage} currentToken={user} />
                 </div>
             </div>
             <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={mobileMenuActive} unmountOnExit>

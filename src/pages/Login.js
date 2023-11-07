@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import amphe from "../images/BG.png"
 import logo from "../images/amphe.png"
 import { useForm } from "react-hook-form";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Toast } from "primereact/toast";
 import { useStoreActions } from "easy-peasy";
 import constants from "../constants/constants";
@@ -28,7 +28,9 @@ const Login = () => {
         // reset,
         formState: { errors },
     } = useForm();
-
+    useEffect(() => {
+        setUser(null);
+    }, []);
     const onSubmit = (data) => {
         const payload = {
             email: data?.email,
@@ -38,7 +40,7 @@ const Login = () => {
         setIsLoading(true);
         axios.post(constants.URL.SIGNIN, payload)
             .then((resp) => {
-                setUser(resp?.data?.results)
+                setUser(resp?.data?.results?.access_token)
 
                 goto("/app/defaultnav")
             }).catch((e) => {
