@@ -30,7 +30,8 @@ export const AppTopbar = (props) => {
     let items = [
         {
             label: "Change Password",
-            icon: 'pi pi-fw pi-power-off',
+            icon: 'pi pi-fw pi-key',
+
             command: () => {
                 setChangeVisible(true)
             },
