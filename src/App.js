@@ -44,7 +44,7 @@ const App = () => {
     const location = useLocation();
     const [isAuthScreen, setAuthScreen] = useState(true);
     const user = useStoreState((actions) => actions.loginModel.user);
-
+    const userRole = useStoreState((state) => state.loginModel.userRole);
     PrimeReact.ripple = true;
 
     let menuClick = false;
@@ -194,15 +194,15 @@ const App = () => {
 
             <div className="layout-main-container">
                 <div className="layout-main">
-                    <CustomRoute path="/app/defaultnav" component={Dashboard} currentToken={user} />
-                    {/* <CustomRoute path="/app/defaultnav" currentToken={user} exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} /> */}
-                    <CustomRoute path="/app/ViewMember" component={Master} currentToken={user} />
-                    <CustomRoute path="/login" component={Login} currentToken={user} />
-                    {/* <CustomRoute path="/register" component={Register} currentToken={user} /> */}
-                    <CustomRoute path="/app/settings" component={Settings} currentToken={user} />
-                    <CustomRoute path="/chart" component={ChartDemo} currentToken={user} />
-                    <CustomRoute path="/crud" component={Crud} currentToken={user} />
-                    <CustomRoute path="/empty" component={EmptyPage} currentToken={user} />
+                    <CustomRoute path="/app/defaultnav" component={Dashboard} allowedRoles="Admin" currentToken={userRole} />
+                    {/* <CustomRoute path="/app/defaultnav"  allowedRoles="Admin" currentToken={userRole}  exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} /> */}
+                    <CustomRoute path="/app/ViewMember" component={Master} allowedRoles="Admin" currentToken={userRole} />
+                    <CustomRoute path="/login" component={Login} allowedRoles="Admin" currentToken={userRole} />
+                    {/* <CustomRoute path="/register" component={Register}  allowedRoles="Admin" currentToken={userRole}  /> */}
+                    <CustomRoute path="/app/settings" component={Settings} allowedRoles="Admin" currentToken={userRole} />
+                    <CustomRoute path="/chart" component={ChartDemo} allowedRoles="Admin" currentToken={userRole} />
+                    <CustomRoute path="/crud" component={Crud} allowedRoles="Admin" currentToken={userRole} />
+                    <CustomRoute path="/empty" componelogoint={EmptyPage} allowedRoles="Admin" currentToken={userRole} />
                 </div>
             </div>
             <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={mobileMenuActive} unmountOnExit>

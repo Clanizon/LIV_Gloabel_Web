@@ -922,6 +922,11 @@ input:-internal-autofill-selected {
     font-size: 16px;
 }
 
+.p-menu .p-menuitem-link {
+    padding: 0.75rem 1rem !important;
+
+}
+
 .p-datatable .p-datatable-tbody>tr>td {
 
     font-family: Inter-Regular;

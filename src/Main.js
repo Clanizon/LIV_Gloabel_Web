@@ -16,20 +16,22 @@ import CustomRoute from "./CustomRoute";
 
 function Main() {
   const user = useStoreState((state) => state.loginModel.user);
-  console.log("user", user)
+  const userRole = useStoreState((state) => state.loginModel.userRole);
+  console.log("userRole", userRole)
   return (
     <HashRouter>
       <Switch>
         <ScrollToTop>
-          {/* <Route exact path="/" component={Login} />
-         
-    
-          <Route path="/app" component={App} /> */}
+          {/* <Route exact path="/" component={Login} /> */}
+
+
+          {/* <Route path="/app" component={App} /> */}
           <Route exact path="/" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <CustomRoute
             path="/app" component={App}
-            currentToken={user}
+            allowedRoles="Admin"
+            currentToken={userRole}
           />
 
 

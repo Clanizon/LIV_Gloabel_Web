@@ -1,11 +1,9 @@
 import React from "react";
 import { Route, useHistory } from "react-router-dom";
 
-const CustomRoute = ({ component: Component, currentToken, ...rest }) => {
+const CustomRoute = ({ component: Component, allowedRoles, currentToken, ...rest }) => {
     let history = useHistory();
-    console.log("Current Token:", currentToken);
-
-    const isAuthorized = currentToken ? true : false;
+    const isAuthorized = (currentToken == allowedRoles);
     console.log("isAuthorized", isAuthorized)
     return (
         <Route {...rest} render={(props) => (

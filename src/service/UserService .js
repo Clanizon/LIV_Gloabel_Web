@@ -1,13 +1,22 @@
 export class UserService {
-    _key = 'user';
+    _userKey = 'user';
+    _roleKey = 'userRole';
+
     resetUser() {
-        localStorage.removeItem(this._key);
-    }
-    getUser() {
-        return JSON.parse(localStorage.getItem(this._key))
+        localStorage.removeItem(this._userKey);
+        localStorage.removeItem(this._roleKey);
     }
 
-    setUser(data) {
-        localStorage.setItem(this._key, JSON.stringify(data));
+    getUser() {
+        return JSON.parse(localStorage.getItem(this._userKey));
+    }
+
+    setUser(data, role) {
+        localStorage.setItem(this._userKey, JSON.stringify(data));
+        localStorage.setItem(this._roleKey, role);
+    }
+
+    getUserRole() {
+        return localStorage.getItem(this._roleKey) || 'user';
     }
 }

@@ -10,13 +10,17 @@ import { useStoreActions } from "easy-peasy";
 import constants from "../constants/constants";
 import axios from "axios";
 import Footer from "../components/Footer";
+import { UserService } from "../service/UserService ";
 
 const Login = () => {
     let history = useHistory();
+    let userService = new UserService();
+
     const toast = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const setUser = useStoreActions((action) => action.loginModel.setUser);
+    const setUserRole = useStoreActions((action) => action.loginModel.setUserRole);
 
 
     const togglePasswordVisibility = () => {
@@ -40,8 +44,12 @@ const Login = () => {
         setIsLoading(true);
         axios.post(constants.URL.SIGNIN, payload)
             .then((resp) => {
-                setUser(resp?.data?.results?.access_token)
-
+                setUser(resp?.data?.results?.access_token);
+                if (resp?.data?.results?.access_token != null) {
+                    const userRole = 'Admin'; // Set the user role here based on your logic
+                    userService.setUser(resp?.data?.results?.access_token, userRole);
+                    setUserRole(userRole);
+                }
                 goto("/app/defaultnav")
             }).catch((e) => {
                 toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });

@@ -18,7 +18,8 @@ const constants = {
         ATTACH_ESCLATION: BASE_URL + "department/",
         GET_DEPARTMENT: BASE_URL + "department/",
         DASH_COUNT: BASE_URL + "dashboard/ticket/metric?status=",
-        DASH_TABLE: BASE_URL + "dashboard/ticket-filter?status="
+        DASH_TABLE: BASE_URL + "dashboard/ticket-filter?status=",
+        CHANGE_PWD: BASE_URL + 'auth/admin/password'
     }
 }
 export default constants

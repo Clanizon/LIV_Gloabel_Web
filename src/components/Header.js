@@ -1,4 +1,4 @@
-import React, { useRef }  from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../images/amphenol-logo.png';
 import profile from '../images/profile.png';
@@ -11,6 +11,8 @@ function Header() {
     // const setIsAuthenticated = useStoreActions((actions) => actions.tabModel.setIsAuthenticated);
 
     let items = [
+
+
         {
             label: "Logout",
             icon: 'pi pi-fw pi-power-off',
@@ -21,14 +23,14 @@ function Header() {
         },
     ];
 
-    const goto = () =>{
+    const goto = () => {
         navigate("/add-user")
     }
 
     return (
         <div className="db-topbar">
             <Menu model={items} popup ref={menu} />
-            <img src={logo} onClick={()=> navigate("/dashboard")} className="db-topbar-logo" alt='logo' />
+            <img src={logo} onClick={() => navigate("/dashboard")} className="db-topbar-logo" alt='logo' />
 
             <div className='flex align-items-center'>
                 <h4 onClick={goto} className='pr-5'>Add User</h4>
