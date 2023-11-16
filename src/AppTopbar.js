@@ -26,7 +26,7 @@ export const AppTopbar = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const toast = useRef(null);
     const setUserRole = useStoreActions((action) => action.loginModel.setUserRole);
-
+    const [showPassword, setShowPassword] = useState(false);
     let items = [
         {
             label: "Change Password",
@@ -48,8 +48,12 @@ export const AppTopbar = (props) => {
             },
         },
     ];
+
     const handleLogoClick = () => {
         history.push("/app/defaultnav");
+    };
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
     const onSubmit = (data) => {
         setIsLoading(true);
@@ -102,7 +106,7 @@ export const AppTopbar = (props) => {
 
             <Dialog header="Change Password" visible={changeVisible} style={{ width: "30vw" }} onHide={() => setChangeVisible(false)}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
-                    <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
+                    <div className="field flex flex-column relative" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
                         {/* <label htmlFor="department">
                             Plant
                         </label> */}
@@ -112,7 +116,14 @@ export const AppTopbar = (props) => {
                             rules={{ required: "Password is required." }}
                             render={({ field, fieldState }) => (
                                 <>
-                                    <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                    <InputText type={showPassword ? "text" : "password"} id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                    <span className="absolute eye-icon-position1 cursor-pointer" onClick={togglePasswordVisibility}>
+                                        {showPassword ? (
+                                            <i className="pi pi-eye-slash" style={{ color: '#708090', fontSize: "16px" }}></i>
+                                        ) : (
+                                            <i className="pi pi-eye" style={{ color: '#708090', fontSize: "16px" }}></i>
+                                        )}
+                                    </span>
 
                                     {fieldState.error && (
                                         <small className="p-error">{fieldState.error.message}</small>)}

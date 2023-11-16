@@ -258,6 +258,11 @@ input:-internal-autofill-selected {
     right: 12px;
 }
 
+.eye-icon-position1 {
+    top: 14px;
+    right: 12px;
+}
+
 .vs-card-inner {
     padding: 10px 21px !important;
 }

@@ -7,11 +7,14 @@ import { useStoreActions, useStoreState } from "easy-peasy";
 import { Dialog } from "primereact/dialog";
 import { useForm } from "react-hook-form";
 import { InputText } from "primereact/inputtext";
+import { Controller } from 'react-hook-form';
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import getHeaders from "../constants/Utils";
 import deleteicon from '../images/trash.svg';
 import { ConfirmDialog } from 'primereact/confirmdialog';
+import pencil from '../images/Pencil.svg';
+import classNames from "classnames";
 const ViewMember = () => {
     const toast = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +29,16 @@ const ViewMember = () => {
     const [refresh, setRefresh] = useState(false);
     const [isDeleteDialogVisible, setIsDeleteDialogVisible] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
+    const [selectedUserId, setSlectedUserId] = useState(null);
     const [isDialogVisible, setIsDialogVisible] = useState(false);
+    const [changeVisible, setChangeVisible] = useState(false);
+    const defaultValues = { name: '' }
+    const form = useForm({ defaultValues });
+    const errors = form.formState.errors;
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    const [showPassword, setShowPassword] = useState(false);
     const confirmDelete = () => {
         setIsLoading(true);
 
@@ -72,6 +84,39 @@ const ViewMember = () => {
     useEffect(() => {
         getUser()
     }, [refresh]);
+    const handleEdit = (id) => {
+        setChangeVisible(true);
+        setSlectedUserId(id)
+    }
+    const onSubmit = (data) => {
+        setIsLoading(true);
+        const payload = {
+            password: data.name,
+
+        };
+        axios.patch(constants.URL.EDIT_USER + selectedUserId, payload, {
+            headers: getHeaders(),
+        })
+            .then((resp) => {
+
+                if (toast.current) {
+                    toast.current.show({ severity: "success", summary: "Success", detail: "Item updated successfully" });
+                }
+                form.reset();
+                setChangeVisible(false);
+            })
+            .catch((e) => {
+
+                if (toast.current) {
+                    toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
+                }
+                console.error(e);
+            })
+            .finally(() => {
+                setIsLoading(false);
+
+            });
+    };
     const deleteButtonTemplate = (rowData) => {
 
 
@@ -82,6 +127,8 @@ const ViewMember = () => {
 
         return (
             <div className="flex">
+                <img src={pencil} alt="pencil" style={{ cursor: 'pointer' }} className="editSize" onClick={() => handleEdit(rowData._id)} />
+
                 <img src={deleteicon} alt="deleteicon" style={{ cursor: 'pointer' }} className="deleteSize" onClick={() => handleDeleteClick(rowData._id)} />
 
 
@@ -95,6 +142,41 @@ const ViewMember = () => {
 
                     </div>
 
+                </Dialog>
+
+                <Dialog header="Change Password" visible={changeVisible} style={{ width: "30vw" }} onHide={() => setChangeVisible(false)}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
+                        <div className="field flex flex-column relative" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
+                            {/* <label htmlFor="department">
+                            Plant
+                        </label> */}
+                            <Controller
+                                name="name"
+                                control={form.control}
+                                rules={{ required: "Password is required." }}
+                                render={({ field, fieldState }) => (
+                                    <>
+                                        <InputText type={showPassword ? "text" : "password"} id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+                                        <span className="absolute eye-icon-position1 cursor-pointer" onClick={togglePasswordVisibility}>
+                                            {showPassword ? (
+                                                <i className="pi pi-eye-slash" style={{ color: '#708090', fontSize: "16px" }}></i>
+                                            ) : (
+                                                <i className="pi pi-eye" style={{ color: '#708090', fontSize: "16px" }}></i>
+                                            )}
+                                        </span>
+
+                                        {fieldState.error && (
+                                            <small className="p-error">{fieldState.error.message}</small>)}
+                                    </>
+                                )}
+                            />
+
+                        </div>
+
+                        <div className="flex justify-content-end mt-5">
+                            <Button size="small" className="AU-save-btn p-button-rounded" loading={isLoading} label="Save" />
+                        </div>
+                    </form>
                 </Dialog>
             </div>
         );

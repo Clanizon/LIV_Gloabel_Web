@@ -20,7 +20,8 @@ const constants = {
         DASH_COUNT: BASE_URL + "dashboard/ticket/metric?status=",
         DASH_TABLE: BASE_URL + "dashboard/ticket-filter?status=",
         CHANGE_PWD: BASE_URL + 'auth/admin/password',
-        DELETE_USER: BASE_URL + 'user'
+        DELETE_USER: BASE_URL + 'user',
+        EDIT_USER: BASE_URL + 'user/'
     }
 }
 export default constants
