@@ -38,7 +38,8 @@ const Department = () => {
     const [esclationList, setEsclationList] = useState([]);
     const setDepartmentLength = useStoreActions((actions) => actions.tabModel.setDepartmentLength);
     const [refresh, setRefresh] = useState(false);
-
+    const [deleteId, setDeleteId] = useState(null);
+    const [isDeleteDialogVisible, setIsDeleteDialogVisible] = useState(false);
     const handlePrevios = () => {
         if (pageNo > 1) {
             setPageNo(pageNo - 1);
@@ -136,9 +137,13 @@ const Department = () => {
                 })
         }
     }
-    const handleDepartDelete = (departmentId) => {
+    const handleDepartDelete = (id) => {
+        setDeleteId(id);
+        setIsDeleteDialogVisible(true);
+    };
+    const confirmDelete = () => {
         setIsLoading(true);
-        axios.delete(constants.URL.ADD_DEPARTMENT + departmentId, {
+        axios.delete(constants.URL.ADD_DEPARTMENT + deleteId, {
             headers: getHeaders(),
         })
             .then((resp) => {
@@ -146,6 +151,7 @@ const Department = () => {
                 toast.current.show({ severity: "success", summary: "Success", detail: "Deleted Successfully" });
                 setRefresh(true);
                 form.setValue("department", '');
+                setIsDeleteDialogVisible(false);
             })
             .catch((e) => {
                 toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
@@ -472,6 +478,17 @@ const Department = () => {
                         </form>
                     </Dialog>
 
+                    <Dialog header="Confirm Deletion" visible={isDeleteDialogVisible} style={{ width: "30vw" }} onHide={() => setIsDeleteDialogVisible(false)}>
+                        <h1 className="diaHead">Are you sure you want to delete this department?</h1>
+                        <div className="flex justify-content-end mt-5" style={{ padding: '0rem 1.2rems' }} >
+
+
+                            <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2 " style={{ cursor: 'pointer' }} onClick={() => setIsDeleteDialogVisible(false)} loading={isLoading} label="Cancel" />
+                            <Button type="submit" size="small" className="AU-save-btn p-button-rounded " style={{ cursor: 'pointer' }} onClick={confirmDelete} loading={isLoading} label="Yes" />
+
+                        </div>
+
+                    </Dialog>
                     <Dialog header="Manage Escalation" visible={visibleConfig} style={{ width: "30vw" }} onHide={() => setVisibleConfig(false)}>
                         <form onSubmit={form.handleSubmit(handleAddUser)} className="error_msg" style={{ marginTop: '10px', padding: '0rem 0.5rem' }}>
 

@@ -201,34 +201,23 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-                <Dialog
-                    header="Confirmation"
-                    visible={confirmationVisible}
-                    onHide={() => setConfirmationVisible(false)}
-                    footer={
-                        <div className="flex flex-wrap justify-content-end gap-2">
-                            <Button
-                                label="Yes"
-                                // icon="pi pi-check"
-                                className="nextBtn"
-                                onClick={() => {
-                                    // Call the API with the stored item ID to delete the item
-                                    handleDeleteConfirmed(itemIdToDelete);
 
-                                    // Close the confirmation dialog
-                                    setConfirmationVisible(false);
-                                }}
-                            />
-                            <Button
-                                label="No"
-                                // icon="pi pi-times"
-                                className="prevBtn"
-                                onClick={() => setConfirmationVisible(false)}
-                            />
-                        </div>
-                    }
-                >
-                    <p style={{ marginTop: '20px' }}>Are you sure you want to delete this item?</p>
+
+
+                <Dialog header="Confirm Deletion" visible={confirmationVisible} style={{ width: "30vw" }} onHide={() => setConfirmationVisible(false)}>
+                    <h1 className="diaHead">Are you sure you want to delete this plan?</h1>
+                    <div className="flex justify-content-end mt-5" style={{ padding: '0rem 1.2rems' }} >
+
+                        <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2" style={{ cursor: 'pointer' }} onClick={() => setConfirmationVisible(false)} loading={isLoading} label="Cancel" />
+
+                        <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2 " style={{ cursor: 'pointer' }} onClick={() => {
+                            handleDeleteConfirmed(itemIdToDelete);
+                            setConfirmationVisible(false);
+                        }}
+                            loading={isLoading} label="Yes" />
+
+                    </div>
+
                 </Dialog>
             </div >
         );
