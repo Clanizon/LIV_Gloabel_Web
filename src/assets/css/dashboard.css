@@ -258,6 +258,14 @@ input:-internal-autofill-selected {
     right: 12px;
 }
 
+.dateBox {
+    padding: 1.25rem;
+}
+
+.dateBox div {
+    margin-right: 1.5rem;
+}
+
 .eye-icon-position1 {
     top: 14px;
     right: 12px;
@@ -266,6 +274,12 @@ input:-internal-autofill-selected {
 .vs-card-inner {
     padding: 10px 21px !important;
 }
+
+/* .pi-calendar:hover {
+    background: #333436 !important;
+    color: #ffffff !important;
+    border-color: #333436 !important;
+} */
 
 .vs-img-button {
     padding: 5px 14px 5px 15px;

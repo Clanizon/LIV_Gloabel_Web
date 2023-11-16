@@ -21,7 +21,8 @@ const constants = {
         DASH_TABLE: BASE_URL + "dashboard/ticket-filter?status=",
         CHANGE_PWD: BASE_URL + 'auth/admin/password',
         DELETE_USER: BASE_URL + 'user',
-        EDIT_USER: BASE_URL + 'user/'
+        EDIT_USER: BASE_URL + 'user/',
+        EXCEL_DOWNLOAD: BASE_URL + 'dashboard/ticket-export?date_from=',
     }
 }
 export default constants
