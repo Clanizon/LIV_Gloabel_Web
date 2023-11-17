@@ -100,9 +100,30 @@ input:-internal-autofill-selected {
     cursor: pointer;
 }
 
+.cardPara {
+    font-family: Inter-SemiBold;
+    font-size: 1rem;
+    margin-top: 0.5rem
+}
+
+.diahead h4 {
+    font-size: 1.2rem;
+    font-family: Inter-SemiBold;
+}
+
+.diahead p {
+    font-size: 1rem;
+    font-family: Inter-Regular;
+}
+
+.cardPara span {
+    font-family: Inter-Regular;
+    font-size: 1rem;
+}
+
 .card-content p {
     font-family: Poppins-Medium;
-    font-size: 14px;
+    font-size: 0.875;
     font-weight: 500;
     letter-spacing: 0.02px;
     padding-left: 17px;
@@ -338,6 +359,22 @@ input:-internal-autofill-selected {
     background: rgba(14, 14, 14, 1) !important;
     border: 0px !important;
     padding: 0.45rem 1.25rem !important;
+}
+
+.viewBtn {
+    border-radius: 5px !important;
+    background: #3a3a3a !important;
+    border: 0px !important;
+    padding: 0.50rem 1.25rem !important;
+    cursor: pointer;
+}
+
+.viewBtn:hover {
+    background: #161616 !important;
+}
+
+.viewBtn span {
+    font-size: 0.875rem !important;
 }
 
 .nextBtn span {
@@ -951,6 +988,26 @@ input:-internal-autofill-selected {
 .p-menu .p-menuitem-link {
     padding: 0.75rem 1rem !important;
 
+}
+
+.boxpart {
+    border-bottom: 1px solid rgba(242, 242, 242, 1) !important;
+    margin-bottom: 1rem;
+    padding: 1rem 0.1rem;
+}
+
+.customized-timeline {
+    width: 70%;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+}
+
+.timeHead {
+    font-family: Inter-Bold;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .p-datatable .p-datatable-tbody>tr>td {

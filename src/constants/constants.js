@@ -23,6 +23,7 @@ const constants = {
         DELETE_USER: BASE_URL + 'user',
         EDIT_USER: BASE_URL + 'user/',
         EXCEL_DOWNLOAD: BASE_URL + 'dashboard/ticket-export?date_from=',
+        GET_TIKET_DETAIL: BASE_URL + 'ticket/',
     }
 }
 export default constants

@@ -10,6 +10,10 @@ import { MultiSelect } from 'primereact/multiselect';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Button } from 'primereact/button';
 import getHeaders from "../constants/Utils";
+import { Dialog } from 'primereact/dialog';
+import { Timeline } from 'primereact/timeline';
+import { Card } from 'primereact/card';
+
 function Dashboard() {
 
     const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +27,7 @@ function Dashboard() {
     const [ClosedCount, setClosedCount] = useState(0);
     const [HoldCount, setHoldCount] = useState(0);
     const [selectedUnit, setSelectedUint] = useState('All');
-
+    const [statusEvents, setStatusEvents] = useState([]);
     const [selectedStatus, setSelectedStatus] = useState('All');
     const [tableData, setTableData] = useState([]);
     const [morePage, setMorePage] = useState(true);
@@ -36,6 +40,8 @@ function Dashboard() {
     const [pageUnitNo, setPageUnitNo] = useState(1);
     const [pageDeptLimit, setPageDeptLimit] = useState(20);
     const [pageDeptNo, setPageDeptNo] = useState(1);
+    const [visibleDetailPop, setVisibleDetailPop] = useState(false);
+    const [selectedTicket, setSelectedTicket] = useState(null);
     const ticketStatus = [
         { name: 'All', _id: 'All' },
         { name: 'Open', _id: 'Open' },
@@ -204,8 +210,74 @@ function Dashboard() {
                 setIsLoading(false);
             });
     }, [selectedUnit]);
+    const handleViewClick = (ticketId) => {
+        setIsLoading(true);
+        axios
+            .get(constants.URL.GET_TIKET_DETAIL + ticketId, {
+                headers: getHeaders(),
+            })
+            .then((resp) => {
+                console.log("API Response:", resp.data);
+                setSelectedTicket(resp.data?.results);
+                setVisibleDetailPop(true);
+            })
+            .catch((e) => {
+                console.error("API Error:", e);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    };
+
+    const renderTimelineContent = (event) => {
+        return (
+            <Card title={event.status} subTitle={new Date(event.timestamp).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric"
+            })}>
+                {event.pictures && event.pictures.length > 0 && (
+                    <img src={event.pictures[0]} alt={event.status} width={200} className="shadow-1" />
+                )}
 
 
+                <p className='cardPara'>Name: <span>{event.name ? event.name : 'N/A'}</span></p>
+                <p className='cardPara'>Description:  <span>{event.description ? event.description : 'N/A'}</span></p>
+            </Card>
+        );
+    };
+
+
+    const customizedMarker = (item) => {
+        let color;
+        switch (item.status) {
+            case 'Open':
+                color = 'rgb(217,230,255)';
+                break;
+            case 'Resolved':
+                color = 'rgb(207,255,221)';
+                break;
+            case 'Closed':
+                color = 'rgb(255,243,214)';
+                break;
+
+            case 'Hold':
+                color = 'rgb(220,214,255)';
+                break;
+
+            default:
+                color = '#000000';
+        }
+
+        return (
+            <span className="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1" style={{ backgroundColor: color }}>
+                <i className={item.icon}></i>
+            </span>
+        );
+    };
     return (
         <div className='w-full'>
             <div className='db-wrapper'>
@@ -231,10 +303,6 @@ function Dashboard() {
                                         </div>
                                     )}
 
-                                    {/* 
-                                    {!isLoading && planData.length === 1 && (
-                                        <div className='PlantBox'>{planData[0].name}</div>
-                                    )} */}
 
                                     {!isLoading && departmentRes.length > 0 && (
                                         <div className='dropDesign'>
@@ -320,7 +388,7 @@ function Dashboard() {
                                 ></Column>
                                 <Column
                                     body={(rowData) => {
-                                        const lastClosedStatusEvent = getLastClosedStatusEvent(rowData?.status_events);
+                                        const lastClosedStatusEvent = rowData?.status_events?.length > 0 ? getLastClosedStatusEvent(rowData.status_events) : null;
                                         return lastClosedStatusEvent
                                             ? new Date(lastClosedStatusEvent.timestamp).toLocaleDateString("en-US", {
                                                 day: "numeric",
@@ -339,6 +407,19 @@ function Dashboard() {
                                 {/* <Column field="closed_by" header="Closed By" style={{ minWidth: '10rem' }}></Column> */}
                                 {/* <Column field="updatedAt" header="Closed Time" style={{ minWidth: '12.4rem' }} body={closedBodyTemplate}></Column> */}
                                 <Column field="description" header="Description" ></Column>
+                                <Column
+                                    header="Ticket Detail"
+                                    body={(rowData) => (
+                                        <Button
+                                            label="View"
+                                            // icon="pi pi-eye"
+                                            className='p-button p-component w-max viewBtn'
+                                            onClick={() => handleViewClick(rowData._id)}
+                                        />
+                                    )}
+                                    style={{ textAlign: 'center', width: '6rem' }}
+                                ></Column>
+
                             </DataTable>
                             <div className="btnPos">
                                 {pageNo > 1 && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevious} />}
@@ -346,7 +427,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 xl:col-3 dashbox lg:overflow-auto " style={{ background: '#fff', height: "calc(100vh - 9rem)" }}>
+                    <div className="col-12 xl:col-3 diahead dashbox lg:overflow-auto " style={{ background: '#fff', height: "calc(100vh - 9rem)" }}>
 
 
                         <div className='grid '>
@@ -379,7 +460,80 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
+            <Dialog
+                header="Ticket Detail"
+                visible={visibleDetailPop}
+                style={{ width: "65vw" }}
+                onHide={() => setVisibleDetailPop(false)}
+            >
+                <div className='boxpart'>
+
+                    {selectedTicket && (
+                        <>
+                            <div className='flex'>
+                                <div className='diahead col-3'>
+                                    <h4>Ticket ID</h4>
+                                    <p>{selectedTicket?.hash_id}</p>
+                                </div>
+                                <div className='diahead col-3'>
+                                    <h4>Assigner Name</h4>
+                                    <p>{selectedTicket?.assignor.name}</p>
+                                </div>
+                                <div className='diahead col-3'>
+                                    <h4>Created On</h4>
+                                    <p>{new Date(selectedTicket?.createdAt).toLocaleDateString("en-US", {
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric",
+                                        hour: "numeric",
+                                        minute: "numeric",
+                                        second: "numeric"
+                                    })}</p>
+                                </div>
+                                <div className='diahead col-3'>
+                                    <h4>Department </h4>
+                                    <p>{selectedTicket?.department?.name}</p>
+                                </div>
+
+                            </div>
+
+                            <div className='flex'>
+                                <div className='diahead col-3'>
+                                    <h4>Category</h4>
+                                    <p>{selectedTicket?.issue_type}</p>
+                                </div>
+                                <div className='diahead col-3'>
+                                    <h4>Severity</h4>
+                                    <p>{selectedTicket?.issue_severity}</p>
+                                </div>
+
+                                <div className='diahead col-3'>
+                                    <h4>Description </h4>
+                                    <p>{selectedTicket?.description}</p>
+                                </div>
+                                <div className='diahead col-3'>
+                                    <h4>Ticket Status </h4>
+                                    <p>{selectedTicket?.status}</p>
+                                </div>
+                            </div></>
+                    )}
+                </div>
+                <h1 className='timeHead'>Ticket Status Event</h1>
+                <Timeline
+                    value={selectedTicket?.status_events}
+                    align="alternate"
+                    className="customized-timeline"
+                    marker={customizedMarker}
+                    content={renderTimelineContent}
+                />
+
+
+
+            </Dialog>
+
         </div >
+
+
     )
 }
 
