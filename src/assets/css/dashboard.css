@@ -801,6 +801,16 @@ input:-internal-autofill-selected {
     height: 60px;
 }
 
+.posItemtool {
+    position: relative;
+    background: rgba(240, 244, 247, 1);
+    border-radius: 0px !important;
+    border: 1px solid rgba(251, 251, 251, 1);
+    justify-content: space-between;
+    padding: 0px 12px;
+    height: 52px;
+}
+
 .posItem1 {
     position: relative;
     background: rgba(251, 251, 251, 1);
@@ -810,6 +820,16 @@ input:-internal-autofill-selected {
     padding: 0px 12px;
     height: 60px;
 
+}
+
+.p-dataview-emptymessage {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-family: Inter-Medium;
+}
+
+.posItemtool:hover {
+    background: rgb(249 246 246);
 }
 
 .posItem1:hover {
@@ -994,6 +1014,15 @@ input:-internal-autofill-selected {
     border-bottom: 1px solid rgba(242, 242, 242, 1) !important;
     margin-bottom: 1rem;
     padding: 1rem 0.1rem;
+}
+
+.tool-heading {
+    border-bottom: 1px solid rgba(242, 242, 242, 1);
+    font-size: 15px;
+    /* font-weight: 600; */
+    color: rgba(14, 14, 14, 1);
+    padding: 1.2rem 15px 0.6rem;
+    font-family: Inter-SemiBold;
 }
 
 .customized-timeline {

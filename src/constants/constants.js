@@ -24,6 +24,9 @@ const constants = {
         EDIT_USER: BASE_URL + 'user/',
         EXCEL_DOWNLOAD: BASE_URL + 'dashboard/ticket-export?date_from=',
         GET_TIKET_DETAIL: BASE_URL + 'ticket/',
+        ADD_TOOLS: BASE_URL + 'meta/tools/attach',
+        GET_TOOLS: BASE_URL + 'meta/tools',
+        DELETE_TOOLS: BASE_URL + 'meta/tools/detach'
     }
 }
 export default constants

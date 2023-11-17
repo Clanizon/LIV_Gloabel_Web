@@ -31,6 +31,7 @@ import Footer from './components/Footer';
 import CustomRoute from './CustomRoute';
 import { useStoreState } from 'easy-peasy';
 import Report from './components/Report';
+import Tools from './components/Tools';
 
 const App = () => {
     const [layoutMode, setLayoutMode] = useState('static');
@@ -148,6 +149,9 @@ const App = () => {
                 // { label: 'Training Status', icon: 'pi pi-fw pi-file', to: '/app/training-status' },
                 // { label: 'All Members', icon: 'pi pi-fw pi-user', to: '/app/allTrainee' },
                 { label: 'Settings', icon: 'pi pi-fw pi-slack', to: '/app/settings' },
+                {
+                    label: 'Tools', icon: 'pi pi-fw pi-cog', to: '/app/tools'
+                },
                 { label: 'Report', icon: 'pi pi-fw pi-book', to: '/app/report' },
             ]
         },
@@ -206,6 +210,8 @@ const App = () => {
                     <CustomRoute path="/crud" component={Crud} allowedRoles="Admin" currentToken={userRole} />
                     <CustomRoute path="/empty" componelogoint={EmptyPage} allowedRoles="Admin" currentToken={userRole} />
                     <CustomRoute path="/app/report" component={Report} allowedRoles="Admin" currentToken={userRole} />
+                    <CustomRoute path="/app/tools" component={Tools} allowedRoles="Admin" currentToken={userRole} />
+
                 </div>
             </div>
             <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={mobileMenuActive} unmountOnExit>
