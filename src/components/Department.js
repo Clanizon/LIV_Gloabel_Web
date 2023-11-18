@@ -32,6 +32,7 @@ const Department = () => {
     const planStoreData = useStoreState((state) => state.tabModel.planStoreData);
     const setTraineesList = useStoreActions((actions) => actions.tabModel.setTraineesList);
     const traineesList = useStoreState((state) => state.tabModel.traineesList);
+    console.log("traineesList", traineesList)
     const [selectedValues, setSelectedValues] = useState([]);
     const [selectedItemId, setSelectedItemId] = useState('');
     const [morePage, setMorePage] = useState(true);
@@ -299,7 +300,15 @@ const Department = () => {
             data.level4
 
         ].filter(level => level !== 'None');
+        const duplicateUser = levelsArray.find((user, index) => levelsArray.indexOf(user) !== index);
 
+        if (duplicateUser) {
+            toast.current.show({
+                severity: "error",
+                detail: `Same user is selected multiple times.`,
+            });
+            return;
+        }
         if (isSaveClicked) {
             const payload = {
                 duration: data.esclation,
@@ -536,8 +545,10 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
-
+                                                        options={[
+                                                            { label: 'None', value: 'None' },
+                                                            ...traineesList.map(item => ({ label: `${item.name} - ${item.email}`, value: item._id })),
+                                                        ]}
                                                         optionLabel="label"
                                                         optionValue="value"
                                                     />
@@ -566,8 +577,10 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
-
+                                                        options={[
+                                                            { label: 'None', value: 'None' },
+                                                            ...traineesList.map(item => ({ label: `${item.name} - ${item.email}`, value: item._id })),
+                                                        ]}
                                                         optionLabel="label"
                                                         optionValue="value"
                                                     />
@@ -596,8 +609,10 @@ const Department = () => {
                                                         className={classNames({ "p-invalid": fieldState.error })}
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
-                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
-                                                        optionLabel="label"
+                                                        options={[
+                                                            { label: 'None', value: 'None' },
+                                                            ...traineesList.map(item => ({ label: `${item.name} - ${item.email}`, value: item._id })),
+                                                        ]} optionLabel="label"
                                                         optionValue="value"
                                                     />
                                                     <div style={{ marginTop: '5px' }}>
@@ -626,8 +641,10 @@ const Department = () => {
                                                         style={{ width: '100%' }}
                                                         onChange={(e) => field.onChange(e.target.value)}
 
-                                                        options={[{ label: 'None', value: 'None' }, ...traineesList.map(item => ({ label: item.name, value: item._id }))]}
-
+                                                        options={[
+                                                            { label: 'None', value: 'None' },
+                                                            ...traineesList.map(item => ({ label: `${item.name} - ${item.email}`, value: item._id })),
+                                                        ]}
                                                         optionLabel="label"
                                                         optionValue="value"
                                                     />
