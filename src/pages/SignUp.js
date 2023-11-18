@@ -105,8 +105,12 @@ const SignUp = () => {
                 .then((resp) => {
                     console.log(resp.data.results);
                     setSignUpResp(resp.data.results);
-                    // setVisible(true);
-                    goto("/")
+                    toast.current.show({ severity: "success", summary: "Success", detail: "Registered Successfully" });
+
+                    setTimeout(() => {
+                        goto("/");
+                    }, 1000);
+                    // goto("/")
                 })
                 .catch((e) => {
                     console.error(e);
