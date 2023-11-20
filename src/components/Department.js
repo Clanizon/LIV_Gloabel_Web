@@ -161,6 +161,7 @@ const Department = () => {
             .finally(() => {
                 setIsLoading(false);
                 setVisible(false);
+                setRefresh(false);
             });
     };
     const handleIssueListClick = (id) => {

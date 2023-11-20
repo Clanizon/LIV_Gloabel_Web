@@ -73,6 +73,7 @@ const Settings = () => {
             })
             .finally(() => {
                 setIsLoading(false);
+                setRefresh(false);
             });
     }, [planResData, refresh, selectedItemId]);
     const onSubmit = (data) => {
@@ -147,6 +148,7 @@ const Settings = () => {
         setItemIdToDelete(id);
     }
     const handleDeleteConfirmed = (id) => {
+
         axios.delete(constants.URL.ADDUNIT + "/" + id, {
             headers: getHeaders(),
         })
@@ -157,7 +159,7 @@ const Settings = () => {
                 setRefresh(true);
             })
             .catch((e) => {
-
+                setRefresh(true);
                 if (toast.current) {
                     toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                 }

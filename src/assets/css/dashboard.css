@@ -778,6 +778,12 @@ input:-internal-autofill-selected {
     font-family: Inter-SemiBold;
 }
 
+.no-results-message {
+    padding: 2rem;
+    font-size: 1rem;
+    font-family: Inter-Medium;
+}
+
 .p-dataview.p-dataview-list .p-dataview-content>.p-grid>div {
     border: 0px !important
 }

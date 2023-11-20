@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import axios from 'axios';
 import constants from '../constants/constants';
 import getHeaders from '../constants/Utils';
-
+import { Toast } from "primereact/toast";
 function Report() {
 
     const [isLoading, setIsLoading] = useState(false);
-
+    const toast = useRef(null);
     const [fromDate, setFromDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date());
     const fetchData = () => {
+        if (fromDate > toDate || toDate < fromDate) {
+
+            if (toast.current) {
+                toast.current.show({
+                    severity: 'error',
+                    detail: 'Invalid date range. To Date should be greater than or equal to From Date',
+                });
+            }
+            return;
+        }
         setIsLoading(true);
+
         const formattedFromDate = formatDate(fromDate);
         const formattedToDate = formatDate(toDate);
         axios
@@ -50,6 +61,7 @@ function Report() {
     };
     return (
         <div className='w-full mainBanner p-2'>
+            <Toast ref={toast} />
             <div className='db-wrapper'>
                 <div className="grid mx-0">
                     <h4 className='plant-heading' style={{ width: '100%' }}>Report</h4>

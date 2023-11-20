@@ -57,6 +57,7 @@ const ViewMember = () => {
             })
             .finally(() => {
                 setIsLoading(false);
+                setRefresh(false);
                 setIsDeleteDialogVisible(false);
 
             });

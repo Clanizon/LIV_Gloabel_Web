@@ -99,6 +99,8 @@ function Tools() {
                 setIsDeleteDialogVisible(false);
             })
     }
+
+    console.log("toolData.lenth", toolData.length)
     const customItemTemplate = (data) => {
 
         return (
@@ -124,8 +126,12 @@ function Tools() {
                         <i class="pi pi-plus-circle cursor-pointer" style={{ fontWeight: '600', fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => setVisible(true)}></i>
                     </div>
 
-                    <DataView value={toolData} style={{ padding: '0px 10px' }} itemTemplate={customItemTemplate} />
 
+                    {(toolData.length === 1 && toolData[0] === 'None') ? (
+                        <div className="no-results-message">No tools available</div>
+                    ) : (
+                        <DataView value={toolData} style={{ padding: '0px 10px' }} itemTemplate={customItemTemplate} />
+                    )}
 
                     <Dialog header="Add Tool" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
                         <form onSubmit={form.handleSubmit(handleAdd)} className="error_msg">
