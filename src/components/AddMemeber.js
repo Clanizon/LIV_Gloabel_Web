@@ -113,10 +113,10 @@ const AddMemeber = () => {
                                     control={form.control}
                                     rules={{
                                         required: "User Name is required.",
-                                        maxLength: {
-                                            value: 15,
-                                            message: "User Name should not exceed 15 characters.",
-                                        },
+                                        // maxLength: {
+                                        //     value: ,
+                                        //     message: "User Name should not exceed 15 characters.",
+                                        // },
                                     }}
                                     render={({ field, fieldState }) => (
                                         <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
