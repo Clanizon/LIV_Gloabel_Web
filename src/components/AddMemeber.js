@@ -188,8 +188,8 @@ const AddMemeber = () => {
                                                 message: "Password should be at least 8 characters long.",
                                             },
                                             maxLength: {
-                                                value: 20,
-                                                message: "Password should not exceed 20 characters.",
+                                                value: 30,
+                                                message: "Password should not exceed 30 characters.",
                                             },
                                             // pattern: {
                                             //     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,

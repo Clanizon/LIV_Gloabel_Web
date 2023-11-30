@@ -183,12 +183,12 @@ const SignUp = () => {
                                         type="text"
                                         {...register("orgname", {
                                             required: true,
-                                            maxLength: 60, // set the maximum length to 20 characters
+                                            // maxLength: 60, // set the maximum length to 20 characters
                                             pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.orgname?.type === "required" && <p>This field is required</p>}
-                                    {errors?.orgname?.type === "maxLength" && <p>The name cannot be longer than 60 characters</p>}
+                                    {/* {errors?.orgname?.type === "maxLength" && <p>The name cannot be longer than 60 characters</p>} */}
                                     {errors?.orgname?.type === "pattern" && <p>Only letters are allowed</p>}
                                 </div>
                                 <div className="field col-12 md:col-6 msgerror">
@@ -199,7 +199,7 @@ const SignUp = () => {
                                         {...register("website", {
                                             required: true,
                                             pattern: /^((https?|ftp):\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i,
-                                            maxLength: 20, // set the maximum length to 20 characters
+                                            // maxLength: 35, // set the maximum length to 20 characters
                                             message: "Please enter a valid URL",
                                         })}
                                     />
@@ -214,12 +214,12 @@ const SignUp = () => {
                                         type="text"
                                         {...register("country", {
                                             required: true,
-                                            maxLength: 20, // set the maximum length to 20 characters
+                                            // maxLength: 35, // set the maximum length to 20 characters
                                             pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.country?.type === "required" && <p>This field is required</p>}
-                                    {errors?.country?.type === "maxLength" && <p>The country name cannot be longer than 20 characters</p>}
+                                    {/* {errors?.country?.type === "maxLength" && <p>The country name cannot be longer than 20 characters</p>} */}
                                     {errors?.country?.type === "pattern" && <p>Only letters are allowed</p>}
                                 </div>
                                 <div className="field col-12 md:col-6 msgerror">
@@ -230,12 +230,12 @@ const SignUp = () => {
                                         type="text"
                                         {...register("city", {
                                             required: true,
-                                            maxLength: 20, // set the maximum length to 20 characters
+                                            // maxLength: 35, // set the maximum length to 20 characters
                                             pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.city?.type === "required" && <p>This field is required</p>}
-                                    {errors?.city?.type === "maxLength" && <p>The city name cannot be longer than 20 characters</p>}
+                                    {/* {errors?.city?.type === "maxLength" && <p>The city name cannot be longer than 20 characters</p>} */}
                                     {errors?.city?.type === "pattern" && <p>Only letters are allowed</p>}
                                 </div>
 
@@ -252,12 +252,12 @@ const SignUp = () => {
                                         type="text"
                                         {...register("name", {
                                             required: true,
-                                            maxLength: 20, // set the maximum length to 15 characters
+                                            // maxLength: 20, // set the maximum length to 15 characters
                                             pattern: /^[A-Za-z\s]+$/,
                                         })}
                                     />
                                     {errors?.name?.type === "required" && <p>This field is required</p>}
-                                    {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>}
+                                    {/* {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>} */}
                                     {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
                                 </div>
                                 {/* <div className="field col-12 md:col-6">
@@ -307,7 +307,7 @@ const SignUp = () => {
                                             {...register("password", {
                                                 required: true,
                                                 minLength: 8, // set minimum password length to 8 characters
-                                                maxLength: 20, // set maximum password length to 20 characters
+                                                maxLength: 30, // set maximum password length to 20 characters
                                                 // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/, // include at least one lowercase letter, one uppercase letter, and one digit
                                             })}
                                         />
@@ -316,7 +316,7 @@ const SignUp = () => {
                                     </div>
                                     {errors?.password?.type === "required" && <p>This field is required</p>}
                                     {errors?.password?.type === "minLength" && <p>Password should be at least 8 characters long</p>}
-                                    {errors?.password?.type === "maxLength" && <p>Password should not exceed 20 characters</p>}
+                                    {errors?.password?.type === "maxLength" && <p>Password should not exceed 30 characters</p>}
                                     {errors?.password?.type === "pattern" && <p>Password should include at least one lowercase letter, one uppercase letter, and one digit</p>}
                                 </div>
 
