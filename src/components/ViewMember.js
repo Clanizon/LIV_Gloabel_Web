@@ -71,9 +71,9 @@ const ViewMember = () => {
                 headers: getHeaders(),
             })
             .then((resp) => {
-                const filteredResults = resp.data.results.filter(user => user.is_deleted === false);
-                setTraineesList(filteredResults);
-                setMorePage(filteredResults.length === pageLimit);
+                // const filteredResults = resp.data.results.filter(user => user.is_deleted === false);
+                setTraineesList(resp.data.results);
+                setMorePage(resp.data.results.length === pageLimit);
             })
             .catch((e) => console.error(e))
             .finally(() => {
@@ -84,7 +84,7 @@ const ViewMember = () => {
 
     useEffect(() => {
         getUser()
-    }, [refresh]);
+    }, [refresh, pageNo]);
     const handleEdit = (id) => {
         setChangeVisible(true);
         setSlectedUserId(id)
