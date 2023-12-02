@@ -38,6 +38,8 @@ const ViewMember = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    const [previousTraineesList, setPreviousTraineesList] = useState([]);
+
     const [showPassword, setShowPassword] = useState(false);
     const confirmDelete = () => {
         setIsLoading(true);
@@ -72,6 +74,8 @@ const ViewMember = () => {
             })
             .then((resp) => {
                 // const filteredResults = resp.data.results.filter(user => user.is_deleted === false);
+                setPreviousTraineesList([...traineesList]);
+                console.log("previos", previousTraineesList)
                 setTraineesList(resp.data.results);
                 setMorePage(resp.data.results.length === pageLimit);
             })
@@ -208,13 +212,13 @@ const ViewMember = () => {
                 </div>
 
 
-                {traineesList.length > 0 && (
-                    <div className="btnPos" style={{ width: '100%' }}>
 
-                        {pageNo > 1 && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevios} />}
-                        {morePage && <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
-                    </div>
-                )}
+                <div className="btnPos" style={{ width: '100%' }}>
+
+                    {(pageNo > 1) && <Button size="small" className="w-max prevBtn" label="Previous" onClick={handlePrevios} />}
+                    {morePage && <Button size="small" className="w-max nextBtn ml-4" label="Next" onClick={handleNext} />}
+                </div>
+
             </div>
 
         </div>

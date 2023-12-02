@@ -24,7 +24,7 @@ const Settings = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [planResData, setPlanResData] = useState('');
     const [pageNo, setPageNo] = useState(1);
-    const [pageLimit, setPageLimit] = useState(10);
+    const [pageLimit, setPageLimit] = useState(100);
     const [visible, setVisible] = useState(false);
     const [showTabComponent, setShowTabComponent] = useState(false);
     const toast = useRef(null);
