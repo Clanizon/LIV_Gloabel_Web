@@ -62,7 +62,7 @@ const Department = () => {
     const getUser = () => {
         setIsLoading(true);
         axios
-            .get(constants.URL.ALL_Depart_USER + selectedUnitId + "?sort_by=email&page=" + pageUserNo + '&limit=' + pageUserLimit, {
+            .get(constants.URL.ALL_Depart_USER + selectedUnitId + "?sort_by=-createdAt&page=" + pageUserNo + '&limit=' + pageUserLimit, {
                 headers: getHeaders(),
             })
             .then((resp) => {

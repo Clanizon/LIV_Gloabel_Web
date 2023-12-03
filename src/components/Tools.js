@@ -105,7 +105,7 @@ function Tools() {
 
         return (
             <div className="mt-3">
-                <div className="pointCur" onClick={() => setVisible(true)}>
+                <div className="pointCur" >
                     <div className="flex align-items-center mr-4 posItemtool">
                         <p className="plantSize">{data}</p>
 

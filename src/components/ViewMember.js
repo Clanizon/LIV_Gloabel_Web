@@ -69,7 +69,7 @@ const ViewMember = () => {
     const getUser = () => {
         setIsLoading(true);
         axios
-            .get(constants.URL.ALL_Depart_USER + selectedUnitId + "?sort_by=email&page=" + pageNo + '&limit=' + pageLimit, {
+            .get(constants.URL.ALL_Depart_USER + selectedUnitId + "?sort_by=-createdAt&page=" + pageNo + '&limit=' + pageLimit, {
                 headers: getHeaders(),
             })
             .then((resp) => {

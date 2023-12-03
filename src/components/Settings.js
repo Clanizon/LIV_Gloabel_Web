@@ -153,6 +153,7 @@ const Settings = () => {
             headers: getHeaders(),
         })
             .then((resp) => {
+                setConfirmationVisible(false);
                 if (toast.current) {
                     toast.current.show({ severity: "success", summary: "Success", detail: "Item deleted successfully" });
                 }
@@ -160,6 +161,7 @@ const Settings = () => {
             })
             .catch((e) => {
                 setRefresh(true);
+                setConfirmationVisible(false);
                 if (toast.current) {
                     toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                 }
@@ -206,23 +208,14 @@ const Settings = () => {
 
 
 
-                <Dialog header="Confirm Deletion" visible={confirmationVisible} style={{ width: "30vw" }} onHide={() => setConfirmationVisible(false)}>
-                    <h1 className="diaHead">Are you sure you want to delete this plan?</h1>
-                    <div className="flex justify-content-end mt-5" style={{ padding: '0rem 1.2rems' }} >
 
-                        <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2" style={{ cursor: 'pointer' }} onClick={() => setConfirmationVisible(false)} loading={isLoading} label="Cancel" />
-
-                        <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2 " style={{ cursor: 'pointer' }} onClick={() => {
-                            handleDeleteConfirmed(itemIdToDelete);
-                            setConfirmationVisible(false);
-                        }}
-                            loading={isLoading} label="Yes" />
-
-                    </div>
-
-                </Dialog>
             </div >
+
+
         );
+
+
+
     }; return (
         <div style={{ position: 'relative' }} className="mainBanner">
 
@@ -286,6 +279,22 @@ const Settings = () => {
                     </div>)
             }
 
+
+            <Dialog header="Confirm Deletion" visible={confirmationVisible} style={{ width: "30vw" }} onHide={() => setConfirmationVisible(false)}>
+                <h1 className="diaHead">Are you sure you want to delete this plan?</h1>
+                <div className="flex justify-content-end mt-5" style={{ padding: '0rem 1.2rems' }} >
+
+                    <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2" style={{ cursor: 'pointer' }} onClick={() => setConfirmationVisible(false)} loading={isLoading} label="Cancel" />
+
+                    <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2 " style={{ cursor: 'pointer' }} onClick={() => {
+                        handleDeleteConfirmed(itemIdToDelete);
+                        // setConfirmationVisible(false);
+                    }}
+                        loading={isLoading} label="Yes" />
+
+                </div>
+
+            </Dialog>
         </div >
 
     )
