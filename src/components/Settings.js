@@ -26,6 +26,7 @@ const Settings = () => {
     const [pageNo, setPageNo] = useState(1);
     const [pageLimit, setPageLimit] = useState(100);
     const [visible, setVisible] = useState(false);
+    const [cloneVisible, setCloneVisible] = useState(false);
     const [showTabComponent, setShowTabComponent] = useState(false);
     const toast = useRef(null);
     const [refresh, setRefresh] = useState(false);
@@ -76,6 +77,45 @@ const Settings = () => {
                 setRefresh(false);
             });
     }, [planResData, refresh, selectedItemId]);
+
+
+    const onCloneSubmit = (data) => {
+        setIsLoading(true);
+        const payload = {
+            name: data.name,
+            description: 'dummy',
+        };
+
+
+        axios.post(constants.URL.ADDUNIT + "/" + selectedItemId + '/clone', payload, {
+            headers: getHeaders(),
+        })
+            .then((resp) => {
+
+                if (toast.current) {
+                    toast.current.show({ severity: "success", summary: "Success", detail: "Item updated successfully" });
+                }
+                setSelectedItemId('');
+                form.reset();
+                setCloneVisible(false);
+                setRefresh(true);
+
+
+            })
+            .catch((e) => {
+
+                if (toast.current) {
+                    toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
+                }
+                console.error(e);
+            })
+            .finally(() => {
+                setIsLoading(false);
+                setCloneVisible(false);
+                setSelectedItemId('');
+            });
+
+    }
     const onSubmit = (data) => {
         setIsLoading(true);
         const payload = {
@@ -174,6 +214,13 @@ const Settings = () => {
         // setSomeOtherStateVariable(name);
         setVisible(true);
     };
+
+    const handleClone = (id, name) => {
+        setSelectedItemId(id);
+        form.setValue('name', name);
+        // setSomeOtherStateVariable(name);
+        setCloneVisible(true);
+    }
     const getFormErrorMessage = (name) => {
         return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
     };
@@ -200,8 +247,10 @@ const Settings = () => {
                     <div className="flex align-items-center gap-3 posItem1">
                         <p className='plantSize'>{data.name}</p>
                         <div className="flex">
-                            <img src={pencil} alt="pencil" className="editSize" onClick={(e) => { e.stopPropagation(); handleEdit(data._id, data.name); }} />
-                            <img src={deleteicon} alt="deleteicon" className="deleteSize" onClick={(e) => { e.stopPropagation(); handleDelete(data._id); }} />
+                            <img src={addicon} alt="addicon" className="editSize" onClick={(e) => { e.stopPropagation(); handleClone(data._id, data.name); }} />
+
+                            <img src={pencil} alt="pencil" className="editSize1" onClick={(e) => { e.stopPropagation(); handleEdit(data._id, data.name); }} />
+                            <img src={deleteicon} alt="deleteicon" className="deleteSize1" onClick={(e) => { e.stopPropagation(); handleDelete(data._id); }} />
                         </div>
                     </div>
                 </div>
@@ -251,6 +300,34 @@ const Settings = () => {
                         </div>
                         <Dialog header="Add" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
+                                <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
+                                    <label htmlFor="department">
+                                        Plant
+                                    </label>
+                                    <Controller
+                                        name="name"
+                                        control={form.control}
+                                        rules={{ required: "Plant is required." }}
+                                        render={({ field, fieldState }) => (
+                                            <>
+                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
+
+                                                {fieldState.error && (
+                                                    <small className="p-error">{fieldState.error.message}</small>)}
+                                            </>
+                                        )}
+                                    />
+
+                                </div>
+
+                                <div className="flex justify-content-end mt-5">
+                                    <Button size="small" className="AU-save-btn p-button-rounded" loading={isLoading} label="Save" />
+                                </div>
+                            </form>
+                        </Dialog>
+
+                        <Dialog header="Add" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => setCloneVisible(false)}>
+                            <form onSubmit={form.handleSubmit(onCloneSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
                                     <label htmlFor="department">
                                         Plant

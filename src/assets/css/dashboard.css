@@ -766,6 +766,21 @@ input:-internal-autofill-selected {
     cursor: pointer;
 }
 
+.deleteSize1 {
+    width: 12px;
+    height: 14px;
+    margin-left: 5px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.editSize1 {
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
 .editSize {
     width: 21px;
     height: 21px;
