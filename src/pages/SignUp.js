@@ -182,14 +182,15 @@ const SignUp = () => {
                                     <InputText
                                         type="text"
                                         {...register("orgname", {
-                                            required: true,
-                                            // maxLength: 60, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z\s]+$/,
+                                            required: "This field is required",
+                                            pattern: {
+                                                value: /^[A-Za-z\s]+$/,
+                                                message: "Only letters and spaces are allowed",
+                                            },
+                                            validate: (value) => value.trim() !== "" || "Please enter a valid organization name",
                                         })}
                                     />
-                                    {errors?.orgname?.type === "required" && <p>This field is required</p>}
-                                    {/* {errors?.orgname?.type === "maxLength" && <p>The name cannot be longer than 60 characters</p>} */}
-                                    {errors?.orgname?.type === "pattern" && <p>Only letters are allowed</p>}
+                                    {errors?.orgname && <p>{errors.orgname.message}</p>}
                                 </div>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="wesite">
@@ -213,14 +214,15 @@ const SignUp = () => {
                                     <InputText
                                         type="text"
                                         {...register("country", {
-                                            required: true,
-                                            // maxLength: 35, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z\s]+$/,
+                                            required: "This field is required",
+                                            pattern: {
+                                                value: /^[A-Za-z\s]+$/,
+                                                message: "Only letters and spaces are allowed",
+                                            },
+                                            validate: (value) => value.trim() !== "" || "Please enter a valid country name",
                                         })}
                                     />
-                                    {errors?.country?.type === "required" && <p>This field is required</p>}
-                                    {/* {errors?.country?.type === "maxLength" && <p>The country name cannot be longer than 20 characters</p>} */}
-                                    {errors?.country?.type === "pattern" && <p>Only letters are allowed</p>}
+                                    {errors?.country && <p>{errors.country.message}</p>}
                                 </div>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="city">
@@ -229,20 +231,16 @@ const SignUp = () => {
                                     <InputText
                                         type="text"
                                         {...register("city", {
-                                            required: true,
-                                            // maxLength: 35, // set the maximum length to 20 characters
-                                            pattern: /^[A-Za-z\s]+$/,
+                                            required: "This field is required",
+                                            pattern: {
+                                                value: /^[A-Za-z\s]+$/,
+                                                message: "Only letters and spaces are allowed",
+                                            },
+                                            validate: (value) => value.trim() !== "" || "Please enter a valid city name",
                                         })}
                                     />
-                                    {errors?.city?.type === "required" && <p>This field is required</p>}
-                                    {/* {errors?.city?.type === "maxLength" && <p>The city name cannot be longer than 20 characters</p>} */}
-                                    {errors?.city?.type === "pattern" && <p>Only letters are allowed</p>}
+                                    {errors?.city && <p>{errors.city.message}</p>}
                                 </div>
-
-                            </div>
-
-                            {/* <h5 className="formTitle">Personal Details</h5> */}
-                            <div className="p-fluid  grid" style={{ padding: '0px !important' }}>
                                 <div className="field col-12 md:col-6 msgerror">
                                     <label htmlFor="name1">
                                         Full Name<span className="p-error">*</span>
@@ -251,14 +249,15 @@ const SignUp = () => {
                                         id="firstname2"
                                         type="text"
                                         {...register("name", {
-                                            required: true,
-                                            // maxLength: 20, // set the maximum length to 15 characters
-                                            pattern: /^[A-Za-z\s]+$/,
+                                            required: "This field is required",
+                                            pattern: {
+                                                value: /^[A-Za-z\s]+$/,
+                                                message: "Only letters and spaces are allowed",
+                                            },
+                                            validate: (value) => value.trim() !== "" || "Please enter a valid full name",
                                         })}
                                     />
-                                    {errors?.name?.type === "required" && <p>This field is required</p>}
-                                    {/* {errors?.name?.type === "maxLength" && <p>The name cannot be longer than 15 characters</p>} */}
-                                    {errors?.name?.type === "pattern" && <p>Only letters are allowed</p>}
+                                    {errors?.name && <p>{errors.name.message}</p>}
                                 </div>
                                 {/* <div className="field col-12 md:col-6">
                                     <label htmlFor="lastname2">

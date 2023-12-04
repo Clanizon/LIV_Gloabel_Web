@@ -296,6 +296,24 @@ const Department = () => {
             });
             return;
         }
+
+        if (((data.level3 && data.level3 !== 'None') || (data.level4 && data.level4 !== 'None')) && (!data.level2 || data.level2 === 'None')) {
+            toast.current.show({
+                severity: "error",
+                summary: "Validation Error",
+                detail: "Please select levels in order,and each previous level should be filled.",
+            });
+            return;
+        }
+
+        if ((data.level4 && data.level4 !== 'None') && (!data.level3 || data.level3 === 'None')) {
+            toast.current.show({
+                severity: "error",
+                summary: "Validation Error",
+                detail: "Please select levels in order,and each previous level should be filled.",
+            });
+            return;
+        }
         const levelsArray = [
             data.level1,
             data.level2,
