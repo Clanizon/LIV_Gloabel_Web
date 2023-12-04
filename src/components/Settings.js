@@ -17,6 +17,7 @@ import deleteicon from '../images/trash.svg';
 import addicon from '../images/Plus-Circle.svg';
 import pencil from '../images/Pencil.svg';
 import backarrow from '../images/back_arrow_svg.svg';
+import copyicon from '../images/Documet-Duplicate.svg';
 const Settings = () => {
     const setActiveIndex = useStoreActions((actions) => actions.tabModel.setActiveIndex);
     const setSelectedUnitId = useStoreActions((actions) => actions.tabModel.setSelectedUnitId);
@@ -247,7 +248,7 @@ const Settings = () => {
                     <div className="flex align-items-center gap-3 posItem1">
                         <p className='plantSize'>{data.name}</p>
                         <div className="flex">
-                            <img src={addicon} alt="addicon" className="editSize" onClick={(e) => { e.stopPropagation(); handleClone(data._id, data.name); }} />
+                            <img src={copyicon} alt="addicon" className="editSize" onClick={(e) => { e.stopPropagation(); handleClone(data._id, data.name); }} />
 
                             <img src={pencil} alt="pencil" className="editSize1" onClick={(e) => { e.stopPropagation(); handleEdit(data._id, data.name); }} />
                             <img src={deleteicon} alt="deleteicon" className="deleteSize1" onClick={(e) => { e.stopPropagation(); handleDelete(data._id); }} />
@@ -358,7 +359,8 @@ const Settings = () => {
 
 
             <Dialog header="Confirm Deletion" visible={confirmationVisible} style={{ width: "30vw" }} onHide={() => setConfirmationVisible(false)}>
-                <h1 className="diaHead">Are you sure you want to delete this plan?</h1>
+                <h1 className="diaHead">Are you sure you want to delete this plant?</h1>
+                <p className="custom-message">Deleting a plant will remove all associated data.</p>
                 <div className="flex justify-content-end mt-5" style={{ padding: '0rem 1.2rems' }} >
 
                     <Button type="submit" size="small" className="AU-save-btn p-button-rounded mr-2" style={{ cursor: 'pointer' }} onClick={() => setConfirmationVisible(false)} loading={isLoading} label="Cancel" />
