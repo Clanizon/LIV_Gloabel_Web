@@ -158,7 +158,20 @@ const ViewMember = () => {
                             <Controller
                                 name="name"
                                 control={form.control}
-                                rules={{ required: "Password is required." }}
+                                rules={{
+                                    required: "Password is required.", minLength: {
+                                        value: 8,
+                                        message: "Password should be at least 8 characters long.",
+                                    },
+                                    maxLength: {
+                                        value: 30,
+                                        message: "Password should not exceed 30 characters.",
+                                    },
+                                    pattern: {
+                                        value: /^[^\s]{8,}$/,
+                                        message: "Password should be at least 8 characters long and should not contain whitespace.",
+                                    },
+                                }}
                                 render={({ field, fieldState }) => (
                                     <>
                                         <InputText type={showPassword ? "text" : "password"} id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />

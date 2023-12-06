@@ -208,6 +208,9 @@ const Settings = () => {
                 }
             });
     }
+    const Whitespace = (input) => {
+        return !input || !input.trim();
+    };
 
     const handleEdit = (id, name) => {
         setSelectedItemId(id);
@@ -302,25 +305,29 @@ const Settings = () => {
                         <Dialog header="Add" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
-                                    <label htmlFor="department">
-                                        Plant
-                                    </label>
+                                    <label htmlFor="department">Plant</label>
                                     <Controller
                                         name="name"
                                         control={form.control}
-                                        rules={{ required: "Plant is required." }}
+                                        rules={{
+                                            required: "Plant is required.",
+                                            validate: (value) => Whitespace(value) ? "Plant cannot be empty or contain only spaces." : true
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <>
-                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)}
+                                                />
                                                 {fieldState.error && (
-                                                    <small className="p-error">{fieldState.error.message}</small>)}
+                                                    <small className="p-error">{fieldState.error.message}</small>
+                                                )}
                                             </>
                                         )}
                                     />
-
                                 </div>
-
                                 <div className="flex justify-content-end mt-5">
                                     <Button size="small" className="AU-save-btn p-button-rounded" loading={isLoading} label="Save" />
                                 </div>
@@ -330,25 +337,29 @@ const Settings = () => {
                         <Dialog header="Add" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => setCloneVisible(false)}>
                             <form onSubmit={form.handleSubmit(onCloneSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
-                                    <label htmlFor="department">
-                                        Plant
-                                    </label>
+                                    <label htmlFor="department">Plant</label>
                                     <Controller
                                         name="name"
                                         control={form.control}
-                                        rules={{ required: "Plant is required." }}
+                                        rules={{
+                                            required: "Plant is required.",
+                                            validate: (value) => Whitespace(value) ? "Plant cannot be empty or contain only spaces." : true
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <>
-                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)}
+                                                />
                                                 {fieldState.error && (
-                                                    <small className="p-error">{fieldState.error.message}</small>)}
+                                                    <small className="p-error">{fieldState.error.message}</small>
+                                                )}
                                             </>
                                         )}
                                     />
-
                                 </div>
-
                                 <div className="flex justify-content-end mt-5">
                                     <Button size="small" className="AU-save-btn p-button-rounded" loading={isLoading} label="Save" />
                                 </div>

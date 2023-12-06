@@ -85,7 +85,9 @@ const AddMemeber = () => {
     const form = useForm({ defaultValues });
     const errors = form.formState.errors;
     const { reset } = form;
-
+    const Whitespace = (input) => {
+        return !input || !input.trim();
+    };
     const getFormErrorMessage = (name) => {
         return errors[name] ? <small className="p-error">{errors[name].message}</small> : <small className="p-error">&nbsp;</small>;
     };
@@ -105,22 +107,21 @@ const AddMemeber = () => {
                         <div className="p-fluid formgrid grid mt-4">
 
                             <div className="field col-12 md:col-4 lg:col-3">
-                                <label htmlFor="name">
-                                    Full Name<span className="p-error">*</span>
-                                </label>
+                                <label htmlFor="name">Full Name<span className="p-error">*</span></label>
                                 <Controller
                                     name="name"
                                     control={form.control}
                                     rules={{
                                         required: "User Name is required.",
-                                        // maxLength: {
-                                        //     value: ,
-                                        //     message: "User Name should not exceed 15 characters.",
-                                        // },
+                                        validate: (value) => Whitespace(value) ? "Full Name cannot be empty or contain only spaces." : true
                                     }}
                                     render={({ field, fieldState }) => (
-                                        <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                        <InputText
+                                            id={field.name}
+                                            value={field.value}
+                                            className={classNames({ "p-invalid": fieldState.error })}
+                                            onChange={(e) => field.onChange(e.target.value)}
+                                        />
                                     )}
                                 />
                                 {getFormErrorMessage("name")}
@@ -159,7 +160,21 @@ const AddMemeber = () => {
                                     <Controller
                                         name="password"
                                         control={form.control}
-                                        // rules={{ required: "Password is required." }}
+                                        rules={{
+                                            required: "Password is required.", required: "Password is required.",
+                                            minLength: {
+                                                value: 8,
+                                                message: "Password should be at least 8 characters long.",
+                                            },
+                                            maxLength: {
+                                                value: 30,
+                                                message: "Password should not exceed 30 characters.",
+                                            },
+                                            pattern: {
+                                                value: /^[^\s]{8,}$/,
+                                                message: "Password should be at least 8 characters long and should not contain whitespace.",
+                                            },
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <div className="relative">
                                                 <InputText disabled id="password"
@@ -191,10 +206,10 @@ const AddMemeber = () => {
                                                 value: 30,
                                                 message: "Password should not exceed 30 characters.",
                                             },
-                                            // pattern: {
-                                            //     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-                                            //     message: "Password should include at least one lowercase letter, one uppercase letter, and one digit.",
-                                            // },
+                                            pattern: {
+                                                value: /^[^\s]{8,}$/,
+                                                message: "Password should be at least 8 characters long and should not contain whitespace.",
+                                            },
                                         }}
                                         render={({ field, fieldState }) => (
                                             <div className="relative">

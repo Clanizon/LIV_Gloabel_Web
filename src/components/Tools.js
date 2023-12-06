@@ -101,6 +101,10 @@ function Tools() {
     }
 
     console.log("toolData.lenth", toolData.length)
+    const Whitespace = (input) => {
+        return !input || !input.trim();
+    };
+
     const customItemTemplate = (data) => {
 
         return (
@@ -135,31 +139,31 @@ function Tools() {
 
                     <Dialog header="Add Tool" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
                         <form onSubmit={form.handleSubmit(handleAdd)} className="error_msg">
-
-                            <div className=" align-items-center col-12">
-
+                            <div className="align-items-center col-12">
                                 <div className="field col-12" style={{ display: 'inline-grid', marginTop: '10px', padding: '0px' }}>
-                                    <label htmlFor="name">
-                                        Tool<span className="p-error">*</span>
-                                    </label>
-
+                                    <label htmlFor="name">Tool<span className="p-error">*</span></label>
                                     <Controller
                                         name="tool"
                                         control={form.control}
-                                        rules={{ required: "Tool List is required." }}
+                                        rules={{
+                                            required: "Tool List is required.",
+                                            validate: (value) => Whitespace(value) ? "Tool cannot be empty or contain only spaces." : true
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <>
-                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)}
+                                                />
                                                 {fieldState.error && (
                                                     <small className="p-error">{fieldState.error.message}</small>
                                                 )}
                                             </>
                                         )}
                                     />
-
                                 </div>
-
                                 <div className="flex justify-content-end">
                                     <Button size="small" className="AU-save-btn p-button-rounded ml-3" loading={isLoading} label="Add" />
                                 </div>

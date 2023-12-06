@@ -144,6 +144,7 @@ const Department = () => {
         setDeleteId(id);
         setIsDeleteDialogVisible(true);
     };
+
     const confirmDelete = () => {
         setIsLoading(true);
         axios.delete(constants.URL.ADD_DEPARTMENT + deleteId, {
@@ -178,8 +179,8 @@ const Department = () => {
         getAllUser(id);
         setVisibleConfig(true);
         setSelectedDepartId(id);
-
     }
+
     const getAllIssues = (id) => {
 
         setIsLoading(true);
@@ -226,7 +227,9 @@ const Department = () => {
             })
 
     }
-
+    const Whitespace = (input) => {
+        return !input || !input.trim();
+    };
 
     const handleDelete = (name) => {
         const payload = {
@@ -400,6 +403,7 @@ const Department = () => {
             });
     }, [resData, pageNo, refresh]);
 
+
     return (
         <>
 
@@ -464,25 +468,28 @@ const Department = () => {
                             <div className=" align-items-center col-12">
 
                                 <div className="field col-12" style={{ display: 'inline-grid', marginTop: '10px', padding: '0px' }}>
-                                    <label htmlFor="name">
-                                        Category<span className="p-error">*</span>
-                                    </label>
-
+                                    <label htmlFor="name">Category<span className="p-error">*</span></label>
                                     <Controller
                                         name="issue"
                                         control={form.control}
-                                        rules={{ required: "Issue List is required." }}
+                                        rules={{
+                                            required: "Issue List is required.",
+                                            validate: (value) => Whitespace(value) ? "Category cannot be empty or contain only spaces." : true
+                                        }}
                                         render={({ field, fieldState }) => (
                                             <>
-                                                <InputText id={field.name} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                                <InputText
+                                                    id={field.name}
+                                                    value={field.value}
+                                                    className={classNames({ "p-invalid": fieldState.error })}
+                                                    onChange={(e) => field.onChange(e.target.value)}
+                                                />
                                                 {fieldState.error && (
                                                     <small className="p-error">{fieldState.error.message}</small>
                                                 )}
                                             </>
                                         )}
                                     />
-
                                 </div>
 
                                 <div className="flex justify-content-end">
@@ -709,17 +716,25 @@ const Department = () => {
                                 <Controller
                                     name="department"
                                     control={form.control}
-                                    rules={{ required: "Department is required." }}
+                                    rules={{
+                                        required: "Department is required.",
+                                        validate: (value) => Whitespace(value) ? "Department cannot be empty or contain only spaces." : true
+                                    }}
                                     render={({ field, fieldState }) => (
                                         <>
-                                            <InputText id={field.name} style={{ margin: '15px 5px 0px' }} value={field.value} className={classNames({ "p-invalid": fieldState.error })} onChange={(e) => field.onChange(e.target.value)} />
-
+                                            <InputText
+                                                id={field.name}
+                                                style={{ margin: '15px 5px 0px' }}
+                                                value={field.value}
+                                                className={classNames({ "p-invalid": fieldState.error })}
+                                                onChange={(e) => field.onChange(e.target.value)}
+                                            />
                                             {fieldState.error && (
                                                 <small className="p-error">{fieldState.error.message}</small>
-                                            )}</>
+                                            )}
+                                        </>
                                     )}
                                 />
-
                             </div>
 
                             <div className="flex justify-content-end mt-5">
