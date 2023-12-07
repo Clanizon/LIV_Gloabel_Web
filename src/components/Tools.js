@@ -42,7 +42,14 @@ function Tools() {
             });
     }, [refresh]);
     const handleAdd = (data) => {
+        const existingTool = toolData.find(tool => tool === data.tool);
 
+        if (existingTool) {
+            if (toast.current) {
+                toast.current.show({ severity: "error", summary: "Error", detail: "Tool already exists. Please add a new tool." });
+            }
+            return;
+        }
         const payload = {
             name: data.tool,
         }

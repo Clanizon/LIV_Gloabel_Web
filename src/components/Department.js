@@ -256,7 +256,14 @@ const Department = () => {
             })
     }
     const handleAddList = (data) => {
+        console.log("issueResponse", issueResponse)
+        const existingCategory = issueResponse.find(category => category === data.issue);
 
+        if (existingCategory) {
+
+            toast.current.show({ severity: "error", summary: "Error", detail: "Category already exists. Please add a new category." });
+            return;
+        }
         const payload = {
             name: data.issue,
         }

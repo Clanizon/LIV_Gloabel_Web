@@ -114,6 +114,7 @@ input:-internal-autofill-selected {
 .diahead p {
     font-size: 1rem;
     font-family: Inter-Regular;
+    word-wrap: break-word;
 }
 
 .cardPara span {
@@ -1031,6 +1032,7 @@ input:-internal-autofill-selected {
     padding: 5px;
     line-height: 1.5;
     margin-bottom: 2px !important;
+    word-wrap: break-word;
 }
 
 .p-menu .p-menuitem-link {

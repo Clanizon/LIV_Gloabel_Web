@@ -334,7 +334,7 @@ const Settings = () => {
                             </form>
                         </Dialog>
 
-                        <Dialog header="Add" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => setCloneVisible(false)}>
+                        <Dialog header="Clone" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => setCloneVisible(false)}>
                             <form onSubmit={form.handleSubmit(onCloneSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
                                     <label htmlFor="department">Plant</label>
