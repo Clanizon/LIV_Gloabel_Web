@@ -798,6 +798,7 @@ input:-internal-autofill-selected {
     font-size: 14px;
     margin: 0px;
     font-family: Inter-SemiBold;
+    word-break: break-all;
 }
 
 .no-results-message {
@@ -836,7 +837,9 @@ input:-internal-autofill-selected {
     border: 1px solid rgba(251, 251, 251, 1);
     justify-content: space-between;
     padding: 0px 12px;
-    height: 52px;
+    min-height: 60px;
+    /* width: 280px; */
+    word-break: break-all;
 }
 
 .posItem1 {
@@ -846,7 +849,7 @@ input:-internal-autofill-selected {
     border: 1px solid rgba(240, 244, 247, 1);
     justify-content: space-between;
     padding: 0px 12px;
-    height: 60px;
+    min-height: 60px;
 
 }
 

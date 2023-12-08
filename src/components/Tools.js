@@ -115,13 +115,15 @@ function Tools() {
     const customItemTemplate = (data) => {
 
         return (
-            <div className="mt-3">
-                <div className="pointCur" >
-                    <div className="flex align-items-center mr-4 posItemtool">
-                        <p className="plantSize">{data}</p>
+            <div className='col-12 sm:col-3 lg:col-3 xl:col-3 p-2 boxCard '>
+                <div className="mt-3">
+                    <div className="pointCur" >
+                        <div className="flex align-items-center mr-4 posItemtool">
+                            <p className="plantSize">{data}</p>
 
-                        <img src={deleteicon} alt="deleteicon" className="deleteSize" onClick={(e) => { e.stopPropagation(); handleToolDelete(data); }} />
+                            <img src={deleteicon} alt="deleteicon" className="deleteSize" onClick={(e) => { e.stopPropagation(); handleToolDelete(data); }} />
 
+                        </div>
                     </div>
                 </div>
             </div>
