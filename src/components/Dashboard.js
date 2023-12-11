@@ -13,6 +13,7 @@ import getHeaders from "../constants/Utils";
 import { Dialog } from 'primereact/dialog';
 import { Timeline } from 'primereact/timeline';
 import { Card } from 'primereact/card';
+import { Carousel } from 'primereact/carousel';
 
 function Dashboard() {
 
@@ -42,6 +43,7 @@ function Dashboard() {
     const [pageDeptNo, setPageDeptNo] = useState(1);
     const [visibleDetailPop, setVisibleDetailPop] = useState(false);
     const [selectedTicket, setSelectedTicket] = useState(null);
+
     const ticketStatus = [
         { name: 'All', _id: 'All' },
         { name: 'Open', _id: 'Open' },
@@ -228,6 +230,16 @@ function Dashboard() {
                 setIsLoading(false);
             });
     };
+    const gallTemplate = (item) => {
+        return (
+            <div className="">
+                <div className="mb-3">
+                    <img src={item} alt='img' style={{ width: '100%' }} />
+                </div>
+
+            </div>
+        );
+    };
 
     const renderTimelineContent = (event) => {
         return (
@@ -240,7 +252,11 @@ function Dashboard() {
                 second: "numeric"
             })}>
                 {event.pictures && event.pictures.length > 0 && (
-                    <img src={event.pictures[0]} alt={event.status} width={200} className="shadow-1" />
+                    // <img src={event.pictures[0]} alt={event.status} width={200} className="shadow-1" />
+
+                    <Carousel value={event.pictures} numVisible={1} numScroll={1} orientation="horizontal"
+                        style={{ width: '100%' }}
+                        itemTemplate={gallTemplate} />
                 )}
 
 
@@ -369,10 +385,7 @@ function Dashboard() {
                                 <Column field="issue_type" header="Category" ></Column>
                                 <Column field="escalation_settings.duration" header="Escation Duration"></Column>
                                 <Column
-                                    body={(rowData) => {
-                                        const lastStatusEvent = getLastStatusEvent(rowData?.status_events);
-                                        return lastStatusEvent ? lastStatusEvent.by : 'N/A';
-                                    }}
+                                    field="current_assignee.name"
 
                                     header="Current Assignee"
                                 ></Column>
