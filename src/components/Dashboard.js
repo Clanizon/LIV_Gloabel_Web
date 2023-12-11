@@ -262,6 +262,9 @@ function Dashboard() {
 
                 <p className='cardPara'>Name: <span>{event?.by?.name ? event?.by?.name : 'N/A'}</span></p>
                 <p className='cardPara'>Description:  <span>{event?.description ? event?.description : 'N/A'}</span></p>
+
+                <p className='cardPara'>Tools:  <span>{event?.tools ? event?.tools : 'N/A'}</span></p>
+
             </Card>
         );
     };
