@@ -66,14 +66,16 @@ const Department = () => {
                 headers: getHeaders(),
             })
             .then((resp) => {
-                setTraineesList(resp.data.results);
+
+                const filteredTraineesList = resp.data.results.filter(trainee => !trainee.is_deleted);
+                setTraineesList(filteredTraineesList);
             })
             .catch((e) => console.error(e))
             .finally(() => {
                 setIsLoading(false);
             });
-
     }
+
 
     useEffect(() => {
         getUser();
@@ -213,10 +215,11 @@ const Department = () => {
                 if (resp.data.results && resp.data.results.escalation_settings) {
                     const { escalation_settings } = resp.data.results;
                     form.setValue('esclation', escalation_settings.duration || '1 day');
-                    form.setValue('level1', escalation_settings.hierarchy[0]?._id || 'None');
-                    form.setValue('level2', escalation_settings.hierarchy[1]?._id || 'None');
-                    form.setValue('level3', escalation_settings.hierarchy[2]?._id || 'None');
-                    form.setValue('level4', escalation_settings.hierarchy[3]?._id || 'None');
+                    form.setValue('level1', escalation_settings.hierarchy[0]?.is_deleted ? 'None' : escalation_settings.hierarchy[0]?._id || 'None');
+                    form.setValue('level2', escalation_settings.hierarchy[1]?.is_deleted ? 'None' : escalation_settings.hierarchy[1]?._id || 'None');
+                    form.setValue('level3', escalation_settings.hierarchy[2]?.is_deleted ? 'None' : escalation_settings.hierarchy[2]?._id || 'None');
+                    form.setValue('level4', escalation_settings.hierarchy[3]?.is_deleted ? 'None' : escalation_settings.hierarchy[3]?._id || 'None');
+
                 }
 
             }).catch((e) => {
