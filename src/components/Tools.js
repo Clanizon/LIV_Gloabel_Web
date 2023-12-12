@@ -133,7 +133,7 @@ function Tools() {
         <div className='w-full mainBanner p-2'>
             <div className='db-wrapper'>
                 <Toast ref={toast} />
-                <div className="grid mx-0">
+                <div className=" mx-0">
                     <div className='flex align-items-center justify-content-between tool-heading' style={{ width: '100%' }}>
                         <h4 className='' >Tools</h4>
                         <i class="pi pi-plus-circle cursor-pointer" style={{ fontWeight: '600', fontSize: '1.5rem', cursor: 'pointer' }} onClick={() => setVisible(true)}></i>
