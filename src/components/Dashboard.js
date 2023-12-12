@@ -494,7 +494,7 @@ function Dashboard() {
                                     <p>{selectedTicket?.hash_id}</p>
                                 </div>
                                 <div className='diahead col-3'>
-                                    <h4>Assigner Name</h4>
+                                    <h4>Raised By</h4>
                                     <p>{selectedTicket?.assignor.name}</p>
                                 </div>
                                 <div className='diahead col-3'>
