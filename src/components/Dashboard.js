@@ -260,10 +260,10 @@ function Dashboard() {
                 )}
 
 
-                <p className='cardPara'>Name: <span>{event?.by?.name ? event?.by?.name : 'N/A'}</span></p>
-                <p className='cardPara'>Description:  <span>{event?.description ? event?.description : 'N/A'}</span></p>
+                <p className='cardPara'>Name: <span>{event?.by?.name ? event?.by?.name : 'None'}</span></p>
+                <p className='cardPara'>Description:  <span>{event?.description ? event?.description : 'None'}</span></p>
 
-                <p className='cardPara'>Tools:  <span>{event?.tools ? event?.tools : 'N/A'}</span></p>
+                <p className='cardPara'>Tools:  <span>{event?.tools ? event?.tools : 'None'}</span></p>
 
             </Card>
         );
@@ -399,7 +399,7 @@ function Dashboard() {
                                         const lastClosedStatusEvent = getLastClosedStatusEvent(rowData?.status_events);
                                         return lastClosedStatusEvent
                                             ? lastClosedStatusEvent.by
-                                            : 'N/A';
+                                            : 'None';
                                     }}
 
                                     header="Closed By"
@@ -416,7 +416,7 @@ function Dashboard() {
                                                 minute: "numeric",
                                                 second: "numeric"
                                             })
-                                            : 'N/A';
+                                            : 'None';
                                     }}
 
                                     header="Closed On"
