@@ -168,6 +168,7 @@ const ViewMember = () => {
                 >
                     <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
                         <div className="field flex flex-column relative" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
+                            <label htmlFor="department">New Password</label>
                             <Controller
                                 name="name"
                                 control={form.control}

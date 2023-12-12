@@ -719,10 +719,17 @@ const Department = () => {
                         </form>
                     </Dialog>
 
-                    <Dialog header="Department" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
+                    <Dialog header={selectedItemId ? "Edit Department" : "Add Department"}
+                        visible={visible} style={{ width: "30vw" }}
+                        onHide={() => {
+                            setVisible(false);
+                            setSelectedItemId('');
+                        }}>
                         <form onSubmit={form.handleSubmit(handleAdd)} className="error_msg">
 
-                            <div className="field flex flex-column">
+                            <div className="field flex flex-column " style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
+
+                                <label htmlFor="department">Department</label>
                                 <Controller
                                     name="department"
                                     control={form.control}
@@ -734,7 +741,7 @@ const Department = () => {
                                         <>
                                             <InputText
                                                 id={field.name}
-                                                style={{ margin: '15px 5px 0px' }}
+                                                // style={{ margin: '15px 5px 0px' }}
                                                 value={field.value}
                                                 className={classNames({ "p-invalid": fieldState.error })}
                                                 onChange={(e) => field.onChange(e.target.value)}

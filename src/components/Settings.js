@@ -302,7 +302,15 @@ const Settings = () => {
                                 </div>
                             )}
                         </div>
-                        <Dialog header="Add" visible={visible} style={{ width: "30vw" }} onHide={() => setVisible(false)}>
+                        <Dialog
+                            header={selectedItemId ? "Edit Plant" : "Add Plant"}
+                            visible={visible}
+                            style={{ width: "30vw" }}
+                            onHide={() => {
+                                setVisible(false);
+                                setSelectedItemId('');
+                            }}
+                        >
                             <form onSubmit={form.handleSubmit(onSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
                                     <label htmlFor="department">Plant</label>
@@ -334,7 +342,10 @@ const Settings = () => {
                             </form>
                         </Dialog>
 
-                        <Dialog header="Clone" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => setCloneVisible(false)}>
+                        <Dialog header="Clone" visible={cloneVisible} style={{ width: "30vw" }} onHide={() => {
+                            setCloneVisible(false);
+                            setSelectedItemId('');
+                        }}>
                             <form onSubmit={form.handleSubmit(onCloneSubmit)} className="error_msg">
                                 <div className="field flex flex-column" style={{ marginTop: '20px', padding: '0.3rem 0.5rem' }}>
                                     <label htmlFor="department">Plant</label>
