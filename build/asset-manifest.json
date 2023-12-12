@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.0d15e366.css",
-    "main.js": "./static/js/main.eab66c30.js",
+    "main.js": "./static/js/main.4639fd35.js",
     "static/js/787.65cb3cd5.chunk.js": "./static/js/787.65cb3cd5.chunk.js",
     "static/media/Inter-ExtraBold.ttf": "./static/media/Inter-ExtraBold.4164cfba15dbca5f37aa.ttf",
     "static/media/Inter-Black.ttf": "./static/media/Inter-Black.83d81b169bedf85385f2.ttf",
@@ -40,11 +40,11 @@
     "static/media/close-small.svg": "./static/media/close-small.f40500d22cee3a0061117ae8431ecd13.svg",
     "static/media/back_arrow_svg.svg": "./static/media/back_arrow_svg.4fcdb7e25f45145ed9e57009dd751252.svg",
     "main.0d15e366.css.map": "./static/css/main.0d15e366.css.map",
-    "main.eab66c30.js.map": "./static/js/main.eab66c30.js.map",
+    "main.4639fd35.js.map": "./static/js/main.4639fd35.js.map",
     "787.65cb3cd5.chunk.js.map": "./static/js/787.65cb3cd5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0d15e366.css",
-    "static/js/main.eab66c30.js"
+    "static/js/main.4639fd35.js"
   ]
 }
