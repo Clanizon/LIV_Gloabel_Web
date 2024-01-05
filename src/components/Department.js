@@ -100,7 +100,6 @@ const Department = () => {
     const handleAdd = (data) => {
 
         const payload = {
-            name: data.department,
         }
         setIsLoading(true);
 

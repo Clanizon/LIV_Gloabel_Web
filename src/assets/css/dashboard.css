@@ -649,7 +649,8 @@ input:-internal-autofill-selected {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: transparent;
+    /* background-color: transparent; */
+    background-color: #c0b8b8;
 
 }
 

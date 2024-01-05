@@ -386,7 +386,7 @@ function Dashboard() {
 
                                 <Column field="issue_severity" header="Severity" ></Column>
                                 <Column field="issue_type" header="Category" ></Column>
-                                <Column field="escalation_settings.duration" header="Escation Duration"></Column>
+                                <Column field="escalation_settings.duration" header="Escalation Duration"></Column>
                                 <Column
                                     field="current_assignee.name"
 
