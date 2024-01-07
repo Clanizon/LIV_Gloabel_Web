@@ -68,16 +68,17 @@ const Settings = () => {
                     ...resp.data.results,
                 ];
                 setPlanData(newData);
-
+                setRefresh(false)
             })
             .catch((e) => {
                 console.error("API Error:", e);
             })
             .finally(() => {
                 setIsLoading(false);
-                setRefresh(false);
+                setRefresh(false)
+
             });
-    }, [planResData, refresh, selectedItemId]);
+    }, [refresh]);
 
 
     const onCloneSubmit = (data) => {
@@ -104,7 +105,7 @@ const Settings = () => {
 
             })
             .catch((e) => {
-
+                setSelectedItemId('');
                 if (toast.current) {
                     toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                 }
@@ -142,7 +143,9 @@ const Settings = () => {
 
                 })
                 .catch((e) => {
-
+                    setSelectedItemId('');
+                    setVisible(false);
+                    form.reset();
                     if (toast.current) {
                         toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                     }
@@ -158,15 +161,20 @@ const Settings = () => {
                 headers: getHeaders(),
             })
                 .then((resp) => {
-
+                    setRefresh(true);
                     setPlanResData(resp.data.results);
                     form.reset();
                     setVisible(false);
+
                     if (toast.current) {
                         toast.current.show({ severity: "success", summary: "Success", detail: "Added Successfully" });
                     }
                 })
                 .catch((e) => {
+                    form.reset();
+                    setSelectedItemId('');
+                    setVisible(false);
+
                     if (toast.current) {
                         toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                     }
@@ -189,25 +197,26 @@ const Settings = () => {
         setItemIdToDelete(id);
     }
     const handleDeleteConfirmed = (id) => {
-
         axios.delete(constants.URL.ADDUNIT + "/" + id, {
             headers: getHeaders(),
         })
             .then((resp) => {
-                setConfirmationVisible(false);
                 if (toast.current) {
                     toast.current.show({ severity: "success", summary: "Success", detail: "Item deleted successfully" });
                 }
                 setRefresh(true);
             })
             .catch((e) => {
-                setRefresh(true);
-                setConfirmationVisible(false);
                 if (toast.current) {
                     toast.current.show({ severity: "error", summary: "Failure", detail: e?.response?.data?.message });
                 }
+            })
+            .finally(() => {
+                setConfirmationVisible(false);
+
             });
-    }
+    };
+
     const Whitespace = (input) => {
         return !input || !input.trim();
     };
