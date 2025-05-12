@@ -1,4 +1,4 @@
-const API_URL = "http://razolve.com:3001/"
+const API_URL = "http://api.razolve.com/"
 
 const BASE_URL = API_URL + "api/";
 
