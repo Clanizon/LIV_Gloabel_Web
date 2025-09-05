@@ -13,7 +13,7 @@ const Footer = () => {
                     <a href="https://policies.razolve.com/disclaimer-policy.html" target="_blank" rel="noopener noreferrer">
                         Disclaimer Policy
                     </a>
-                    <a href="https://policies.razolve.com/terms-conditions.html" target="_blank" rel="noopener noreferrer">
+                    <a href="https://policies.razolve.com/terms-and-condition.html" target="_blank" rel="noopener noreferrer">
                         Terms & Conditions
                     </a>
                 </div>

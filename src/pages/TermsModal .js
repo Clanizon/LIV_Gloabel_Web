@@ -22,7 +22,7 @@ const TermsModal = ({ visible, onClose }) => {
             <div className="custom-modal-content">
                 <iframe
                     className="custom-iframe"
-                    src="https://policies.razolve.com/terms-conditions.html"
+                    src="https://policies.razolve.com/terms-and-condition.html"
                     title="External Content"
                 />
                 <iframe

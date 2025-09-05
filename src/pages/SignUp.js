@@ -356,7 +356,7 @@ const SignUp = () => {
                                     <div className="custom-modal-content">
                                         <iframe
                                             className="custom-iframe"
-                                            src="https://policies.razolve.com/terms-privacy-policy.html"
+                                            src="https://policies.razolve.com/terms-and-policy.html"
                                             title="External Content"
                                         />
 
